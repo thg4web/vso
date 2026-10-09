@@ -1,3 +1,7 @@
+# Only what Hugo needs to build and display the site gets pushed here.
+# Everything project-related (scripts, docs, planning, third-party tools)
+# stays local -- gitignored on purpose, not an oversight.
+
 public/
 resources/
 .hugo_build.lock
@@ -6,9 +10,6 @@ resources/
 exports/
 static/exports/
 static/data/
-# Third-party tool, cloned locally for testing -- its own repo, not ours to
-# publish. Includes a 250MB+ venv when set up. Keep local, never commit.
-project/tools/seevar/
 *.tmp
 *.bak
 *.orig
@@ -17,3 +18,11 @@ project/tools/seevar/
 *~
 __pycache__/
 *.pyc
+
+# Project-management / tooling -- not site content.
+CLAUDE.md
+document-skel.md
+archive/
+project/
+scripts/
+start_webserver.sh
