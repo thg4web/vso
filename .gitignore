@@ -8,8 +8,10 @@ resources/
 .DS_Store
 .env
 exports/
-static/exports/
-static/data/
+# static/data/ and static/exports/ ARE tracked -- they're the generated
+# rise/set and 24h-log data the live site reads at runtime. ebench's cron
+# pushes fresh copies here daily after regenerating them; that push is what
+# triggers the GitHub Pages rebuild.
 *.tmp
 *.bak
 *.orig
