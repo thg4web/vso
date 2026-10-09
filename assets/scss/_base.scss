@@ -1,0 +1,38 @@
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: $bg;
+  color: $text;
+  font-family: $font-body;
+  line-height: 1.55;
+}
+.wrap { max-width: $max-width; margin: 0 auto; padding: 0 $padding; }
+a { color: $accent; text-decoration: none; &:hover { color: $accent-hover; } }
+h1, h2, h3, h4, h5, h6 { font-family: $font-heading; line-height: 1.1; }
+
+// Topic card — a dark "window" preview linking out to a themed watch page.
+.topic-card {
+  display: block;
+  max-width: 480px;
+  margin-top: 16px;
+  padding: 24px 28px;
+  background: #0b0e1a;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  text-decoration: none;
+  transition: transform 0.15s ease, border-color 0.15s ease;
+
+  &:hover { transform: translateY(-2px); border-color: #8ec9ff; }
+
+  &__eyebrow {
+    display: block; font-size: 0.72rem; text-transform: uppercase;
+    letter-spacing: 0.08em; color: #aab3d6; margin-bottom: 6px;
+  }
+  &__title {
+    display: block; font-size: 1.15rem; font-weight: 600;
+    color: #f3f6ff; margin-bottom: 8px;
+  }
+  &__desc {
+    display: block; font-size: 0.88rem; color: #aab3d6; line-height: 1.5;
+  }
+}

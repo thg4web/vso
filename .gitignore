@@ -1,0 +1,19 @@
+public/
+resources/
+.hugo_build.lock
+.DS_Store
+.env
+exports/
+static/exports/
+static/data/
+# Third-party tool, cloned locally for testing -- its own repo, not ours to
+# publish. Includes a 250MB+ venv when set up. Keep local, never commit.
+project/tools/seevar/
+*.tmp
+*.bak
+*.orig
+*.swp
+*.swo
+*~
+__pycache__/
+*.pyc

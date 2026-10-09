@@ -1,0 +1,385 @@
+// T CrB "Blaze Star" watch page — scoped dark observatory theme.
+// Colors are spectral, not decorative: donor/accretor use real blackbody
+// color, chart series use the real AAVSO photometric-band convention.
+// Validated against surface #0b0e1a with dataviz/scripts/validate_palette.js.
+
+body.tcrb-page {
+  --tcrb-bg: #05070d;
+  --tcrb-surface: #0b0e1a;
+  --tcrb-surface-raised: #121833;
+  --tcrb-ink: #f3f6ff;
+  --tcrb-ink-secondary: #aab3d6;
+  --tcrb-ink-muted: #6c7395;
+  --tcrb-border: rgba(255, 255, 255, 0.12);
+  --tcrb-grid: rgba(255, 255, 255, 0.08);
+
+  // Red giant donor (~M giant, Teff ~3200K) — true cool-star color.
+  --tcrb-giant: #ff7a45;
+  --tcrb-giant-deep: #c23b1f;
+  // White dwarf / hot boundary layer (accretor) — true hot-star color.
+  --tcrb-wd: #cfe8ff;
+  --tcrb-wd-glow: #8ec9ff;
+
+  // Photometric bands — matches the real AAVSO/variable-star convention.
+  --tcrb-band-b: #3987e5; // B filter, ~440nm
+  --tcrb-band-v: #2fae63; // V filter, ~550nm
+  --tcrb-visual: #d8dce8; // naked-eye visual estimates, unfiltered
+
+  // Status (fixed scale, never themed).
+  --tcrb-good: #0ca30c;
+  --tcrb-warning: #fab219;
+  --tcrb-serious: #ec835a;
+  --tcrb-critical: #d03b3b;
+
+  // Flare alert — deliberately vivid, not a chart/status color (decorative alert only).
+  --tcrb-flare: #ff2d2d;
+  --tcrb-flare-glow: #ff6b57;
+
+  background: var(--tcrb-bg);
+  color: var(--tcrb-ink);
+  transition: background 0.25s ease, color 0.25s ease;
+
+  .site-header { background: var(--tcrb-bg); border-bottom: 1px solid var(--tcrb-border); }
+  .site-header a { color: var(--tcrb-ink); }
+  .site-header a:hover { color: var(--tcrb-wd-glow); }
+
+  // Light theme — its own deliberately-chosen, validated steps, not an automatic flip.
+  &[data-theme="light"] {
+    --tcrb-bg: #eef1f8;
+    --tcrb-surface: #f7f8fb;
+    --tcrb-surface-raised: #ffffff;
+    --tcrb-ink: #10131f;
+    --tcrb-ink-secondary: #4b5270;
+    --tcrb-ink-muted: #7b8099;
+    --tcrb-border: rgba(10, 15, 30, 0.12);
+    --tcrb-grid: rgba(10, 15, 30, 0.08);
+
+    --tcrb-wd: #d8ecff;
+    --tcrb-wd-glow: #2a78d6;
+
+    --tcrb-band-b: #2a78d6;
+    --tcrb-band-v: #178a4a;
+    --tcrb-visual: #4b5270;
+
+    .tcrb__stars { opacity: 0.12; filter: invert(1); }
+  }
+}
+
+.tcrb {
+  position: relative;
+  overflow: hidden;
+
+  // Starfield: cheap, static, generated from repeating radial gradients.
+  &__stars {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image:
+      radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,0.8) 50%, transparent 51%),
+      radial-gradient(1px 1px at 80% 10%, rgba(255,255,255,0.6) 50%, transparent 51%),
+      radial-gradient(1px 1px at 60% 70%, rgba(255,255,255,0.7) 50%, transparent 51%),
+      radial-gradient(2px 2px at 30% 85%, rgba(255,255,255,0.5) 50%, transparent 51%),
+      radial-gradient(1px 1px at 45% 40%, rgba(255,255,255,0.9) 50%, transparent 51%),
+      radial-gradient(2px 2px at 90% 55%, rgba(255,255,255,0.4) 50%, transparent 51%),
+      radial-gradient(1px 1px at 20% 60%, rgba(255,255,255,0.6) 50%, transparent 51%),
+      radial-gradient(1px 1px at 70% 90%, rgba(255,255,255,0.5) 50%, transparent 51%);
+    background-size: 100% 100%;
+    opacity: 0.8;
+  }
+
+  &__inner { position: relative; z-index: 1; padding: 48px 0 80px; }
+
+  // Current-magnitude banner — the very first thing on the page.
+  &__mag-banner {
+    text-align: center;
+    padding: 20px 20px 28px;
+    margin-bottom: 8px;
+  }
+  &__mag-banner-label {
+    display: block; font-size: 0.8rem; text-transform: uppercase;
+    letter-spacing: 0.14em; color: var(--tcrb-ink-muted); margin-bottom: 10px;
+  }
+  &__mag-value-row {
+    display: inline-flex; align-items: baseline; gap: 14px;
+  }
+  &__mag-value {
+    font-family: 'Space Grotesk', $font-body;
+    font-size: clamp(3.2rem, 12vw, 6rem);
+    font-weight: 700;
+    line-height: 1;
+    color: var(--tcrb-mag-color, var(--tcrb-ink));
+    text-shadow: 0 0 36px var(--tcrb-mag-glow, transparent);
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+  }
+  &__mag-status {
+    font-size: 1rem; font-weight: 600;
+    color: var(--tcrb-mag-color, var(--tcrb-ink-secondary));
+  }
+  &__mag-asof { display: block; margin-top: 8px; font-size: 0.78rem; color: var(--tcrb-ink-muted); }
+
+  &__mag-banner--good   { --tcrb-mag-color: var(--tcrb-good);    --tcrb-mag-glow: rgba(12, 163, 12, 0.45); }
+  &__mag-banner--warning{ --tcrb-mag-color: var(--tcrb-warning); --tcrb-mag-glow: rgba(250, 178, 25, 0.45); }
+  &__mag-banner--critical{ --tcrb-mag-color: var(--tcrb-critical); --tcrb-mag-glow: rgba(208, 59, 59, 0.5); }
+
+  // Hero
+  &__hero { position: relative; text-align: center; padding-bottom: 32px; border-bottom: 1px solid var(--tcrb-border); margin-bottom: 40px; }
+  &__kicker {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--tcrb-ink-muted); margin-bottom: 14px;
+  }
+  &__title {
+    font-family: 'Space Grotesk', $font-body;
+    font-size: clamp(2.2rem, 6vw, 3.6rem);
+    font-weight: 600;
+    margin-bottom: 6px;
+    background: linear-gradient(135deg, var(--tcrb-wd) 0%, var(--tcrb-ink) 45%, var(--tcrb-giant) 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  &__subtitle { color: var(--tcrb-ink-secondary); font-size: 1.05rem; margin-bottom: 20px; }
+
+  &__badge {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 8px 16px; border-radius: 999px;
+    background: var(--tcrb-surface-raised);
+    border: 1px solid rgba(250, 178, 25, 0.35);
+    font-size: 0.85rem; color: var(--tcrb-ink);
+  }
+  &__badge-dot {
+    width: 9px; height: 9px; border-radius: 50%;
+    background: var(--tcrb-warning);
+    box-shadow: 0 0 0 0 rgba(250, 178, 25, 0.6);
+    animation: tcrb-pulse 2.2s ease-out infinite;
+  }
+  &__meta { margin-top: 10px; font-size: 0.78rem; color: var(--tcrb-ink-muted); }
+
+  &__theme-toggle {
+    position: absolute; top: 0; right: 0;
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 8px 14px; border-radius: 999px;
+    background: var(--tcrb-surface-raised);
+    border: 1px solid var(--tcrb-border);
+    color: var(--tcrb-ink-secondary);
+    font-size: 0.8rem; cursor: pointer; font-family: inherit;
+  }
+  &__theme-toggle:hover { color: var(--tcrb-ink); border-color: var(--tcrb-wd-glow); }
+
+  // Flare banner — hidden until a flare is detected in the plotted data.
+  &__flare-banner {
+    display: none;
+    align-items: center; gap: 16px;
+    margin-top: 20px; padding: 18px 22px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, rgba(255,45,45,0.18), rgba(255,45,45,0.06));
+    border: 1px solid var(--tcrb-flare);
+    box-shadow: 0 0 28px rgba(255, 45, 45, 0.35);
+    animation: tcrb-flare-flash 1.6s ease-in-out infinite;
+  }
+  &__flare-banner.is-active { display: flex; }
+  &__flare-burst { width: 44px; height: 44px; flex-shrink: 0; animation: tcrb-spin 6s linear infinite; }
+  &__flare-text { text-align: left; }
+  &__flare-title {
+    font-family: 'Space Grotesk', $font-body;
+    font-size: 1.05rem; font-weight: 700; color: var(--tcrb-flare);
+    text-transform: uppercase; letter-spacing: 0.04em;
+  }
+  &__flare-detail { font-size: 0.85rem; color: var(--tcrb-ink-secondary); margin-top: 2px; }
+
+  // Stat tiles
+  &__stats {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1px; background: var(--tcrb-border);
+    border: 1px solid var(--tcrb-border); border-radius: 12px; overflow: hidden;
+    margin-bottom: 48px;
+  }
+  &__stat {
+    background: var(--tcrb-surface); padding: 20px 16px; text-align: center;
+  }
+  &__stat-value {
+    display: block; font-family: 'Space Grotesk', $font-body;
+    font-size: 1.7rem; font-weight: 600; color: var(--tcrb-ink);
+    font-variant-numeric: proportional-nums;
+  }
+  &__stat-sub {
+    display: block; margin-top: 2px; font-size: 0.72rem;
+    color: var(--tcrb-ink-muted); font-variant-numeric: proportional-nums;
+  }
+  &__stat-label {
+    display: block; margin-top: 6px; font-size: 0.72rem;
+    color: var(--tcrb-ink-muted); text-transform: uppercase; letter-spacing: 0.06em;
+  }
+
+  // Section shell
+  &__section { margin-bottom: 56px; }
+  &__section-head { margin-bottom: 20px; }
+  &__section-title { font-family: 'Space Grotesk', $font-body; font-size: 1.5rem; font-weight: 600; margin-bottom: 6px; }
+  &__section-sub { color: var(--tcrb-ink-secondary); font-size: 0.95rem; max-width: 640px; }
+
+  &__panel {
+    background: var(--tcrb-surface);
+    border: 1px solid var(--tcrb-border);
+    border-radius: 14px;
+    padding: 28px;
+  }
+
+  // Mechanism diagram
+  &__diagram-legend {
+    display: flex; gap: 24px; flex-wrap: wrap; margin-top: 18px;
+    font-size: 0.82rem; color: var(--tcrb-ink-secondary);
+  }
+  &__legend-item { display: flex; align-items: center; gap: 8px; }
+  &__legend-swatch { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
+
+  // Finder images
+  &__figure {
+    margin: 0 0 18px;
+    img {
+      display: block; width: 100%; height: auto; border-radius: 10px;
+      border: 1px solid var(--tcrb-border);
+    }
+    figcaption {
+      margin-top: 8px; font-size: 0.78rem; color: var(--tcrb-ink-muted); line-height: 1.5;
+    }
+  }
+  &__locator-toggle {
+    display: inline-flex; gap: 2px; margin-bottom: 14px;
+    background: var(--tcrb-bg); border: 1px solid var(--tcrb-border);
+    border-radius: 9px; padding: 3px;
+  }
+  &__locator-btn {
+    padding: 6px 14px; border: none; border-radius: 6px;
+    background: transparent; color: var(--tcrb-ink-secondary);
+    font-size: 0.8rem; font-family: inherit; cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  &__locator-btn:hover { color: var(--tcrb-ink); }
+  &__locator-btn--active { background: var(--tcrb-surface-raised); color: var(--tcrb-ink); font-weight: 600; }
+  &__atlas-details {
+    margin-top: 4px;
+    summary {
+      cursor: pointer; font-size: 0.85rem; color: var(--tcrb-ink-secondary);
+      padding: 8px 0;
+    }
+    summary:hover { color: var(--tcrb-ink); }
+    .tcrb__figure { margin-top: 12px; }
+  }
+
+  // Timeline
+  &__timeline {
+    display: flex; flex-wrap: wrap; gap: 0; position: relative;
+    border-top: 1px dashed var(--tcrb-border); padding-top: 28px; margin-top: 8px;
+  }
+  &__timeline-item {
+    flex: 1 1 160px; position: relative; padding: 0 16px 8px 0;
+  }
+  &__timeline-dot {
+    width: 11px; height: 11px; border-radius: 50%; background: var(--tcrb-wd-glow);
+    position: absolute; top: -34px; left: 0;
+    box-shadow: 0 0 0 4px var(--tcrb-bg), 0 0 14px var(--tcrb-wd-glow);
+  }
+  &__timeline-item--pending .tcrb__timeline-dot {
+    background: var(--tcrb-warning); box-shadow: 0 0 0 4px var(--tcrb-bg), 0 0 14px var(--tcrb-warning);
+    animation: tcrb-pulse 2.2s ease-out infinite;
+  }
+  &__timeline-year { font-weight: 600; font-size: 1rem; color: var(--tcrb-ink); }
+  &__timeline-text { font-size: 0.85rem; color: var(--tcrb-ink-secondary); margin-top: 4px; }
+
+  // Chart
+  &__chart-wrap { position: relative; height: 360px; }
+  &__chart-note { margin-top: 14px; font-size: 0.78rem; color: var(--tcrb-ink-muted); }
+  &__legend-row {
+    display: flex; gap: 18px; flex-wrap: wrap; margin-bottom: 16px;
+    font-size: 0.82rem; color: var(--tcrb-ink-secondary);
+  }
+
+  &__range-row {
+    display: inline-flex; gap: 2px; margin-bottom: 16px;
+    background: var(--tcrb-bg); border: 1px solid var(--tcrb-border);
+    border-radius: 9px; padding: 3px;
+  }
+  &__range-btn {
+    padding: 6px 14px; border: none; border-radius: 6px;
+    background: transparent; color: var(--tcrb-ink-secondary);
+    font-size: 0.8rem; font-family: inherit; cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  &__range-btn:hover { color: var(--tcrb-ink); }
+  &__range-btn--active {
+    background: var(--tcrb-surface-raised); color: var(--tcrb-ink); font-weight: 600;
+  }
+
+  &__form-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 14px; }
+  &__btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 18px; border-radius: 8px; border: 1px solid var(--tcrb-border);
+    background: var(--tcrb-surface-raised); color: var(--tcrb-ink);
+    font-size: 0.85rem; cursor: pointer; font-family: inherit;
+    text-decoration: none;
+    transition: border-color 0.15s ease, color 0.15s ease;
+  }
+  &__btn:hover { border-color: var(--tcrb-wd-glow); color: var(--tcrb-wd-glow); }
+  &__btn--primary { background: var(--tcrb-wd-glow); color: #05070d; border-color: var(--tcrb-wd-glow); font-weight: 600; }
+  &__btn--primary:hover { color: #05070d; filter: brightness(1.08); }
+
+  // Raw observation log -- scrollable table
+  &__log-wrap {
+    margin-top: 16px; max-height: 360px; overflow-y: auto;
+    border: 1px solid var(--tcrb-border); border-radius: 10px;
+  }
+  &__log-table {
+    width: 100%; border-collapse: collapse; font-size: 0.82rem;
+    font-variant-numeric: tabular-nums;
+  }
+  &__log-table thead th {
+    position: sticky; top: 0; z-index: 1;
+    background: var(--tcrb-surface-raised); color: var(--tcrb-ink-secondary);
+    text-align: left; font-weight: 600; padding: 8px 12px;
+    border-bottom: 1px solid var(--tcrb-border);
+  }
+  &__log-table td {
+    padding: 7px 12px; color: var(--tcrb-ink);
+    border-bottom: 1px solid var(--tcrb-grid);
+  }
+  &__log-table tbody tr:hover { background: var(--tcrb-surface-raised); }
+  &__log-mag { font-weight: 600; }
+  &__log-mag--good { color: var(--tcrb-good); }
+  &__log-mag--warning { color: var(--tcrb-warning); }
+  &__log-mag--critical { color: var(--tcrb-critical); }
+
+  // Sources
+  &__sources { font-size: 0.82rem; color: var(--tcrb-ink-secondary); }
+  &__sources a { color: var(--tcrb-wd-glow); }
+  &__sources li { margin-bottom: 6px; }
+}
+
+@keyframes tcrb-pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(250, 178, 25, 0.55); }
+  70%  { box-shadow: 0 0 0 8px rgba(250, 178, 25, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(250, 178, 25, 0); }
+}
+
+@keyframes tcrb-flare-flash {
+  0%, 100% { box-shadow: 0 0 28px rgba(255, 45, 45, 0.35); }
+  50%      { box-shadow: 0 0 48px rgba(255, 45, 45, 0.65); }
+}
+
+@keyframes tcrb-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tcrb__badge-dot, .tcrb__timeline-item--pending .tcrb__timeline-dot,
+  .tcrb__flare-banner, .tcrb__flare-burst {
+    animation: none !important;
+  }
+}
+
+@media (max-width: 860px) {
+  .tcrb__stats { grid-template-columns: repeat(2, 1fr); }
+  .tcrb__timeline { flex-direction: column; gap: 32px; }
+  .tcrb__timeline-dot { top: -20px; }
+  .tcrb__theme-toggle { position: static; display: inline-flex; margin-bottom: 16px; }
+  .tcrb__flare-banner { flex-direction: column; text-align: center; }
+}

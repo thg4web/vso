@@ -1,0 +1,643 @@
+{{ define "main" }}
+{{ $points := .Site.Data.tcrb_observations.points }}
+<div class="tcrb">
+  <div class="tcrb__stars" aria-hidden="true"></div>
+  <div class="wrap tcrb__inner">
+
+    <section class="tcrb__hero">
+      <button class="tcrb__theme-toggle" id="tcrb-theme-toggle" type="button" aria-pressed="false">
+        <span id="tcrb-theme-icon" aria-hidden="true">☀️</span>
+        <span id="tcrb-theme-label">Light mode</span>
+      </button>
+      <span class="tcrb__kicker">Recurrent Nova &middot; Corona Borealis</span>
+      <h1 class="tcrb__title">T Coronae Borealis</h1>
+      <p class="tcrb__subtitle">"The Blaze Star" — due any time since 1946, watched every clear night since.</p>
+
+      <section class="tcrb__mag-banner" id="tcrb-mag-banner" aria-live="polite">
+        <span class="tcrb__mag-banner-label">Current Magnitude</span>
+        <div class="tcrb__mag-value-row">
+          <span class="tcrb__mag-value" id="tcrb-mag-value">—</span>
+          <span class="tcrb__mag-status" id="tcrb-mag-status"></span>
+        </div>
+        <span class="tcrb__mag-asof" id="tcrb-mag-asof"></span>
+      </section>
+
+      <span class="tcrb__badge" id="tcrb-badge">
+        <span class="tcrb__badge-dot" aria-hidden="true"></span>
+        <span id="tcrb-badge-text">AAVSO Campaign #875 &middot; Active Watch</span>
+      </span>
+
+      <div class="tcrb__flare-banner" id="tcrb-flare-banner" role="alert">
+        <svg class="tcrb__flare-burst" viewBox="0 0 48 48" aria-hidden="true">
+          <defs>
+            <radialGradient id="flareGrad" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#fff4e6" />
+              <stop offset="40%" stop-color="var(--tcrb-flare-glow)" />
+              <stop offset="100%" stop-color="var(--tcrb-flare)" />
+            </radialGradient>
+          </defs>
+          <g stroke="var(--tcrb-flare)" stroke-width="3" stroke-linecap="round">
+            <line x1="24" y1="2" x2="24" y2="12" /><line x1="24" y1="36" x2="24" y2="46" />
+            <line x1="2" y1="24" x2="12" y2="24" /><line x1="36" y1="24" x2="46" y2="24" />
+            <line x1="8" y1="8" x2="15" y2="15" /><line x1="33" y1="33" x2="40" y2="40" />
+            <line x1="40" y1="8" x2="33" y2="15" /><line x1="15" y1="33" x2="8" y2="40" />
+          </g>
+          <circle cx="24" cy="24" r="10" fill="url(#flareGrad)" />
+        </svg>
+        <div class="tcrb__flare-text">
+          <div class="tcrb__flare-title">🔴 T CrB is flaring</div>
+          <div class="tcrb__flare-detail" id="tcrb-flare-detail">Latest plotted point has crossed the eruption threshold.</div>
+        </div>
+      </div>
+
+      <p class="tcrb__meta">Page built {{ now.Format "January 2, 2006" }}. Eruption status is not baked in — check the live AAVSO links below before you trust any number on this page.</p>
+    </section>
+
+    <section class="tcrb__stats" aria-label="Key facts">
+      <div class="tcrb__stat"><span class="tcrb__stat-value">V ≈ 9.8</span><span class="tcrb__stat-label">Quiescent magnitude</span></div>
+      <div class="tcrb__stat"><span class="tcrb__stat-value">≈ 2.0</span><span class="tcrb__stat-label">Peak eruption magnitude</span></div>
+      <div class="tcrb__stat"><span class="tcrb__stat-value">~80 yr</span><span class="tcrb__stat-label">Recurrence interval</span></div>
+      <div class="tcrb__stat"><span class="tcrb__stat-value" data-years-since="1946-02-09">—</span><span class="tcrb__stat-label">Years since 1946 eruption</span></div>
+      <div class="tcrb__stat"><span class="tcrb__stat-value">~3,000 ly</span><span class="tcrb__stat-label">Distance</span></div>
+      <div class="tcrb__stat"><span class="tcrb__stat-value">~30%</span><span class="tcrb__stat-label">Modeled odds, erupts in 2026</span></div>
+    </section>
+
+    <section class="tcrb__section">
+      <div class="tcrb__section-head">
+        <h2 class="tcrb__section-title">How a recurrent nova works</h2>
+        <p class="tcrb__section-sub">A cool giant and a dead star, locked close enough that one feeds the other until the fuel ignites. Colors below are the real thing: each star's actual blackbody color, not a palette pick.</p>
+      </div>
+      <div class="tcrb__panel">
+        <svg viewBox="0 0 600 260" role="img" aria-labelledby="tcrb-diagram-title" style="width:100%; height:auto; max-height:320px;">
+          <title id="tcrb-diagram-title">Diagram of the T CrB binary: a red giant transferring mass to a white dwarf, which periodically detonates the accreted shell as a nova.</title>
+          <defs>
+            <radialGradient id="giantGrad" cx="35%" cy="35%" r="70%">
+              <stop offset="0%" stop-color="#ffd9b0" />
+              <stop offset="45%" stop-color="var(--tcrb-giant)" />
+              <stop offset="100%" stop-color="var(--tcrb-giant-deep)" />
+            </radialGradient>
+            <radialGradient id="wdGrad" cx="40%" cy="40%" r="70%">
+              <stop offset="0%" stop-color="#ffffff" />
+              <stop offset="55%" stop-color="var(--tcrb-wd)" />
+              <stop offset="100%" stop-color="var(--tcrb-wd-glow)" />
+            </radialGradient>
+            <linearGradient id="streamGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="var(--tcrb-giant)" stop-opacity="0.85" />
+              <stop offset="100%" stop-color="var(--tcrb-wd-glow)" stop-opacity="0.9" />
+            </linearGradient>
+            <filter id="glowGiant" x="-60%" y="-60%" width="220%" height="220%">
+              <feGaussianBlur stdDeviation="9" result="b" />
+              <feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
+            </filter>
+            <filter id="glowWd" x="-150%" y="-150%" width="400%" height="400%">
+              <feGaussianBlur stdDeviation="7" result="b" />
+              <feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
+            </filter>
+          </defs>
+
+          <ellipse cx="290" cy="130" rx="235" ry="60" fill="none" stroke="var(--tcrb-grid)" stroke-dasharray="3 5" />
+          <circle cx="290" cy="130" r="3" fill="var(--tcrb-ink-muted)" />
+
+          <path d="M 205 118 Q 320 95 410 128" fill="none" stroke="url(#streamGrad)" stroke-width="7" stroke-linecap="round" opacity="0.85" />
+
+          <ellipse cx="430" cy="130" rx="42" ry="15" fill="none" stroke="var(--tcrb-wd-glow)" stroke-opacity="0.55" stroke-width="2" transform="rotate(-8 430 130)" />
+
+          <circle cx="150" cy="130" r="68" fill="url(#giantGrad)" filter="url(#glowGiant)" />
+          <circle cx="430" cy="130" r="13" fill="url(#wdGrad)" filter="url(#glowWd)" />
+
+          <text x="150" y="222" text-anchor="middle" fill="var(--tcrb-ink)" font-size="15" font-weight="600">Red giant donor</text>
+          <text x="150" y="240" text-anchor="middle" fill="var(--tcrb-ink-secondary)" font-size="12">M giant, Teff ≈ 3,200 K — true cool-star color</text>
+
+          <text x="430" y="178" text-anchor="middle" fill="var(--tcrb-ink)" font-size="15" font-weight="600">White dwarf accretor</text>
+          <text x="430" y="196" text-anchor="middle" fill="var(--tcrb-ink-secondary)" font-size="12">Hot boundary layer — true hot-star color</text>
+
+          <text x="300" y="88" text-anchor="middle" fill="var(--tcrb-ink-secondary)" font-size="12" font-style="italic">mass transfer →</text>
+        </svg>
+        <div class="tcrb__diagram-legend">
+          <span class="tcrb__legend-item"><span class="tcrb__legend-swatch" style="background:var(--tcrb-giant)"></span>Red giant (cool, ~3,200K)</span>
+          <span class="tcrb__legend-item"><span class="tcrb__legend-swatch" style="background:var(--tcrb-wd-glow)"></span>White dwarf (hot, compact)</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="tcrb__section">
+      <div class="tcrb__section-head">
+        <h2 class="tcrb__section-title">Eruption timeline</h2>
+        <p class="tcrb__section-sub">Two confirmed eruptions on record. The gap between them is why everyone's watching right now.</p>
+      </div>
+      <div class="tcrb__panel">
+        <div class="tcrb__timeline">
+          <div class="tcrb__timeline-item">
+            <span class="tcrb__timeline-dot"></span>
+            <div class="tcrb__timeline-year">1866</div>
+            <div class="tcrb__timeline-text">First confirmed eruption. Peaked near magnitude 2, naked-eye visible.</div>
+          </div>
+          <div class="tcrb__timeline-item">
+            <span class="tcrb__timeline-dot"></span>
+            <div class="tcrb__timeline-year">1946</div>
+            <div class="tcrb__timeline-text">Second confirmed eruption, ~80 years later. Same peak brightness.</div>
+          </div>
+          <div class="tcrb__timeline-item">
+            <span class="tcrb__timeline-dot"></span>
+            <div class="tcrb__timeline-year">2015–2016</div>
+            <div class="tcrb__timeline-text">Super-active pre-eruption state — the same brightening pattern seen before 1946.</div>
+          </div>
+          <div class="tcrb__timeline-item tcrb__timeline-item--pending">
+            <span class="tcrb__timeline-dot"></span>
+            <div class="tcrb__timeline-year">Now</div>
+            <div class="tcrb__timeline-text">80+ years since 1946. Modeled odds: ~30% within 2026, ~57% within the following year. No guaranteed date.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="tcrb__section">
+      <div class="tcrb__section-head">
+        <h2 class="tcrb__section-title">Light curve</h2>
+        <p class="tcrb__section-sub">Brighter is up (magnitude is inverted on purpose). Colors match the real AAVSO photometric-band convention: B filter is blue, V filter is green, naked-eye visual estimates are plotted as neutral gray dots.</p>
+      </div>
+      <div class="tcrb__panel">
+        <div class="tcrb__legend-row">
+          <span class="tcrb__legend-item"><span class="tcrb__legend-swatch" style="background:var(--tcrb-band-v)"></span>V band (CCD/DSLR, green filter)</span>
+          <span class="tcrb__legend-item"><span class="tcrb__legend-swatch" style="background:var(--tcrb-band-b)"></span>B band (blue filter)</span>
+          <span class="tcrb__legend-item"><span class="tcrb__legend-swatch" style="background:var(--tcrb-visual)"></span>Visual (naked-eye estimate)</span>
+          <span class="tcrb__legend-item"><span class="tcrb__legend-swatch" style="background:var(--tcrb-flare)"></span>Below mag 9</span>
+        </div>
+        <div class="tcrb__range-row" role="group" aria-label="Chart time range">
+          <button class="tcrb__range-btn" type="button" data-days="30">Month</button>
+          <button class="tcrb__range-btn" type="button" data-days="90">3 Month</button>
+          <button class="tcrb__range-btn tcrb__range-btn--active" type="button" data-days="365">Year</button>
+        </div>
+        <div class="tcrb__chart-wrap">
+          <canvas id="tcrb-chart" aria-label="T CrB light curve, magnitude over time" role="img"></canvas>
+        </div>
+        <p class="tcrb__chart-note">Real AAVSO data, one request/day (politely under their rate limit), averaged per band from whatever that day's single request returned — see <code>scripts/fetch_tcrb.py</code>. The axis fits to however many days we've actually backfilled so far (capped at 365) and widens as more get pulled. Browser fetches are blocked by AAVSO's Cloudflare wall by design, so refreshes run from this machine, not the page itself — paste a manual export below if you want to add something sooner.</p>
+      </div>
+    </section>
+
+    <section class="tcrb__section">
+      <div class="tcrb__section-head">
+        <h2 class="tcrb__section-title">Last 24 hours, raw</h2>
+        <p class="tcrb__section-sub">Every observation AAVSO had for T CrB in the last 24 hours, not averaged — full scatter, so you can tell a real trend from one noisy reading. Pulled automatically once a day at the 06:13 refresh.</p>
+      </div>
+      <div class="tcrb__panel">
+        <div class="tcrb__form-row" style="margin-top:0; margin-bottom: 14px;">
+          <a class="tcrb__btn" href="https://www.aavso.org/vsx/index.php?view=results.get&ident=T+CrB" target="_blank" rel="noopener">Look up T CrB on AAVSO VSX ↗</a>
+          <a class="tcrb__btn" href="https://apps.aavso.org/v2/campaigns/875" target="_blank" rel="noopener">Campaign #875 ↗</a>
+          <a class="tcrb__btn" href="https://www.aavso.org/webobs" target="_blank" rel="noopener">Submit an observation ↗</a>
+          <a class="tcrb__btn" href="/seestar-vso-manual/">Want to contribute your own? Seestar VSO Manual →</a>
+        </div>
+        <div class="tcrb__form-row" style="margin-top:0;">
+          <a class="tcrb__btn tcrb__btn--primary" id="tcrb-download-json" href="/exports/tcrb_latest24h.json" download>Download JSON</a>
+          <a class="tcrb__btn tcrb__btn--primary" id="tcrb-download-csv" href="/exports/tcrb_latest24h.csv" download>Download CSV</a>
+        </div>
+        <div class="tcrb__log-wrap" id="tcrb-log-wrap">
+          <table class="tcrb__log-table" id="tcrb-log-table">
+            <thead>
+              <tr><th>Date (UTC)</th><th>Mag</th><th>Band</th><th>Observer</th></tr>
+            </thead>
+            <tbody id="tcrb-log-body"></tbody>
+          </table>
+        </div>
+        <p class="tcrb__chart-note" id="tcrb-log-status">Loading...</p>
+      </div>
+    </section>
+
+    <section class="tcrb__section">
+      <div class="tcrb__section-head">
+        <h2 class="tcrb__section-title">When can I see it?</h2>
+        <p class="tcrb__section-sub" id="tcrb-rs-sub">Rise, transit, and set for Corona Borealis (and T CrB specifically) today, as seen from our US East Coast reference location -- computed fresh every night at 12:01 AM, shown below converted to your own browser's local time.</p>
+      </div>
+      <div class="tcrb__panel">
+        <div class="tcrb__stats" id="tcrb-rs-stats">
+          <div class="tcrb__stat"><span class="tcrb__stat-value" id="tcrb-rs-rise">—</span><span class="tcrb__stat-sub" id="tcrb-rs-rise-utc"></span><span class="tcrb__stat-label">Rise</span></div>
+          <div class="tcrb__stat"><span class="tcrb__stat-value" id="tcrb-rs-transit">—</span><span class="tcrb__stat-sub" id="tcrb-rs-transit-utc"></span><span class="tcrb__stat-label">Transit (highest)</span></div>
+          <div class="tcrb__stat"><span class="tcrb__stat-value" id="tcrb-rs-set">—</span><span class="tcrb__stat-sub" id="tcrb-rs-set-utc"></span><span class="tcrb__stat-label">Set</span></div>
+          <div class="tcrb__stat"><span class="tcrb__stat-value" id="tcrb-rs-alt">—</span><span class="tcrb__stat-label">Max altitude</span></div>
+        </div>
+        <p class="tcrb__chart-note" id="tcrb-rs-now">Loading...</p>
+        <div class="tcrb__form-row">
+          <a class="tcrb__btn tcrb__btn--primary" href="https://stellarium-web.org/skysource/HIP%2078322?fov=5&lat=35.5846&lng=-78.7997&elev=107" target="_blank" rel="noopener">Open live in Stellarium Web ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="tcrb__section">
+      <div class="tcrb__section-head">
+        <h2 class="tcrb__section-title">Finding it in the sky</h2>
+        <p class="tcrb__section-sub">Corona Borealis, the "Northern Crown" — a small, distinctive semicircle of stars between Boötes and Hercules. T CrB sits just off the arc, too faint to see normally. Aaron's own capture, Seestar S50, Fuquay-Varina, 2024-08-24.</p>
+      </div>
+      <div class="tcrb__panel">
+        <figure class="tcrb__figure">
+          <img src="/images/tcrb/finder-composite.jpg" alt="Wide-field shot of Corona Borealis with an inset showing an 8-minute Seestar S50 stacked exposure of the T CrB field, connected by sightlines to its position in the constellation." loading="lazy">
+          <figcaption>Wide field (Canon EOS T7, 50mm) with an 8-minute Seestar S50 stack inset on the actual field. RA 16h 00m 32.19s, Dec +25° 50′ 57.8″ (2024.6).</figcaption>
+        </figure>
+
+        <div class="tcrb__locator-toggle" role="group" aria-label="Locator chart state">
+          <button class="tcrb__locator-btn tcrb__locator-btn--active" type="button" data-locator="pre">Now (quiescent)</button>
+          <button class="tcrb__locator-btn" type="button" data-locator="post">If it erupts</button>
+        </div>
+        <figure class="tcrb__figure">
+          <img id="tcrb-locator-img" src="/images/tcrb/locator-pre.png" alt="Locator chart showing Corona Borealis with T CrB marked near naked-eye visibility threshold." loading="lazy">
+          <figcaption id="tcrb-locator-caption">Quiescent: around magnitude 10, invisible to the naked eye. RA 15h 59m 30s, Dec +25° 55′.</figcaption>
+        </figure>
+
+        <details class="tcrb__atlas-details">
+          <summary>Professional atlas reference (Will Tirion)</summary>
+          <figure class="tcrb__figure">
+            <img src="/images/tcrb/atlas-chart.jpg" alt="Will Tirion star atlas chart showing the Corona Borealis region with labeled stars down to faint magnitudes." loading="lazy">
+            <figcaption>Corona Borealis region, Will Tirion star atlas.</figcaption>
+          </figure>
+        </details>
+      </div>
+    </section>
+
+    <section class="tcrb__section">
+      <div class="tcrb__section-head">
+        <h2 class="tcrb__section-title">Sources</h2>
+      </div>
+      <ul class="tcrb__sources">
+        <li><a href="https://en.wikipedia.org/wiki/T_Coronae_Borealis" target="_blank" rel="noopener">T Coronae Borealis — Wikipedia</a></li>
+        <li><a href="https://apps.aavso.org/v2/campaigns/875" target="_blank" rel="noopener">Monitoring T CrB — AAVSO Campaign #875</a></li>
+        <li><a href="https://forums.aavso.org/t/observing-campaigns-875-monitoring-t-crb/946" target="_blank" rel="noopener">Observing Campaigns #875 discussion — AAVSO Forums</a></li>
+        <li><a href="https://arxiv.org/pdf/2607.15245" target="_blank" rel="noopener">When will T CrB next erupt? — arXiv preprint</a></li>
+        <li><a href="https://arxiv.org/pdf/2504.20592" target="_blank" rel="noopener">Is the Symbiotic Recurrent Nova T CrB Late? — arXiv</a></li>
+        <li><a href="https://arxiv.org/pdf/2303.04933" target="_blank" rel="noopener">B & V Light Curves for T CrB, 1842–2022 — arXiv</a></li>
+      </ul>
+    </section>
+
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" integrity="sha512-CQBWl4fJHWbryGE+Pc7UAxWMUMNMWzWxF4SQo9CgkJIN1kx6djDQZjh3Y8SZ1d+6I+1zze6Z7kHXO7q3UyZAWw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+(function () {
+  var seed = {{ $points | jsonify | safeJS }};
+
+  function toDecimalYear(raw) {
+    raw = String(raw).trim();
+    var jd = parseFloat(raw);
+    if (!isNaN(jd) && jd > 2000000) {
+      var ms = (jd - 2440587.5) * 86400000;
+      var d = new Date(ms);
+      return d.getFullYear() + (d.getMonth() * 30 + d.getDate()) / 365.25;
+    }
+    var d2 = new Date(raw);
+    if (!isNaN(d2.getTime())) {
+      return d2.getFullYear() + (d2.getMonth() * 30 + d2.getDate()) / 365.25;
+    }
+    return null;
+  }
+
+  function normBand(b) {
+    if (!b) return 'V';
+    b = b.trim().toLowerCase();
+    if (b.indexOf('vis') === 0) return 'visual';
+    if (b === 'b') return 'B';
+    return 'V';
+  }
+
+  function seedToPoints(points) {
+    return points.map(function (p) {
+      return { x: toDecimalYear(p.date), y: p.mag, band: normBand(p.band), n: p.n };
+    }).filter(function (p) { return p.x !== null; });
+  }
+
+  function byBand(points, band) {
+    return points.filter(function (p) { return p.band === band; }).sort(function (a, b) { return a.x - b.x; });
+  }
+
+  function themeColors() {
+    var root = getComputedStyle(document.body);
+    return {
+      v: root.getPropertyValue('--tcrb-band-v').trim() || '#2fae63',
+      b: root.getPropertyValue('--tcrb-band-b').trim() || '#3987e5',
+      visual: root.getPropertyValue('--tcrb-visual').trim() || '#d8dce8',
+      flare: root.getPropertyValue('--tcrb-flare').trim() || '#ff2d2d',
+      grid: root.getPropertyValue('--tcrb-grid').trim() || 'rgba(255,255,255,0.08)',
+      ink: root.getPropertyValue('--tcrb-ink-secondary').trim() || '#aab3d6'
+    };
+  }
+
+  var CHART_RED_THRESHOLD = 9.0; // points/segments at or below this magnitude render in flare red
+  function pointColorBelow(normal, alert) {
+    return function (ctx) {
+      var raw = ctx.raw;
+      return (raw && raw.y < CHART_RED_THRESHOLD) ? alert : normal;
+    };
+  }
+  function segmentColorBelow(normal, alert) {
+    return function (ctx) {
+      return (ctx.p1.parsed.y < CHART_RED_THRESHOLD) ? alert : normal;
+    };
+  }
+
+  var FLARE_THRESHOLD = 4.0; // magnitude <= this counts as "flaring" (quiescent ~9.8, peak ~2.0)
+  var ctx = document.getElementById('tcrb-chart').getContext('2d');
+  var chart = null;
+  var lastPoints = [];
+
+  // "Official" reading = the most recent date's point, preferring an
+  // instrumental/Measured band (V, then B) over a Visual eye-estimate when
+  // both exist for that day -- instrumental photometry is the more precise
+  // reading. Falls back to Visual if that's all there is that day.
+  function pickOfficial(points) {
+    if (!points.length) return null;
+    var maxX = points.reduce(function (m, p) { return p.x > m ? p.x : m; }, -Infinity);
+    var sameDay = points.filter(function (p) { return Math.abs(p.x - maxX) < 0.001; });
+    var priority = ['V', 'B', 'visual'];
+    for (var i = 0; i < priority.length; i++) {
+      var match = sameDay.filter(function (p) { return p.band === priority[i]; });
+      if (match.length) return match[0];
+    }
+    return sameDay[0];
+  }
+
+  function checkFlare(points) {
+    var latest = pickOfficial(points);
+    if (!latest) return;
+    var banner = document.getElementById('tcrb-flare-banner');
+    var badgeText = document.getElementById('tcrb-badge-text');
+    var isFlaring = latest.y <= FLARE_THRESHOLD;
+    banner.classList.toggle('is-active', isFlaring);
+    if (isFlaring) {
+      document.getElementById('tcrb-flare-detail').textContent =
+        'Latest point: magnitude ' + latest.y.toFixed(2) + ' near year ' + Math.round(latest.x) + '. Go look up, right now.';
+      badgeText.textContent = 'FLARING NOW — magnitude ' + latest.y.toFixed(2);
+    } else {
+      badgeText.textContent = 'AAVSO Campaign #875 · Active Watch';
+    }
+  }
+
+  // Shared magnitude tiers -- same thresholds drive the banner, the flare
+  // detection, and the raw-log table, so they can't drift apart.
+  function magTier(mag) {
+    if (mag >= 10) return 'good';
+    if (mag >= 9.1) return 'warning';
+    return 'critical';
+  }
+  var MAG_TIER_LABEL = { good: 'Quiescent', warning: 'Brightening — watch', critical: 'Bright — eruption range' };
+  var MAG_TIER_ICON = { good: '●', warning: '▲', critical: '⚠' };
+
+  function updateMagBanner(points) {
+    var latest = pickOfficial(points);
+    if (!latest) return;
+    var mag = latest.y;
+    var banner = document.getElementById('tcrb-mag-banner');
+    var tier = magTier(mag);
+    var label = MAG_TIER_LABEL[tier];
+    var icon = MAG_TIER_ICON[tier];
+
+    var bandLabel = latest.band === 'visual' ? 'Visual estimate' : latest.band + '-band (measured)';
+    banner.classList.remove('tcrb__mag-banner--good', 'tcrb__mag-banner--warning', 'tcrb__mag-banner--critical');
+    banner.classList.add('tcrb__mag-banner--' + tier);
+    document.getElementById('tcrb-mag-value').textContent = mag.toFixed(2);
+    document.getElementById('tcrb-mag-status').textContent = icon + ' ' + label;
+    document.getElementById('tcrb-mag-asof').textContent =
+      formatShortDate(latest.x) + ' · ' + bandLabel + (latest.n ? ' · mean of ' + latest.n + ' obs' : '');
+  }
+
+  var WINDOW_DAYS = 365;
+
+  function nowDecimalYear() {
+    var d = new Date();
+    return d.getFullYear() + (d.getMonth() * 30 + d.getDate()) / 365.25;
+  }
+
+  function decimalYearToDate(x) {
+    var year = Math.floor(x);
+    var frac = x - year;
+    return new Date(Date.UTC(year, 0, 1) + frac * 365.25 * 86400000);
+  }
+
+  function formatShortDate(x) {
+    return decimalYearToDate(x).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' });
+  }
+
+  function windowFilter(points) {
+    var now = nowDecimalYear();
+    var cutoff = now - WINDOW_DAYS / 365.25;
+    return points.filter(function (p) { return p.x >= cutoff && p.x <= now + 0.02; });
+  }
+
+  function render(points) {
+    lastPoints = points;
+    var windowed = windowFilter(points);
+    var c = themeColors();
+    var datasets = [
+      {
+        label: 'V band', data: byBand(windowed, 'V'),
+        borderColor: pointColorBelow(c.v, c.flare), backgroundColor: pointColorBelow(c.v, c.flare),
+        segment: { borderColor: segmentColorBelow(c.v, c.flare) },
+        showLine: true, pointRadius: 3, tension: 0.15
+      },
+      {
+        label: 'B band', data: byBand(windowed, 'B'),
+        borderColor: pointColorBelow(c.b, c.flare), backgroundColor: pointColorBelow(c.b, c.flare),
+        segment: { borderColor: segmentColorBelow(c.b, c.flare) },
+        showLine: true, pointRadius: 3, tension: 0.15
+      },
+      {
+        label: 'Visual', data: byBand(windowed, 'visual'),
+        borderColor: pointColorBelow(c.visual, c.flare), backgroundColor: pointColorBelow(c.visual, c.flare),
+        showLine: false, pointRadius: 4, pointStyle: 'circle'
+      }
+    ].filter(function (d) { return d.data.length > 0; });
+
+    var now = nowDecimalYear();
+    var cutoff = now - WINDOW_DAYS / 365.25;
+    // Fit the axis to whatever real coverage we actually have (capped at the
+    // 365-day window), rather than always drawing a mostly-empty full-year
+    // axis -- widens automatically as more days get backfilled later.
+    var axisMin = cutoff;
+    if (windowed.length) {
+      var earliest = windowed.reduce(function (m, p) { return p.x < m ? p.x : m; }, Infinity);
+      axisMin = Math.max(cutoff, earliest - 2 / 365.25);
+    }
+
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: 'line',
+      data: { datasets: datasets },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          x: {
+            type: 'linear', min: axisMin, max: now,
+            title: { display: true, text: 'Date (available data, up to ' + WINDOW_DAYS + ' days)', color: c.ink },
+            ticks: { color: c.ink, callback: function (val) { return formatShortDate(val); } },
+            grid: { color: c.grid }
+          },
+          y: { reverse: true, title: { display: true, text: 'Magnitude (brighter ↑)', color: c.ink }, ticks: { color: c.ink }, grid: { color: c.grid } }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              title: function (items) { return formatShortDate(items[0].parsed.x); },
+              label: function (item) { return item.dataset.label + ': mag ' + item.parsed.y.toFixed(2); }
+            }
+          }
+        }
+      }
+    });
+    // Flare/magnitude status always reflects the true latest point, not just the chart's visible window.
+    checkFlare(points);
+    updateMagBanner(points);
+  }
+
+  // Theme toggle — persisted per-device, defaults to dark (the space console look).
+  var THEME_KEY = 'tcrb-theme';
+  var toggleBtn = document.getElementById('tcrb-theme-toggle');
+  var themeIcon = document.getElementById('tcrb-theme-icon');
+  var themeLabel = document.getElementById('tcrb-theme-label');
+
+  function applyTheme(theme, rerender) {
+    document.body.setAttribute('data-theme', theme);
+    toggleBtn.setAttribute('aria-pressed', theme === 'light' ? 'true' : 'false');
+    themeIcon.textContent = theme === 'light' ? '🌙' : '☀️';
+    themeLabel.textContent = theme === 'light' ? 'Dark mode' : 'Light mode';
+    try { localStorage.setItem(THEME_KEY, theme); } catch (e) {}
+    if (rerender && lastPoints.length) render(lastPoints);
+  }
+
+  toggleBtn.addEventListener('click', function () {
+    var next = document.body.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    applyTheme(next, true);
+  });
+
+  (function initTheme() {
+    var saved = null;
+    try { saved = localStorage.getItem(THEME_KEY); } catch (e) {}
+    applyTheme(saved === 'light' ? 'light' : 'dark', false);
+  })();
+
+  // Chart time-range selector (Month / 3 Month / Year) -- client-side only, no new data pulled.
+  var rangeButtons = document.querySelectorAll('.tcrb__range-btn');
+  rangeButtons.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      WINDOW_DAYS = parseInt(btn.getAttribute('data-days'), 10);
+      rangeButtons.forEach(function (b) { b.classList.remove('tcrb__range-btn--active'); });
+      btn.classList.add('tcrb__range-btn--active');
+      if (lastPoints.length) render(lastPoints);
+    });
+  });
+
+  // Locator chart toggle (pre/post eruption appearance) -- static images, no data involved.
+  var LOCATOR_CAPTIONS = {
+    pre: 'Quiescent: around magnitude 10, invisible to the naked eye. RA 15h 59m 30s, Dec +25° 55′.',
+    post: 'If it erupts: jumps to roughly magnitude 2, naked-eye visible for about a week. Same position.'
+  };
+  document.querySelectorAll('.tcrb__locator-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var state = btn.getAttribute('data-locator');
+      document.querySelectorAll('.tcrb__locator-btn').forEach(function (b) { b.classList.remove('tcrb__locator-btn--active'); });
+      btn.classList.add('tcrb__locator-btn--active');
+      document.getElementById('tcrb-locator-img').src = '/images/tcrb/locator-' + state + '.png';
+      document.getElementById('tcrb-locator-caption').textContent = LOCATOR_CAPTIONS[state];
+    });
+  });
+
+  render(seedToPoints(seed));
+
+  // Raw 24h observation log -- fetches the file the 06:13 cron run writes
+  // (scripts/export_tcrb_recent.py --out static/exports/tcrb_latest24h).
+  // Static JSON fetch, no parsing/paste UI needed anymore.
+  (function loadRawLog() {
+    var statusEl = document.getElementById('tcrb-log-status');
+    var bodyEl = document.getElementById('tcrb-log-body');
+    fetch('/exports/tcrb_latest24h.json', { cache: 'no-store' })
+      .then(function (resp) { if (!resp.ok) throw new Error('not found'); return resp.json(); })
+      .then(function (data) {
+        var rows = data.observations || [];
+        if (!rows.length) {
+          statusEl.textContent = 'No observations in the last pull.';
+          return;
+        }
+        rows.slice().reverse().forEach(function (o) {
+          var tr = document.createElement('tr');
+          var dt = o.date_utc ? o.date_utc.replace('T', ' ').replace('Z', '') : '—';
+          var mag = parseFloat(o.magnitude);
+          var magHtml = isNaN(mag)
+            ? o.magnitude
+            : '<span class="tcrb__log-mag tcrb__log-mag--' + magTier(mag) + '">' +
+              (o.fainter_than ? '&gt; ' : '') + o.magnitude + '</span>';
+          tr.innerHTML =
+            '<td>' + dt + '</td>' +
+            '<td>' + magHtml + '</td>' +
+            '<td>' + (o.band_name || o.band_code) + '</td>' +
+            '<td>' + (o.observer_code || '—') + '</td>';
+          bodyEl.appendChild(tr);
+        });
+        statusEl.textContent = rows.length + ' observations, exported ' +
+          (data.exported_at ? new Date(data.exported_at).toLocaleString() : 'recently') + '.';
+      })
+      .catch(function () {
+        statusEl.textContent = 'No export yet -- first run happens at the next 06:13 refresh.';
+      });
+  })();
+
+  // Rise/transit/set -- computed once daily at 12:01 AM reference-location
+  // time by scripts/compute_rise_set.py, in UTC. Pure math, no API call
+  // involved. Rendered here in each viewer's own browser-local time, since
+  // this page has readers well outside the reference location now.
+  (function loadRiseSet() {
+    var nowEl = document.getElementById('tcrb-rs-now');
+
+    function localTime(iso) {
+      return new Date(iso).toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit' });
+    }
+
+    function utcTime(iso) {
+      // Raw UTC, shown alongside the converted local time so anyone can
+      // verify the conversion themselves rather than trust it blindly.
+      return new Date(iso).toLocaleTimeString(undefined, {
+        hour: 'numeric', minute: '2-digit', timeZone: 'UTC'
+      }) + ' UTC';
+    }
+
+    fetch('/data/tcrb_rise_set.json', { cache: 'no-store' })
+      .then(function (resp) { if (!resp.ok) throw new Error('not found'); return resp.json(); })
+      .then(function (d) {
+        if (d.status !== 'normal') {
+          nowEl.textContent = d.status === 'circumpolar'
+            ? 'Circumpolar from our reference location (' + d.reference_tz_abbr + ') -- never sets, transits ' +
+              localTime(d.transit_utc) + ' your time (' + utcTime(d.transit_utc) + ').'
+            : 'Below the horizon all day from our reference location (' + d.reference_tz_abbr + ').';
+          return;
+        }
+        document.getElementById('tcrb-rs-rise').textContent = localTime(d.rise_utc);
+        document.getElementById('tcrb-rs-rise-utc').textContent = utcTime(d.rise_utc);
+        document.getElementById('tcrb-rs-transit').textContent = localTime(d.transit_utc);
+        document.getElementById('tcrb-rs-transit-utc').textContent = utcTime(d.transit_utc);
+        document.getElementById('tcrb-rs-set').textContent = localTime(d.set_utc);
+        document.getElementById('tcrb-rs-set-utc').textContent = utcTime(d.set_utc);
+        document.getElementById('tcrb-rs-alt').textContent = d.transit_altitude_deg + '°';
+
+        // "Visible right now" -- real UTC instants compared directly, so this
+        // is correct regardless of the viewer's timezone and regardless of
+        // the window crossing midnight (set_utc can land on the next
+        // calendar day relative to rise_utc; Date comparison handles that
+        // for free, no manual same-day assumption needed).
+        var now = Date.now();
+        var up = now >= new Date(d.rise_utc).getTime() && now <= new Date(d.set_utc).getTime();
+        nowEl.textContent = (up ? '● Above the horizon right now' : '○ Below the horizon right now') +
+          ' as seen from our reference location (' + d.reference_tz_abbr + ') -- ' +
+          'computed in UTC (shown small under each time above) and converted to your browser\'s local ' +
+          'time for the big numbers. Check the UTC line yourself if that conversion ever looks off. ' +
+          'Rise/set shift a little each day with the season; computed for ' + d.date + '.';
+      })
+      .catch(function () {
+        nowEl.textContent = 'No rise/set data yet -- first run happens at the next 12:01 AM refresh.';
+      });
+  })();
+
+  document.querySelectorAll('[data-years-since]').forEach(function (el) {
+    var since = new Date(el.getAttribute('data-years-since'));
+    var years = (Date.now() - since.getTime()) / (365.25 * 86400000);
+    el.textContent = years.toFixed(1);
+  });
+})();
+</script>
+{{ end }}
