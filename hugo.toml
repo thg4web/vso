@@ -1,4 +1,4 @@
-baseURL = '/'
+baseURL = 'https://vso.thgnetworks.com/'
 languageCode = 'en-us'
 title = 'VSO'
 
