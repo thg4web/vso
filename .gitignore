@@ -7,7 +7,7 @@ resources/
 .hugo_build.lock
 .DS_Store
 .env
-exports/
+/exports/
 # static/data/ and static/exports/ ARE tracked -- they're the generated
 # rise/set and 24h-log data the live site reads at runtime. ebench's cron
 # pushes fresh copies here daily after regenerating them; that push is what
