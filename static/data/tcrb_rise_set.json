@@ -1,0 +1,17 @@
+{
+  "date": "2026-10-09",
+  "location": {
+    "name": "Reference location (US East Coast)",
+    "lat": 35.5846,
+    "lon": -78.7997
+  },
+  "reference_timezone": "America/New_York",
+  "reference_tz_abbr": "EDT",
+  "computed_at": "2026-10-09T19:57:26.002902+00:00",
+  "status": "normal",
+  "rise_utc": "2026-10-09T12:36:11.335161Z",
+  "transit_utc": "2026-10-09T20:00:54.145476Z",
+  "set_utc": "2026-10-10T03:25:36.955792Z",
+  "transit_altitude_deg": 80.3,
+  "visible_hours": 14.8
+}
