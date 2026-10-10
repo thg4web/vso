@@ -206,8 +206,8 @@ body.tcrb-page {
     color: var(--tcrb-ink-muted); font-variant-numeric: proportional-nums;
   }
   &__stat-label {
-    display: block; margin-top: 6px; font-size: 0.72rem;
-    color: var(--tcrb-ink-muted); text-transform: uppercase; letter-spacing: 0.06em;
+    display: block; margin-top: 6px; font-size: 1.275rem;
+    color: var(--tcrb-ink); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em;
   }
 
   // Section shell

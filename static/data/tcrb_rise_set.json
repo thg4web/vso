@@ -7,11 +7,14 @@
   },
   "reference_timezone": "America/New_York",
   "reference_tz_abbr": "EDT",
-  "computed_at": "2026-10-09T19:57:26.002902+00:00",
+  "computed_at": "2026-10-09T23:18:33.581225+00:00",
   "status": "normal",
   "rise_utc": "2026-10-09T12:36:11.335161Z",
   "transit_utc": "2026-10-09T20:00:54.145476Z",
   "set_utc": "2026-10-10T03:25:36.955792Z",
   "transit_altitude_deg": 80.3,
-  "visible_hours": 14.8
+  "visible_hours": 14.8,
+  "astronomical_dusk_utc": "2026-10-10T00:11:10.678284Z",
+  "astronomical_dawn_utc": "2026-10-10T09:50:26.858738Z",
+  "dark_visible_hours": 3.2
 }

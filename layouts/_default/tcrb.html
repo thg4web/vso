@@ -65,57 +65,16 @@
     <section class="tcrb__section">
       <div class="tcrb__section-head">
         <h2 class="tcrb__section-title">How a recurrent nova works</h2>
-        <p class="tcrb__section-sub">A cool giant and a dead star, locked close enough that one feeds the other until the fuel ignites. Colors below are the real thing: each star's actual blackbody color, not a palette pick.</p>
+        <p class="tcrb__section-sub">A cool giant and a dead star, locked close enough that one feeds the other until the fuel ignites.</p>
       </div>
       <div class="tcrb__panel">
-        <svg viewBox="0 0 600 260" role="img" aria-labelledby="tcrb-diagram-title" style="width:100%; height:auto; max-height:320px;">
-          <title id="tcrb-diagram-title">Diagram of the T CrB binary: a red giant transferring mass to a white dwarf, which periodically detonates the accreted shell as a nova.</title>
-          <defs>
-            <radialGradient id="giantGrad" cx="35%" cy="35%" r="70%">
-              <stop offset="0%" stop-color="#ffd9b0" />
-              <stop offset="45%" stop-color="var(--tcrb-giant)" />
-              <stop offset="100%" stop-color="var(--tcrb-giant-deep)" />
-            </radialGradient>
-            <radialGradient id="wdGrad" cx="40%" cy="40%" r="70%">
-              <stop offset="0%" stop-color="#ffffff" />
-              <stop offset="55%" stop-color="var(--tcrb-wd)" />
-              <stop offset="100%" stop-color="var(--tcrb-wd-glow)" />
-            </radialGradient>
-            <linearGradient id="streamGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stop-color="var(--tcrb-giant)" stop-opacity="0.85" />
-              <stop offset="100%" stop-color="var(--tcrb-wd-glow)" stop-opacity="0.9" />
-            </linearGradient>
-            <filter id="glowGiant" x="-60%" y="-60%" width="220%" height="220%">
-              <feGaussianBlur stdDeviation="9" result="b" />
-              <feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
-            </filter>
-            <filter id="glowWd" x="-150%" y="-150%" width="400%" height="400%">
-              <feGaussianBlur stdDeviation="7" result="b" />
-              <feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
-            </filter>
-          </defs>
-
-          <ellipse cx="290" cy="130" rx="235" ry="60" fill="none" stroke="var(--tcrb-grid)" stroke-dasharray="3 5" />
-          <circle cx="290" cy="130" r="3" fill="var(--tcrb-ink-muted)" />
-
-          <path d="M 205 118 Q 320 95 410 128" fill="none" stroke="url(#streamGrad)" stroke-width="7" stroke-linecap="round" opacity="0.85" />
-
-          <ellipse cx="430" cy="130" rx="42" ry="15" fill="none" stroke="var(--tcrb-wd-glow)" stroke-opacity="0.55" stroke-width="2" transform="rotate(-8 430 130)" />
-
-          <circle cx="150" cy="130" r="68" fill="url(#giantGrad)" filter="url(#glowGiant)" />
-          <circle cx="430" cy="130" r="13" fill="url(#wdGrad)" filter="url(#glowWd)" />
-
-          <text x="150" y="222" text-anchor="middle" fill="var(--tcrb-ink)" font-size="15" font-weight="600">Red giant donor</text>
-          <text x="150" y="240" text-anchor="middle" fill="var(--tcrb-ink-secondary)" font-size="12">M giant, Teff ≈ 3,200 K — true cool-star color</text>
-
-          <text x="430" y="178" text-anchor="middle" fill="var(--tcrb-ink)" font-size="15" font-weight="600">White dwarf accretor</text>
-          <text x="430" y="196" text-anchor="middle" fill="var(--tcrb-ink-secondary)" font-size="12">Hot boundary layer — true hot-star color</text>
-
-          <text x="300" y="88" text-anchor="middle" fill="var(--tcrb-ink-secondary)" font-size="12" font-style="italic">mass transfer →</text>
-        </svg>
+        <figure class="tcrb__figure">
+          <img src="/images/tcrb/binary-system.jpg" alt="Illustration of the T CrB binary: a glowing red giant streaming material across to a white dwarf, which pulls it into a swirling accretion disk around its hot blue-white core." loading="lazy">
+          <figcaption>Red giant donor (left) streaming material onto the white dwarf's accretion disk (right) — the fuel buildup that eventually detonates as the nova. Image rendering credit and thanks to NASA.</figcaption>
+        </figure>
         <div class="tcrb__diagram-legend">
-          <span class="tcrb__legend-item"><span class="tcrb__legend-swatch" style="background:var(--tcrb-giant)"></span>Red giant (cool, ~3,200K)</span>
-          <span class="tcrb__legend-item"><span class="tcrb__legend-swatch" style="background:var(--tcrb-wd-glow)"></span>White dwarf (hot, compact)</span>
+          <span class="tcrb__legend-item"><span class="tcrb__legend-swatch" style="background:var(--tcrb-giant)"></span>Red giant donor (cool, ~3,200K)</span>
+          <span class="tcrb__legend-item"><span class="tcrb__legend-swatch" style="background:var(--tcrb-wd-glow)"></span>White dwarf accretor (hot, compact)</span>
         </div>
       </div>
     </section>
@@ -206,7 +165,7 @@
     <section class="tcrb__section">
       <div class="tcrb__section-head">
         <h2 class="tcrb__section-title">When can I see it?</h2>
-        <p class="tcrb__section-sub" id="tcrb-rs-sub">Rise, transit, and set for Corona Borealis (and T CrB specifically) today, as seen from our US East Coast reference location -- computed fresh every night at 12:01 AM, shown below converted to your own browser's local time.</p>
+        <p class="tcrb__section-sub" id="tcrb-rs-sub">Rise, transit, and set for Corona Borealis (and T CrB specifically) today, plus the real dark-sky window where it's above the horizon and the Sun is past astronomical twilight -- as seen from our US East Coast reference location, computed fresh every night at 12:01 AM, shown below converted to your own browser's local time. Want exact times for your own location? Use the Stellarium Web link below and set your own spot there.</p>
       </div>
       <div class="tcrb__panel">
         <div class="tcrb__stats" id="tcrb-rs-stats">
@@ -229,7 +188,7 @@
       </div>
       <div class="tcrb__panel">
         <figure class="tcrb__figure">
-          <img src="/images/tcrb/finder-composite.jpg" alt="Wide-field shot of Corona Borealis with an inset showing an 8-minute Seestar S50 stacked exposure of the T CrB field, connected by sightlines to its position in the constellation." loading="lazy">
+          <img id="tcrb-finder-img" src="/images/tcrb/finder-composite-dark.jpg" alt="Wide-field shot of Corona Borealis with an inset showing an 8-minute Seestar S50 stacked exposure of the T CrB field, connected by sightlines to its position in the constellation." loading="lazy">
           <figcaption>Wide field (Canon EOS T7, 50mm) with an 8-minute Seestar S50 stack inset on the actual field. RA 16h 00m 32.19s, Dec +25° 50′ 57.8″ (2024.6).</figcaption>
         </figure>
 
@@ -238,9 +197,12 @@
           <button class="tcrb__locator-btn" type="button" data-locator="post">If it erupts</button>
         </div>
         <figure class="tcrb__figure">
-          <img id="tcrb-locator-img" src="/images/tcrb/locator-pre.png" alt="Locator chart showing Corona Borealis with T CrB marked near naked-eye visibility threshold." loading="lazy">
+          <img id="tcrb-locator-img" src="/images/tcrb/locator-pre-dark.png" alt="Locator chart showing Corona Borealis with T CrB marked near naked-eye visibility threshold." loading="lazy">
           <figcaption id="tcrb-locator-caption">Quiescent: around magnitude 10, invisible to the naked eye. RA 15h 59m 30s, Dec +25° 55′.</figcaption>
         </figure>
+        <div class="tcrb__form-row">
+          <a class="tcrb__btn" href="/downloads/t-crb-locator-chart.pdf" download>Download locator chart (PDF) ↓</a>
+        </div>
 
         <details class="tcrb__atlas-details">
           <summary>Professional atlas reference (Will Tirion)</summary>
@@ -487,6 +449,45 @@
     updateMagBanner(points);
   }
 
+  // Locator chart toggle (pre/post eruption appearance) -- static images, no
+  // data involved. Each state has a light (black-on-white, used in light
+  // mode and in the printable PDF) and a dark (white-on-black, used in dark
+  // mode, the site's default) rendering, so the chart always matches the
+  // page's own theme instead of sitting as a white rectangle on a dark page.
+  // Declared before the theme toggle below because applyTheme() calls
+  // updateLocatorImg() during initial page load (via initTheme()) -- if
+  // these vars were declared further down the script, they'd still be
+  // undefined at that call (var hoists the name, not the assignment),
+  // throwing and silently killing the rest of the script.
+  var LOCATOR_CAPTIONS = {
+    pre: 'Quiescent: around magnitude 10, invisible to the naked eye. RA 15h 59m 30s, Dec +25° 55′.',
+    post: 'If it erupts: jumps to roughly magnitude 2, naked-eye visible for about a week. Same position.'
+  };
+  var currentLocatorState = 'pre';
+  function updateLocatorImg() {
+    var theme = document.body.getAttribute('data-theme');
+    var suffix = theme === 'light' ? '' : '-dark';
+    document.getElementById('tcrb-locator-img').src = '/images/tcrb/locator-' + currentLocatorState + suffix + '.png';
+    document.getElementById('tcrb-locator-caption').textContent = LOCATOR_CAPTIONS[currentLocatorState];
+  }
+  document.querySelectorAll('.tcrb__locator-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      currentLocatorState = btn.getAttribute('data-locator');
+      document.querySelectorAll('.tcrb__locator-btn').forEach(function (b) { b.classList.remove('tcrb__locator-btn--active'); });
+      btn.classList.add('tcrb__locator-btn--active');
+      updateLocatorImg();
+    });
+  });
+
+  // Wide-field finder composite -- same light/dark pair pattern as the
+  // locator chart above, declared here for the same reason (applyTheme()
+  // calls this during initial page load, so it must already be defined).
+  function updateFinderImg() {
+    var theme = document.body.getAttribute('data-theme');
+    document.getElementById('tcrb-finder-img').src =
+      theme === 'light' ? '/images/tcrb/finder-composite.jpg' : '/images/tcrb/finder-composite-dark.jpg';
+  }
+
   // Theme toggle — persisted per-device, defaults to dark (the space console look).
   var THEME_KEY = 'tcrb-theme';
   var toggleBtn = document.getElementById('tcrb-theme-toggle');
@@ -500,6 +501,8 @@
     themeLabel.textContent = theme === 'light' ? 'Dark mode' : 'Light mode';
     try { localStorage.setItem(THEME_KEY, theme); } catch (e) {}
     if (rerender && lastPoints.length) render(lastPoints);
+    if (typeof updateLocatorImg === 'function') updateLocatorImg();
+    if (typeof updateFinderImg === 'function') updateFinderImg();
   }
 
   toggleBtn.addEventListener('click', function () {
@@ -521,21 +524,6 @@
       rangeButtons.forEach(function (b) { b.classList.remove('tcrb__range-btn--active'); });
       btn.classList.add('tcrb__range-btn--active');
       if (lastPoints.length) render(lastPoints);
-    });
-  });
-
-  // Locator chart toggle (pre/post eruption appearance) -- static images, no data involved.
-  var LOCATOR_CAPTIONS = {
-    pre: 'Quiescent: around magnitude 10, invisible to the naked eye. RA 15h 59m 30s, Dec +25° 55′.',
-    post: 'If it erupts: jumps to roughly magnitude 2, naked-eye visible for about a week. Same position.'
-  };
-  document.querySelectorAll('.tcrb__locator-btn').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      var state = btn.getAttribute('data-locator');
-      document.querySelectorAll('.tcrb__locator-btn').forEach(function (b) { b.classList.remove('tcrb__locator-btn--active'); });
-      btn.classList.add('tcrb__locator-btn--active');
-      document.getElementById('tcrb-locator-img').src = '/images/tcrb/locator-' + state + '.png';
-      document.getElementById('tcrb-locator-caption').textContent = LOCATOR_CAPTIONS[state];
     });
   });
 
@@ -597,6 +585,46 @@
       }) + ' UTC';
     }
 
+    // Recomputed against the real clock every time it runs -- called once on
+    // load, then on a timer below, so "right now" stays correct for anyone
+    // who leaves the tab open across dusk, dawn, rise or set rather than
+    // freezing at whatever was true the moment the page first loaded.
+    function renderNowStatus(d) {
+      // Real dark-sky window: where "T CrB is above the horizon" actually
+      // overlaps "the Sun is past astronomical twilight" (computed
+      // server-side in scripts/compute_rise_set.py from the Sun's actual
+      // position for today's date, not a rough rule of thumb). This is
+      // what decides whether tonight is an evening window, a morning-only
+      // window, or no dark-sky window at all.
+      var now = Date.now();
+      var hasDarkWindow = typeof d.dark_visible_hours === 'number' && d.dark_visible_hours > 0;
+      var darkStartMs, darkEndMs, visibleNow = false;
+      if (hasDarkWindow) {
+        darkStartMs = Math.max(new Date(d.rise_utc).getTime(), new Date(d.astronomical_dusk_utc).getTime());
+        darkEndMs = Math.min(new Date(d.set_utc).getTime(), new Date(d.astronomical_dawn_utc).getTime());
+        visibleNow = now >= darkStartMs && now <= darkEndMs;
+      }
+
+      var leadText;
+      if (!hasDarkWindow) {
+        leadText = '○ Not visible against a dark sky tonight -- it\'s above the horizon only during daylight hours';
+      } else {
+        var windowText = localTime(new Date(darkStartMs).toISOString()) + '–' +
+          localTime(new Date(darkEndMs).toISOString()) + ' (about ' + d.dark_visible_hours +
+          ' hour' + (d.dark_visible_hours === 1 ? '' : 's') + ' of dark sky)';
+        leadText = (visibleNow ? '● Visible against a dark sky right now' : '○ Not above the horizon in dark sky right now') +
+          ' -- tonight\'s dark-sky window is ' + windowText;
+      }
+
+      nowEl.textContent = leadText +
+        ' as seen from our reference location (' + d.reference_tz_abbr + ') -- ' +
+        'computed in UTC (shown small under each time above) and converted to your browser\'s local ' +
+        'time for the big numbers. Check the UTC line yourself if that conversion ever looks off. ' +
+        'Rise/set and twilight both shift with the season; computed for ' + d.date + '. ' +
+        'This is for our fixed reference location -- for precise times at your own location, use the ' +
+        'Stellarium Web link below.';
+    }
+
     fetch('/data/tcrb_rise_set.json', { cache: 'no-store' })
       .then(function (resp) { if (!resp.ok) throw new Error('not found'); return resp.json(); })
       .then(function (d) {
@@ -615,18 +643,8 @@
         document.getElementById('tcrb-rs-set-utc').textContent = utcTime(d.set_utc);
         document.getElementById('tcrb-rs-alt').textContent = d.transit_altitude_deg + '°';
 
-        // "Visible right now" -- real UTC instants compared directly, so this
-        // is correct regardless of the viewer's timezone and regardless of
-        // the window crossing midnight (set_utc can land on the next
-        // calendar day relative to rise_utc; Date comparison handles that
-        // for free, no manual same-day assumption needed).
-        var now = Date.now();
-        var up = now >= new Date(d.rise_utc).getTime() && now <= new Date(d.set_utc).getTime();
-        nowEl.textContent = (up ? '● Above the horizon right now' : '○ Below the horizon right now') +
-          ' as seen from our reference location (' + d.reference_tz_abbr + ') -- ' +
-          'computed in UTC (shown small under each time above) and converted to your browser\'s local ' +
-          'time for the big numbers. Check the UTC line yourself if that conversion ever looks off. ' +
-          'Rise/set shift a little each day with the season; computed for ' + d.date + '.';
+        renderNowStatus(d);
+        setInterval(function () { renderNowStatus(d); }, 60000);
       })
       .catch(function () {
         nowEl.textContent = 'No rise/set data yet -- first run happens at the next 12:01 AM refresh.';
