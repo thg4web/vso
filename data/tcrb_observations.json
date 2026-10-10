@@ -1,7 +1,8 @@
 {
-  "note": "Historical eruption dates (1866, 1946) are real record. Everything else is real AAVSO data fetched 2026-10-09 via scripts/fetch_tcrb.py -- one request/day, averaged per band from whatever that single request returned (not a full paginated pull). Re-run that script to extend coverage or refresh.",
-  "fetched_through": "2026-10-09",
-  "days_covered": 30,
+  "note": "Historical eruption dates (1866, 1946) are real record. Everything else is real AAVSO data, accumulated day by day via scripts/fetch_tcrb.py (one request/day, averaged per band from whatever that single request returned -- not a full paginated pull), last refreshed 2026-10-10.",
+  "fetched_through": "2026-10-10",
+  "earliest_covered": "2026-09-10",
+  "days_covered": 28,
   "points": [
     {
       "date": "1866-05-12",
@@ -372,6 +373,12 @@
       "mag": 10.267,
       "band": "visual",
       "n": 3
+    },
+    {
+      "date": "2026-10-10",
+      "mag": 10.3,
+      "band": "visual",
+      "n": 1
     }
   ]
 }
