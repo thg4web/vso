@@ -1,5 +1,5 @@
 {
-  "note": "Historical eruption dates (1866, 1946) are real record. Everything else is real AAVSO data. 2026-07-01 to 2026-10-09 was backfilled from an AAVSO International Database export (apps.aavso.org/v2/data/search/photometry) supplied by Aaron; each day's value is the median of per-observer means. Later days accumulate via scripts/fetch_tcrb.py.",
+  "note": "Historical eruption dates (1866, 1946) are real record. Everything else is real AAVSO data. 2026-07-01 to 2026-10-09 was backfilled from an AAVSO International Database export supplied by Aaron. Recent days come from a full AAVSO pull of yesterday and today every cycle (scripts/update_data.py); each day's value is the median of per-observer means.",
   "fetched_through": "2026-10-10",
   "earliest_covered": "2026-07-01",
   "days_covered": 102,
@@ -2802,9 +2802,9 @@
     },
     {
       "date": "2026-10-09",
-      "mag": 11.53,
+      "mag": 11.515,
       "band": "B",
-      "n": 6,
+      "n": 11,
       "observers": 2
     },
     {
@@ -2825,13 +2825,15 @@
       "date": "2026-10-10",
       "mag": 9.759,
       "band": "V",
-      "n": 4
+      "n": 4,
+      "observers": 1
     },
     {
       "date": "2026-10-10",
-      "mag": 10.3,
+      "mag": 10.25,
       "band": "visual",
-      "n": 1
+      "n": 2,
+      "observers": 2
     }
   ],
   "backfill": {
@@ -2850,5 +2852,24 @@
       "visual"
     ],
     "citation": "American Association of Variable Star Observers (AAVSO). (2026). AAVSO International Database."
+  },
+  "schema_version": 2,
+  "fetched_at": "2026-10-10T13:21:51Z",
+  "current": {
+    "computed_at": "2026-10-10T13:21:51Z",
+    "value": 10.133,
+    "band": "V",
+    "mode": "trailing_24h",
+    "window_hours": 24,
+    "n_obs": 8,
+    "n_observers": 3,
+    "newest_obs_utc": "2026-10-10T02:46:08Z"
+  },
+  "nova": {
+    "level": "none",
+    "readings": 0,
+    "observers": [],
+    "threshold_mag": 9.1,
+    "window_hours": 3
   }
 }
