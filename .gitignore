@@ -1,0 +1,13 @@
+# The `data` branch holds ONLY the pipeline's generated data, written by ebench.
+# Everything else that lives in the ebench working directory stays untracked.
+scripts/
+project/
+.env
+fetch.log
+*.bak*
+CLAUDE.md
+document-skel.md
+public/
+resources/
+.hugo_build.lock
+start_webserver.sh
