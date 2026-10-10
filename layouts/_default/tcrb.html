@@ -14,7 +14,7 @@
       <p class="tcrb__subtitle">"The Blaze Star" — due any time since 1946, watched every clear night since.</p>
 
       <section class="tcrb__mag-banner" id="tcrb-mag-banner" aria-live="polite">
-        <span class="tcrb__mag-banner-label">Current Magnitude</span>
+        <span class="tcrb__mag-banner-label">Current Magnitude <span id="tcrb-mag-calculated"></span></span>
         <div class="tcrb__mag-value-row">
           <span class="tcrb__mag-value" id="tcrb-mag-value">—</span>
           <span class="tcrb__mag-status" id="tcrb-mag-status"></span>
@@ -236,6 +236,7 @@
 <script>
 (function () {
   var seed = {{ $points | jsonify | safeJS }};
+  var FETCHED_AT = {{ .Site.Data.tcrb_observations.fetched_at | jsonify | safeJS }};
 
   function toDecimalYear(raw) {
     raw = String(raw).trim();
@@ -342,6 +343,18 @@
   var MAG_TIER_LABEL = { good: 'Quiescent', warning: 'Brightening — watch', critical: 'Bright — eruption range' };
   var MAG_TIER_ICON = { good: '●', warning: '▲', critical: '⚠' };
 
+  // "Calculated" timestamp next to the banner label is when the data
+  // pipeline last fetched/averaged the data -- AAVSO submissions only
+  // carry a calendar date here (daily-averaged, not per-observation
+  // time), so this is honestly "last refreshed," not "star observed at."
+  function formatCalculatedAt(iso) {
+    if (!iso) return '';
+    var d = new Date(iso);
+    function pad(n) { return String(n).padStart(2, '0'); }
+    return '— ' + pad(d.getUTCMonth() + 1) + '-' + pad(d.getUTCDate()) + '-' + d.getUTCFullYear() +
+      ' ' + pad(d.getUTCHours()) + ':' + pad(d.getUTCMinutes()) + ' UT';
+  }
+
   function updateMagBanner(points) {
     var latest = pickOfficial(points);
     if (!latest) return;
@@ -356,6 +369,7 @@
     banner.classList.add('tcrb__mag-banner--' + tier);
     document.getElementById('tcrb-mag-value').textContent = mag.toFixed(2);
     document.getElementById('tcrb-mag-status').textContent = icon + ' ' + label;
+    document.getElementById('tcrb-mag-calculated').textContent = formatCalculatedAt(FETCHED_AT);
     document.getElementById('tcrb-mag-asof').textContent =
       formatShortDate(latest.x) + ' · ' + bandLabel + (latest.n ? ' · mean of ' + latest.n + ' obs' : '');
   }
