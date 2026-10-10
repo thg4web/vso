@@ -128,6 +128,7 @@
           <button class="tcrb__range-btn" type="button" data-days="30">Month</button>
           <button class="tcrb__range-btn tcrb__range-btn--active" type="button" data-days="90">3 Month</button>
         </div>
+        <p class="tcrb__data-notice" id="tcrb-data-notice" role="alert" hidden></p>
         <div class="tcrb__chart-wrap">
           <canvas id="tcrb-chart" aria-label="T CrB light curve, magnitude over time" role="img"></canvas>
         </div>
@@ -138,7 +139,7 @@
     <section class="tcrb__section">
       <div class="tcrb__section-head">
         <h2 class="tcrb__section-title">Last 24 hours, raw</h2>
-        <p class="tcrb__section-sub">Every observation AAVSO had for T CrB in the last 24 hours, not averaged — full scatter, so you can tell a real trend from one noisy reading. Pulled automatically once a day at the 06:13 refresh.</p>
+        <p class="tcrb__section-sub">Every observation AAVSO had for T CrB in the last 24 hours, not averaged — full scatter, so you can tell a real trend from one noisy reading. Refreshed with every data cycle (currently four times a day) and always the exact rolling 24 hours.</p>
       </div>
       <div class="tcrb__panel">
         <div class="tcrb__form-row" style="margin-top:0; margin-bottom: 14px;">
@@ -237,6 +238,16 @@
 (function () {
   var seed = {{ $points | jsonify | safeJS }};
   var FETCHED_AT = {{ .Site.Data.tcrb_observations.fetched_at | jsonify | safeJS }};
+  // Written by the ebench pipeline (scripts/update_data.py); null until its first run.
+  var CURRENT = {{ .Site.Data.tcrb_observations.current | jsonify | safeJS }};
+  var NOVA = {{ .Site.Data.tcrb_observations.nova | jsonify | safeJS }};
+  var SCHEMA_VERSION = {{ .Site.Data.tcrb_observations.schema_version | jsonify | safeJS }};
+  var SUPPORTED_SCHEMA = 2;
+
+  // Staleness: measured from the "calculated" time, which only moves when a
+  // pipeline cycle fully succeeds. 12 h = two missed 6-hour cycles.
+  var STALE_HOURS = 12;
+  var RISE_SET_STALE_HOURS = 26;   // rise/set is computed once a day
 
   var DAY_MS = 86400000;
 
@@ -304,6 +315,18 @@
     };
   }
 
+  // The current UT day is still incomplete, so its markers are drawn hollow
+  // (a handful of early observations must not look like a settled trend).
+  function utcToday() { return new Date().toISOString().slice(0, 10); }
+  function pointFillBelow(normal, alert) {
+    return function (ctx) {
+      var raw = ctx.raw;
+      if (!raw) return normal;
+      if (raw.date === utcToday()) return 'transparent';
+      return raw.y < CHART_RED_THRESHOLD ? alert : normal;
+    };
+  }
+
   var CHART_RED_THRESHOLD = 9.0; // points/segments at or below this magnitude render in flare red
   function pointColorBelow(normal, alert) {
     return function (ctx) {
@@ -340,17 +363,41 @@
     return sameDay[0];
   }
 
+  function schemaOk() {
+    return SCHEMA_VERSION === null || SCHEMA_VERSION <= SUPPORTED_SCHEMA;
+  }
+
+  // The headline reading. The pipeline's "current" block (trailing-24h aggregate,
+  // or the latest readings during a nova condition) when present; otherwise the
+  // old per-day logic, so the page still works against a data file written
+  // before the pipeline upgrade. Refuses data in a format newer than this page.
+  function headline(points) {
+    if (!schemaOk()) return null;
+    if (CURRENT && typeof CURRENT.value === 'number' && isFinite(CURRENT.value)) {
+      return {
+        value: CURRENT.value, band: CURRENT.band, mode: CURRENT.mode,
+        nObs: CURRENT.n_obs, nObservers: CURRENT.n_observers,
+        newest: CURRENT.newest_obs_utc ? Date.parse(CURRENT.newest_obs_utc) : null,
+        asOfDate: CURRENT.as_of_date || null
+      };
+    }
+    var p = pickOfficial(points);
+    if (!p) return null;
+    return { value: p.y, band: p.band, mode: 'legacy_daily', nObs: p.n, nObservers: p.observers,
+             newest: null, asOfDate: p.date, asOfMs: p.x };
+  }
+
   function checkFlare(points) {
-    var latest = pickOfficial(points);
+    var latest = headline(points);
     if (!latest) return;
     var banner = document.getElementById('tcrb-flare-banner');
     var badgeText = document.getElementById('tcrb-badge-text');
-    var isFlaring = latest.y <= FLARE_THRESHOLD;
+    var isFlaring = latest.value <= FLARE_THRESHOLD;
     banner.classList.toggle('is-active', isFlaring);
     if (isFlaring) {
       document.getElementById('tcrb-flare-detail').textContent =
-        'Latest point: magnitude ' + latest.y.toFixed(2) + ' on ' + formatUtcDate(latest.x, true) + ' (UT). Go look up, right now.';
-      badgeText.textContent = 'FLARING NOW — magnitude ' + latest.y.toFixed(2);
+        'Latest reading: magnitude ' + latest.value.toFixed(2) + '. Go look up, right now.';
+      badgeText.textContent = 'FLARING NOW — magnitude ' + latest.value.toFixed(2);
     } else {
       badgeText.textContent = 'AAVSO Campaign #875 · Active Watch';
     }
@@ -366,38 +413,89 @@
   var MAG_TIER_LABEL = { good: 'Quiescent', warning: 'Brightening — watch', critical: 'Bright — eruption range' };
   var MAG_TIER_ICON = { good: '●', warning: '▲', critical: '⚠' };
 
-  // "Calculated" timestamp next to the banner label is when the data
-  // pipeline last fetched/averaged the data -- AAVSO submissions only
-  // carry a calendar date here (daily-averaged, not per-observation
-  // time), so this is honestly "last refreshed," not "star observed at."
+  function pad2(n) { return String(n).padStart(2, '0'); }
+
+  // "Calculated" = when the pipeline last fully succeeded (in UT). AAVSO
+  // observations are daily-aggregated here, so this is "last refreshed", not
+  // "star observed at" -- the newest observation time is shown separately.
   function formatCalculatedAt(iso) {
-    if (!iso) return '';
     var d = new Date(iso);
-    function pad(n) { return String(n).padStart(2, '0'); }
-    return '— ' + pad(d.getUTCMonth() + 1) + '-' + pad(d.getUTCDate()) + '-' + d.getUTCFullYear() +
-      ' ' + pad(d.getUTCHours()) + ':' + pad(d.getUTCMinutes()) + ' UT';
+    if (!iso || isNaN(d.getTime())) return '';
+    return '— ' + pad2(d.getUTCMonth() + 1) + '-' + pad2(d.getUTCDate()) + '-' + d.getUTCFullYear() +
+      ' ' + pad2(d.getUTCHours()) + ':' + pad2(d.getUTCMinutes()) + ' UT';
   }
 
-  function updateMagBanner(points) {
-    var latest = pickOfficial(points);
-    if (!latest) return;
-    var mag = latest.y;
-    var banner = document.getElementById('tcrb-mag-banner');
-    var tier = magTier(mag);
-    var label = MAG_TIER_LABEL[tier];
-    var icon = MAG_TIER_ICON[tier];
+  function formatUtcDateTime(ms) {
+    var d = new Date(ms);
+    return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', timeZone: 'UTC' }) + ', ' +
+      pad2(d.getUTCHours()) + ':' + pad2(d.getUTCMinutes()) + ' UT';
+  }
 
-    var bandLabel = latest.band === 'visual' ? 'Visual estimate' : latest.band + '-band (measured)';
+  function ageHours(iso) {
+    var t = Date.parse(iso);
+    return isNaN(t) ? null : (Date.now() - t) / 3600000;
+  }
+
+  function describeAge(h) {
+    return h < 1 ? Math.round(h * 60) + ' min' : Math.floor(h) + ' h';
+  }
+
+  // The "calculated" time and the staleness state. Re-run every minute so a tab
+  // left open turns stale on its own. Missing or unreadable time counts as stale.
+  function renderCalculated() {
+    var banner = document.getElementById('tcrb-mag-banner');
+    var age = ageHours(FETCHED_AT);
+    var stale = age === null || age > STALE_HOURS;
+    banner.classList.toggle('tcrb__mag-banner--stale', stale);
+    var text = formatCalculatedAt(FETCHED_AT) || '— time calculated unknown';
+    if (stale) text += ' — STALE' + (age === null ? '' : ': ' + describeAge(age) + ' old');
+    document.getElementById('tcrb-mag-calculated').textContent = text;
+  }
+
+  function asOfText(h) {
+    var band = h.band === 'visual' ? 'Visual estimate' : h.band + '-band (measured)';
+    var who = h.nObservers
+      ? 'median of ' + h.nObservers + ' observer' + (h.nObservers === 1 ? '' : 's') + (h.nObs ? ' (' + h.nObs + ' obs)' : '')
+      : (h.nObs ? 'mean of ' + h.nObs + ' obs' : '');
+    var newest = h.newest ? 'newest ' + formatUtcDateTime(h.newest) : '';
+    var parts;
+    if (h.mode === 'nova') {
+      parts = ['Latest readings (last ' + (NOVA && NOVA.window_hours || 3) + ' h)', h.nObservers + ' observers', newest];
+    } else if (h.mode === 'trailing_24h') {
+      parts = ['Past 24 h', band, who, newest];
+    } else if (h.mode === 'last_available') {
+      parts = ['No observations in the last 24 h', 'last available: ' + formatUtcDate(Date.parse(h.asOfDate + 'T12:00:00Z'), true) + ' UT', band, who];
+    } else {
+      parts = [formatUtcDate(h.asOfMs, true) + ' UT', band, who];
+    }
+    return parts.filter(Boolean).join(' · ');
+  }
+
+  var NOVA_CLASSES = ['tcrb__mag-banner--nova-watch', 'tcrb__mag-banner--nova-alert'];
+
+  function updateMagBanner(points) {
+    var h = headline(points);
+    if (!h) return;
+    var banner = document.getElementById('tcrb-mag-banner');
+    var tier = magTier(h.value);
+    var level = (NOVA && NOVA.level) || 'none';
+
     banner.classList.remove('tcrb__mag-banner--good', 'tcrb__mag-banner--warning', 'tcrb__mag-banner--critical');
+    NOVA_CLASSES.forEach(function (c) { banner.classList.remove(c); });
     banner.classList.add('tcrb__mag-banner--' + tier);
-    document.getElementById('tcrb-mag-value').textContent = mag.toFixed(2);
-    document.getElementById('tcrb-mag-status').textContent = icon + ' ' + label;
-    document.getElementById('tcrb-mag-calculated').textContent = formatCalculatedAt(FETCHED_AT);
-    var basis = latest.observers
-      ? 'median of ' + latest.observers + ' observer' + (latest.observers === 1 ? '' : 's') + (latest.n ? ' (' + latest.n + ' obs)' : '')
-      : (latest.n ? 'mean of ' + latest.n + ' obs' : '');
-    document.getElementById('tcrb-mag-asof').textContent =
-      formatUtcDate(latest.x, true) + ' UT · ' + bandLabel + (basis ? ' · ' + basis : '');
+    // Nova alert (counted in independent observers): 2 readings flash, more than 2 turn it red.
+    if (level === 'watch') banner.classList.add('tcrb__mag-banner--nova-watch');
+    if (level === 'alert') banner.classList.add('tcrb__mag-banner--nova-alert');
+
+    var thr = (NOVA && NOVA.threshold_mag != null ? NOVA.threshold_mag : 9.1).toFixed(1);
+    var status = MAG_TIER_ICON[tier] + ' ' + MAG_TIER_LABEL[tier];
+    if (level === 'watch') status = '⚠ Possible nova — ' + NOVA.readings + ' observers at or below ' + thr;
+    if (level === 'alert') status = '⚠ NOVA CONDITION — ' + NOVA.readings + ' observers at or below ' + thr;
+
+    document.getElementById('tcrb-mag-value').textContent = h.value.toFixed(2);
+    document.getElementById('tcrb-mag-status').textContent = status;
+    document.getElementById('tcrb-mag-asof').textContent = asOfText(h);
+    renderCalculated();
   }
 
   var WINDOW_DAYS = 90;
@@ -412,18 +510,30 @@
 
   function render(points) {
     lastPoints = points;
+    var notice = document.getElementById('tcrb-data-notice');
+    if (!schemaOk()) {
+      // Data newer than this page understands: say so, don't guess.
+      notice.textContent = 'The data behind this page is in a newer format (version ' + SCHEMA_VERSION +
+        ') than this page understands (up to ' + SUPPORTED_SCHEMA + '), so the chart is not shown rather than guessed at. The page needs an update.';
+      notice.hidden = false;
+      renderCalculated();
+      return;
+    }
+    notice.hidden = true;
     var windowed = windowFilter(points);
     var c = themeColors();
     var datasets = [
       {
         label: 'V band', data: byBand(windowed, 'V'),
         borderColor: pointColorBelow(c.v, c.flare), backgroundColor: pointColorBelow(c.v, c.flare),
+        pointBackgroundColor: pointFillBelow(c.v, c.flare), pointBorderColor: pointColorBelow(c.v, c.flare), pointBorderWidth: 2,
         segment: { borderColor: segmentColorBelow(c.v, c.flare) },
         showLine: true, pointRadius: 3, tension: 0.15
       },
       {
         label: 'B band', data: byBand(windowed, 'B'),
         borderColor: pointColorBelow(c.b, c.flare), backgroundColor: pointColorBelow(c.b, c.flare),
+        pointBackgroundColor: pointFillBelow(c.b, c.flare), pointBorderColor: pointColorBelow(c.b, c.flare), pointBorderWidth: 2,
         segment: { borderColor: segmentColorBelow(c.b, c.flare) },
         showLine: true, pointRadius: 3, tension: 0.15
       },
@@ -432,12 +542,14 @@
         // from V for readers who can't separate the hues.
         label: 'TG', data: byBand(windowed, 'TG'),
         borderColor: pointColorBelow(c.tg, c.flare), backgroundColor: pointColorBelow(c.tg, c.flare),
+        pointBackgroundColor: pointFillBelow(c.tg, c.flare), pointBorderColor: pointColorBelow(c.tg, c.flare), pointBorderWidth: 2,
         segment: { borderColor: segmentColorBelow(c.tg, c.flare) },
         showLine: true, pointRadius: 4, pointStyle: 'rectRot', tension: 0.15
       },
       {
         label: 'Visual', data: byBand(windowed, 'visual'),
         borderColor: pointColorBelow(c.visual, c.flare), backgroundColor: pointColorBelow(c.visual, c.flare),
+        pointBackgroundColor: pointFillBelow(c.visual, c.flare), pointBorderColor: pointColorBelow(c.visual, c.flare), pointBorderWidth: 2,
         showLine: false, pointRadius: 4, pointStyle: 'circle'
       }
     ].filter(function (d) { return d.data.length > 0; });
@@ -568,21 +680,35 @@
   });
 
   render(seedToPoints(seed));
+  setInterval(renderCalculated, 60000);
 
-  // Raw 24h observation log -- fetches the file the 06:13 cron run writes
-  // (scripts/export_tcrb_recent.py --out static/exports/tcrb_latest24h).
-  // Static JSON fetch, no parsing/paste UI needed anymore.
+  // Raw 24h observation log: the exact rolling 24 hours, rewritten by the
+  // ebench pipeline on every cycle (scripts/update_data.py). Static JSON fetch.
   (function loadRawLog() {
     var statusEl = document.getElementById('tcrb-log-status');
     var bodyEl = document.getElementById('tcrb-log-body');
+    var meta = null;
+
+    // Re-rendered every minute so a tab left open turns stale on its own.
+    function renderLogStatus() {
+      if (!meta) return;
+      var age = ageHours(meta.exported_at);
+      var stale = age === null || age > STALE_HOURS;
+      var upTo = meta.window_end_utc ? ' in the 24 h to ' + formatUtcDateTime(Date.parse(meta.window_end_utc)) : '';
+      var text = meta.count + ' observation' + (meta.count === 1 ? '' : 's') + upTo +
+        ', calculated ' + (formatCalculatedAt(meta.exported_at).replace('— ', '') || 'at an unknown time') + '.';
+      if (meta.count === 0) text = 'AAVSO had no observations' + (upTo || ' in the last 24 h') + ', calculated ' +
+        (formatCalculatedAt(meta.exported_at).replace('— ', '') || 'at an unknown time') + '.';
+      if (stale) text = '⚠ STALE' + (age === null ? '' : ' (' + describeAge(age) + ' old)') +
+        ': newer data should have arrived by now. ' + text;
+      statusEl.textContent = text;
+      statusEl.classList.toggle('tcrb__chart-note--stale', stale);
+    }
+
     fetch('/exports/tcrb_latest24h.json', { cache: 'no-store' })
       .then(function (resp) { if (!resp.ok) throw new Error('not found'); return resp.json(); })
       .then(function (data) {
         var rows = data.observations || [];
-        if (!rows.length) {
-          statusEl.textContent = 'No observations in the last pull.';
-          return;
-        }
         rows.slice().reverse().forEach(function (o) {
           var tr = document.createElement('tr');
           var dt = o.date_utc ? o.date_utc.replace('T', ' ').replace('Z', '') : '—';
@@ -598,20 +724,22 @@
             '<td>' + (o.observer_code || '—') + '</td>';
           bodyEl.appendChild(tr);
         });
-        statusEl.textContent = rows.length + ' observations, exported ' +
-          (data.exported_at ? new Date(data.exported_at).toLocaleString() : 'recently') + '.';
+        meta = { exported_at: data.exported_at, window_end_utc: data.window_end_utc, count: rows.length };
+        renderLogStatus();
+        setInterval(renderLogStatus, 60000);
       })
       .catch(function () {
-        statusEl.textContent = 'No export yet -- first run happens at the next 06:13 refresh.';
+        statusEl.textContent = 'The 24-hour observation export could not be loaded.';
+        statusEl.classList.add('tcrb__chart-note--stale');
       });
   })();
 
-  // Rise/transit/set -- computed once daily at 12:01 AM reference-location
-  // time by scripts/compute_rise_set.py, in UTC. Pure math, no API call
-  // involved. Rendered here in each viewer's own browser-local time, since
-  // this page has readers well outside the reference location now.
+  // Rise/transit/set and the dark-sky window -- computed once a day by
+  // scripts/compute_rise_set.py, in UTC. Pure math, no API call. Shown in each
+  // viewer's browser-local time, with the raw UT beside it.
   (function loadRiseSet() {
     var nowEl = document.getElementById('tcrb-rs-now');
+    var calcEl = document.getElementById('tcrb-rs-calculated');
 
     function localTime(iso) {
       return new Date(iso).toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit' });
@@ -625,50 +753,72 @@
       }) + ' UTC';
     }
 
-    // Recomputed against the real clock every time it runs -- called once on
-    // load, then on a timer below, so "right now" stays correct for anyone
-    // who leaves the tab open across dusk, dawn, rise or set rather than
-    // freezing at whatever was true the moment the page first loaded.
+    // Which night the dark-sky window describes right now. Between local
+    // midnight and dawn that is the night that began yesterday evening
+    // ("previous_night"), not the next one; otherwise it is tonight.
+    function nightFor(d, now) {
+      var prev = d.previous_night;
+      if (prev && prev.astronomical_dawn_utc && now < Date.parse(prev.astronomical_dawn_utc)) {
+        return { previous: true, windows: prev.dark_windows_utc || [], hours: prev.dark_visible_hours || 0 };
+      }
+      if (Array.isArray(d.dark_windows_utc)) {
+        return { previous: false, windows: d.dark_windows_utc, hours: d.dark_visible_hours || 0 };
+      }
+      // File written before the pipeline upgrade: rebuild tonight's window from rise/set/dusk/dawn.
+      if (typeof d.dark_visible_hours === 'number' && d.dark_visible_hours > 0) {
+        var a = Math.max(Date.parse(d.rise_utc), Date.parse(d.astronomical_dusk_utc));
+        var b = Math.min(Date.parse(d.set_utc), Date.parse(d.astronomical_dawn_utc));
+        return { previous: false, windows: [[new Date(a).toISOString(), new Date(b).toISOString()]], hours: d.dark_visible_hours };
+      }
+      return { previous: false, windows: [], hours: 0 };
+    }
+
+    // Recomputed against the real clock on a timer, so "right now" stays
+    // correct for anyone who leaves the tab open across dusk, dawn, rise or
+    // set -- and so the data turns stale on its own if the daily job stops.
     function renderNowStatus(d) {
-      // Real dark-sky window: where "T CrB is above the horizon" actually
-      // overlaps "the Sun is past astronomical twilight" (computed
-      // server-side in scripts/compute_rise_set.py from the Sun's actual
-      // position for today's date, not a rough rule of thumb). This is
-      // what decides whether tonight is an evening window, a morning-only
-      // window, or no dark-sky window at all.
       var now = Date.now();
-      var hasDarkWindow = typeof d.dark_visible_hours === 'number' && d.dark_visible_hours > 0;
-      var darkStartMs, darkEndMs, visibleNow = false;
-      if (hasDarkWindow) {
-        darkStartMs = Math.max(new Date(d.rise_utc).getTime(), new Date(d.astronomical_dusk_utc).getTime());
-        darkEndMs = Math.min(new Date(d.set_utc).getTime(), new Date(d.astronomical_dawn_utc).getTime());
-        visibleNow = now >= darkStartMs && now <= darkEndMs;
-      }
+      var age = ageHours(d.computed_at);
+      var stale = age === null || age > RISE_SET_STALE_HOURS;
+      calcEl.textContent = (formatCalculatedAt(d.computed_at) || '— time calculated unknown') +
+        (stale ? ' — STALE' + (age === null ? '' : ': ' + describeAge(age) + ' old') : '');
+      calcEl.classList.toggle('tcrb__section-calculated--stale', stale);
 
-      var leadText;
-      if (!hasDarkWindow) {
-        leadText = '○ Not visible against a dark sky tonight -- it\'s above the horizon only during daylight hours';
-      } else {
-        var windowText = localTime(new Date(darkStartMs).toISOString()) + '–' +
-          localTime(new Date(darkEndMs).toISOString()) + ' (about ' + d.dark_visible_hours +
-          ' hour' + (d.dark_visible_hours === 1 ? '' : 's') + ' of dark sky)';
-        leadText = (visibleNow ? '● Visible against a dark sky right now' : '○ Not above the horizon in dark sky right now') +
-          ' -- tonight\'s dark-sky window is ' + windowText;
-      }
-
-      nowEl.textContent = leadText +
-        ' as seen from our reference location (' + d.reference_tz_abbr + ') -- ' +
+      var tail = ' as seen from our reference location (' + d.reference_tz_abbr + ') -- ' +
         'computed in UTC (shown small under each time above) and converted to your browser\'s local ' +
         'time for the big numbers. Check the UTC line yourself if that conversion ever looks off. ' +
         'Rise/set and twilight both shift with the season; computed for ' + d.date + '. ' +
         'This is for our fixed reference location -- for precise times at your own location, use the ' +
         'Stellarium Web link below.';
+      nowEl.classList.toggle('tcrb__chart-note--stale', stale);
+      if (stale) {
+        nowEl.textContent = '⚠ STALE: these times were calculated ' + (age === null ? 'at an unknown time' : describeAge(age) + ' ago') +
+          ' and the daily update has not run since, so nothing here is shown as "right now" until it does.' + tail;
+        return;
+      }
+
+      var night = nightFor(d, now);
+      var wins = night.windows.map(function (w) { return [Date.parse(w[0]), Date.parse(w[1])]; });
+      var which = night.previous ? 'this morning\'s dark-sky window (the night that began yesterday evening)' : 'tonight\'s dark-sky window';
+      var leadText;
+      if (!wins.length) {
+        leadText = '○ Not visible against a dark sky ' + (night.previous ? 'this morning' : 'tonight') +
+          ' -- it\'s above the horizon only during daylight hours';
+      } else {
+        var visibleNow = wins.some(function (w) { return now >= w[0] && now <= w[1]; });
+        var windowText = wins.map(function (w) {
+          return localTime(new Date(w[0]).toISOString()) + '–' + localTime(new Date(w[1]).toISOString());
+        }).join(' and ') + ' (about ' + night.hours + ' hour' + (night.hours === 1 ? '' : 's') + ' of dark sky)';
+        leadText = (visibleNow ? '● Visible against a dark sky right now' : '○ Not above the horizon in dark sky right now') +
+          ' -- ' + which + ' is ' + windowText;
+      }
+      nowEl.textContent = leadText + tail;
     }
 
     fetch('/data/tcrb_rise_set.json', { cache: 'no-store' })
       .then(function (resp) { if (!resp.ok) throw new Error('not found'); return resp.json(); })
       .then(function (d) {
-        document.getElementById('tcrb-rs-calculated').textContent = formatCalculatedAt(d.computed_at);
+        calcEl.textContent = formatCalculatedAt(d.computed_at);
         if (d.status !== 'normal') {
           nowEl.textContent = d.status === 'circumpolar'
             ? 'Circumpolar from our reference location (' + d.reference_tz_abbr + ') -- never sets, transits ' +
@@ -688,7 +838,8 @@
         setInterval(function () { renderNowStatus(d); }, 60000);
       })
       .catch(function () {
-        nowEl.textContent = 'No rise/set data yet -- first run happens at the next 12:01 AM refresh.';
+        nowEl.textContent = 'The rise/set data could not be loaded.';
+        nowEl.classList.add('tcrb__chart-note--stale');
       });
   })();
 

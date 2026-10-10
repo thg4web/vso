@@ -125,6 +125,23 @@ body.tcrb-page {
   &__mag-banner--warning{ --tcrb-mag-color: var(--tcrb-warning); --tcrb-mag-glow: rgba(250, 178, 25, 0.45); }
   &__mag-banner--critical{ --tcrb-mag-color: var(--tcrb-critical); --tcrb-mag-glow: rgba(208, 59, 59, 0.5); }
 
+  // Nova alert, counted in independent observers (Aaron, 2026-10-10): two readings
+  // make "CURRENT MAGNITUDE" flash (amber), more than two turn it red. The label
+  // flashes and the value/status take the alert colour.
+  &__mag-banner--nova-watch { --tcrb-mag-color: var(--tcrb-warning);  --tcrb-mag-glow: rgba(250, 178, 25, 0.6); }
+  &__mag-banner--nova-alert { --tcrb-mag-color: var(--tcrb-critical); --tcrb-mag-glow: rgba(208, 59, 59, 0.75); }
+  &__mag-banner--nova-watch &__mag-banner-label,
+  &__mag-banner--nova-alert &__mag-banner-label {
+    color: var(--tcrb-mag-color); font-weight: 700;
+    animation: tcrb-mag-flash 1s ease-in-out infinite;
+  }
+  // Stale data (calculated time more than 12 h old, or missing): the label flashes red and
+  // the line itself says STALE, so an old reading can never be mistaken for a nova alert.
+  &__mag-banner--stale &__mag-banner-label {
+    color: var(--tcrb-critical); font-weight: 700;
+    animation: tcrb-mag-flash 1s ease-in-out infinite;
+  }
+
   // Hero
   &__hero { position: relative; text-align: center; padding-bottom: 32px; border-bottom: 1px solid var(--tcrb-border); margin-bottom: 40px; }
   &__kicker {
@@ -220,6 +237,7 @@ body.tcrb-page {
   &__section-head { margin-bottom: 20px; }
   &__section-title { font-family: 'Space Grotesk', $font-body; font-size: 1.5rem; font-weight: 600; margin-bottom: 6px; }
   &__section-calculated { font-size: 0.85rem; font-weight: 400; color: var(--tcrb-ink-muted); }
+  &__section-calculated--stale { color: var(--tcrb-critical); font-weight: 600; }
   &__section-sub { color: var(--tcrb-ink-secondary); font-size: 0.95rem; max-width: 640px; }
 
   &__panel {
@@ -296,6 +314,11 @@ body.tcrb-page {
   // Chart
   &__chart-wrap { position: relative; height: 360px; }
   &__chart-note { margin-top: 14px; font-size: 0.78rem; color: var(--tcrb-ink-muted); }
+  &__chart-note--stale { color: var(--tcrb-critical); font-weight: 600; }
+  &__data-notice {
+    margin: 0 0 14px; padding: 10px 14px; border-radius: 8px; font-size: 0.85rem;
+    border: 1px solid var(--tcrb-critical); color: var(--tcrb-critical);
+  }
   &__legend-row {
     display: flex; gap: 18px; flex-wrap: wrap; margin-bottom: 16px;
     font-size: 0.82rem; color: var(--tcrb-ink-secondary);
@@ -372,6 +395,11 @@ body.tcrb-page {
   50%      { box-shadow: 0 0 48px rgba(255, 45, 45, 0.65); }
 }
 
+@keyframes tcrb-mag-flash {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.2; }
+}
+
 @keyframes tcrb-spin {
   from { transform: rotate(0deg); }
   to   { transform: rotate(360deg); }
@@ -381,6 +409,14 @@ body.tcrb-page {
   .tcrb__badge-dot, .tcrb__timeline-item--pending .tcrb__timeline-dot,
   .tcrb__flare-banner, .tcrb__flare-burst {
     animation: none !important;
+  }
+  // No flashing for people who asked for less motion, but the alert must still be visible:
+  // a steady underline replaces the flash.
+  .tcrb__mag-banner--nova-watch .tcrb__mag-banner-label,
+  .tcrb__mag-banner--nova-alert .tcrb__mag-banner-label,
+  .tcrb__mag-banner--stale .tcrb__mag-banner-label {
+    animation: none !important;
+    text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: 5px;
   }
 }
 
