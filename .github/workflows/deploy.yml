@@ -1,13 +1,16 @@
 name: Deploy VSO
 
 # Two things change the site: code/content on `main` (pushed from the dev Mac)
-# and generated data on `data` (pushed only by ebench, the single data writer).
-# Either one triggers a full rebuild from the current head of BOTH branches.
+# and generated data on the `data` branch (pushed only by ebench, the single
+# data writer). Either one rebuilds the whole site from the current head of
+# BOTH branches. A push to `main` triggers this directly; a push to `data`
+# triggers it through the small trigger workflow that lives on the data branch
+# (GitHub runs push workflows from the pushed branch's own files), which calls
+# workflow_dispatch below.
 on:
   push:
     branches:
       - main
-      - data
   workflow_dispatch:
 
 permissions:

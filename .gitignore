@@ -8,10 +8,12 @@ resources/
 .DS_Store
 .env
 /exports/
-# static/data/ and static/exports/ ARE tracked -- they're the generated
-# rise/set and 24h-log data the live site reads at runtime. ebench's cron
-# pushes fresh copies here daily after regenerating them; that push is what
-# triggers the GitHub Pages rebuild.
+# Generated data lives on the separate `data` branch (written only by ebench);
+# the deploy workflow overlays it at build time. These local copies come from
+# scripts/sync_data.sh and are never committed from here.
+/data/tcrb_observations.json
+/static/data/
+/static/exports/
 *.tmp
 *.bak
 *.orig
