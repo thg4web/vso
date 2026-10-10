@@ -131,7 +131,7 @@
         <div class="tcrb__chart-wrap">
           <canvas id="tcrb-chart" aria-label="T CrB light curve, magnitude over time" role="img"></canvas>
         </div>
-        <p class="tcrb__chart-note">Real AAVSO data, one request/day (politely under their rate limit), averaged per band from whatever that day's single request returned — see <code>scripts/fetch_tcrb.py</code>. The axis fits to however many days we've actually backfilled so far (capped at 365) and widens as more get pulled. Browser fetches are blocked by AAVSO's Cloudflare wall by design, so refreshes run from this machine, not the page itself — paste a manual export below if you want to add something sooner.</p>
+        <p class="tcrb__chart-note">Real AAVSO data, one request/day (politely under their rate limit), averaged per band from whatever that day's single request returned — see <code>scripts/fetch_tcrb.py</code>. The Month/3-Month/Year buttons set the actual axis width; if a wider view looks mostly empty, that's because we haven't backfilled that far back yet, not a display bug. Browser fetches are blocked by AAVSO's Cloudflare wall by design, so refreshes run from this machine, not the page itself.</p>
       </div>
     </section>
 
@@ -409,14 +409,15 @@
 
     var now = nowDecimalYear();
     var cutoff = now - WINDOW_DAYS / 365.25;
-    // Fit the axis to whatever real coverage we actually have (capped at the
-    // 365-day window), rather than always drawing a mostly-empty full-year
-    // axis -- widens automatically as more days get backfilled later.
+    // Axis always honors the requested window width, even when real
+    // coverage is thinner than that -- e.g. right now we only have ~30
+    // days of backfilled data, so the 3-Month and Year views are mostly
+    // empty space on the left. That's correct: it's what makes those
+    // buttons visually distinct from Month at all. Clamping the axis to
+    // "whatever data we actually have" (the old behavior) collapsed all
+    // three windows to the same narrow range and made the buttons look
+    // broken -- found and reported directly by Aaron.
     var axisMin = cutoff;
-    if (windowed.length) {
-      var earliest = windowed.reduce(function (m, p) { return p.x < m ? p.x : m; }, Infinity);
-      axisMin = Math.max(cutoff, earliest - 2 / 365.25);
-    }
 
     if (chart) chart.destroy();
     chart = new Chart(ctx, {
