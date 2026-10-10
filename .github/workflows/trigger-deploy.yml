@@ -1,0 +1,24 @@
+name: Trigger deploy
+
+# GitHub runs a push-triggered workflow from the pushed branch's own files, so
+# the `data` branch needs this small file. It does one thing: start the real
+# deploy (defined once, on main) whenever ebench pushes new data.
+# Rarely changed. If it is ever edited, run `git pull --ff-only` on ebench
+# before its next cycle (ebench is otherwise the only writer of this branch).
+on:
+  push:
+    branches:
+      - data
+
+permissions:
+  actions: write
+  contents: read
+
+jobs:
+  trigger:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Start the deploy workflow on main
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh workflow run deploy.yml --repo "${{ github.repository }}" --ref main
