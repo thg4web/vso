@@ -28,3 +28,4 @@ archive/
 project/
 scripts/
 start_webserver.sh
+.claude/

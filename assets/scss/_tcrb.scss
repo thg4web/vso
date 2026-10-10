@@ -116,6 +116,7 @@ body.tcrb-page {
     font-size: 1rem; font-weight: 600;
     color: var(--tcrb-mag-color, var(--tcrb-ink-secondary));
   }
+  &__mag-hint { display: block; margin-top: 6px; font-size: 1rem; color: var(--tcrb-ink-muted); }
   &__mag-asof { display: block; margin-top: 8px; font-size: 0.78rem; color: var(--tcrb-ink-muted); }
 
   &__mag-banner--good   { --tcrb-mag-color: var(--tcrb-good);    --tcrb-mag-glow: rgba(12, 163, 12, 0.45); }
@@ -145,7 +146,9 @@ body.tcrb-page {
     background: var(--tcrb-surface-raised);
     border: 1px solid rgba(250, 178, 25, 0.35);
     font-size: 0.85rem; color: var(--tcrb-ink);
+    text-decoration: none; transition: border-color 0.15s ease;
   }
+  &__badge:hover { border-color: var(--tcrb-warning); }
   &__badge-dot {
     width: 9px; height: 9px; border-radius: 50%;
     background: var(--tcrb-warning);
