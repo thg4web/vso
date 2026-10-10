@@ -1,22 +1,62 @@
 name: Deploy VSO
 
+# Two things change the site: code/content on `main` (pushed from the dev Mac)
+# and generated data on `data` (pushed only by ebench, the single data writer).
+# Either one triggers a full rebuild from the current head of BOTH branches.
 on:
   push:
     branches:
       - main
+      - data
   workflow_dispatch:
 
 permissions:
   contents: write
 
+# One deploy at a time; a newer push replaces a queued one, never an
+# in-progress one (the newest run always builds the newest head of both).
+concurrency:
+  group: deploy-vso
+  cancel-in-progress: false
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+      - name: Checkout code (main)
         uses: actions/checkout@v4
         with:
+          ref: main
           fetch-depth: 0
+
+      - name: Checkout data (data branch)
+        uses: actions/checkout@v4
+        with:
+          ref: data
+          path: .databranch
+          fetch-depth: 1
+
+      # Fails closed: if the data is missing or unreadable the build stops here
+      # and the site that is already live stays exactly as it is.
+      - name: Overlay and validate data
+        run: |
+          set -e
+          mkdir -p data static/data static/exports
+          cp .databranch/data/tcrb_observations.json data/tcrb_observations.json
+          cp .databranch/static/data/tcrb_rise_set.json static/data/tcrb_rise_set.json
+          cp .databranch/static/exports/tcrb_latest24h.json static/exports/tcrb_latest24h.json
+          cp .databranch/static/exports/tcrb_latest24h.csv static/exports/tcrb_latest24h.csv
+          python3 - <<'PY'
+          import json
+          o = json.load(open("data/tcrb_observations.json"))
+          assert isinstance(o.get("points"), list) and len(o["points"]) > 0, "no points"
+          assert isinstance(o.get("schema_version"), int), "no schema_version"
+          assert (o.get("current") or {}).get("computed_at"), "no current.computed_at"
+          json.load(open("static/data/tcrb_rise_set.json"))
+          json.load(open("static/exports/tcrb_latest24h.json"))
+          print("data ok:", len(o["points"]), "points, computed_at", o["current"]["computed_at"])
+          PY
+          rm -rf .databranch
 
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v3
