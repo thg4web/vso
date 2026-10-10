@@ -1,8 +1,8 @@
 {
-  "note": "Historical eruption dates (1866, 1946) are real record. Everything else is real AAVSO data, accumulated day by day via scripts/fetch_tcrb.py (one request/day, averaged per band from whatever that single request returned -- not a full paginated pull), last refreshed 2026-10-10.",
+  "note": "Historical eruption dates (1866, 1946) are real record. Everything else is real AAVSO data. 2026-07-01 to 2026-10-09 was backfilled from an AAVSO International Database export (apps.aavso.org/v2/data/search/photometry) supplied by Aaron; each day's value is the median of per-observer means. Later days accumulate via scripts/fetch_tcrb.py.",
   "fetched_through": "2026-10-10",
-  "earliest_covered": "2026-09-10",
-  "days_covered": 28,
+  "earliest_covered": "2026-07-01",
+  "days_covered": 102,
   "points": [
     {
       "date": "1866-05-12",
@@ -15,376 +15,2840 @@
       "band": "visual"
     },
     {
-      "date": "2026-09-10",
-      "mag": 11.657,
+      "date": "2026-07-01",
+      "mag": 11.41,
       "band": "B",
-      "n": 2
+      "n": 115,
+      "observers": 11
     },
     {
-      "date": "2026-09-10",
-      "mag": 10.332,
+      "date": "2026-07-01",
+      "mag": 9.962,
+      "band": "TG",
+      "n": 128,
+      "observers": 4
+    },
+    {
+      "date": "2026-07-01",
+      "mag": 10.022,
       "band": "V",
-      "n": 2
+      "n": 532,
+      "observers": 14
     },
     {
-      "date": "2026-09-11",
-      "mag": 11.697,
-      "band": "B",
-      "n": 2
-    },
-    {
-      "date": "2026-09-11",
-      "mag": 10.404,
-      "band": "V",
-      "n": 2
-    },
-    {
-      "date": "2026-09-11",
-      "mag": 10.3,
+      "date": "2026-07-01",
+      "mag": 10.1,
       "band": "visual",
-      "n": 1
+      "n": 13,
+      "observers": 11
     },
     {
-      "date": "2026-09-12",
-      "mag": 11.723,
+      "date": "2026-07-02",
+      "mag": 11.385,
       "band": "B",
-      "n": 2
+      "n": 200,
+      "observers": 10
     },
     {
-      "date": "2026-09-12",
-      "mag": 10.332,
+      "date": "2026-07-02",
+      "mag": 9.968,
+      "band": "TG",
+      "n": 50,
+      "observers": 4
+    },
+    {
+      "date": "2026-07-02",
+      "mag": 10.023,
       "band": "V",
-      "n": 2
+      "n": 618,
+      "observers": 16
     },
     {
-      "date": "2026-09-12",
-      "mag": 10.0,
+      "date": "2026-07-02",
+      "mag": 10.1,
       "band": "visual",
-      "n": 2
+      "n": 14,
+      "observers": 11
     },
     {
-      "date": "2026-09-13",
-      "mag": 11.787,
+      "date": "2026-07-03",
+      "mag": 11.41,
       "band": "B",
-      "n": 2
+      "n": 197,
+      "observers": 16
     },
     {
-      "date": "2026-09-13",
-      "mag": 10.417,
+      "date": "2026-07-03",
+      "mag": 9.931,
+      "band": "TG",
+      "n": 3,
+      "observers": 3
+    },
+    {
+      "date": "2026-07-03",
+      "mag": 10.02,
       "band": "V",
-      "n": 2
+      "n": 244,
+      "observers": 21
     },
     {
-      "date": "2026-09-13",
+      "date": "2026-07-03",
+      "mag": 10.1,
+      "band": "visual",
+      "n": 21,
+      "observers": 20
+    },
+    {
+      "date": "2026-07-04",
+      "mag": 11.432,
+      "band": "B",
+      "n": 136,
+      "observers": 8
+    },
+    {
+      "date": "2026-07-04",
+      "mag": 10.016,
+      "band": "TG",
+      "n": 18,
+      "observers": 3
+    },
+    {
+      "date": "2026-07-04",
+      "mag": 10.051,
+      "band": "V",
+      "n": 135,
+      "observers": 11
+    },
+    {
+      "date": "2026-07-04",
       "mag": 10.2,
       "band": "visual",
-      "n": 1
+      "n": 9,
+      "observers": 9
+    },
+    {
+      "date": "2026-07-05",
+      "mag": 11.432,
+      "band": "B",
+      "n": 191,
+      "observers": 8
+    },
+    {
+      "date": "2026-07-05",
+      "mag": 9.973,
+      "band": "TG",
+      "n": 62,
+      "observers": 2
+    },
+    {
+      "date": "2026-07-05",
+      "mag": 10.066,
+      "band": "V",
+      "n": 108,
+      "observers": 10
+    },
+    {
+      "date": "2026-07-05",
+      "mag": 10.1,
+      "band": "visual",
+      "n": 4,
+      "observers": 4
+    },
+    {
+      "date": "2026-07-06",
+      "mag": 11.439,
+      "band": "B",
+      "n": 29,
+      "observers": 10
+    },
+    {
+      "date": "2026-07-06",
+      "mag": 10.109,
+      "band": "TG",
+      "n": 2,
+      "observers": 2
+    },
+    {
+      "date": "2026-07-06",
+      "mag": 10.025,
+      "band": "V",
+      "n": 32,
+      "observers": 12
+    },
+    {
+      "date": "2026-07-06",
+      "mag": 10.0,
+      "band": "visual",
+      "n": 8,
+      "observers": 7
+    },
+    {
+      "date": "2026-07-07",
+      "mag": 11.427,
+      "band": "B",
+      "n": 80,
+      "observers": 13
+    },
+    {
+      "date": "2026-07-07",
+      "mag": 10.091,
+      "band": "TG",
+      "n": 2,
+      "observers": 2
+    },
+    {
+      "date": "2026-07-07",
+      "mag": 10.062,
+      "band": "V",
+      "n": 439,
+      "observers": 14
+    },
+    {
+      "date": "2026-07-07",
+      "mag": 10.125,
+      "band": "visual",
+      "n": 11,
+      "observers": 10
+    },
+    {
+      "date": "2026-07-08",
+      "mag": 11.502,
+      "band": "B",
+      "n": 615,
+      "observers": 16
+    },
+    {
+      "date": "2026-07-08",
+      "mag": 10.073,
+      "band": "TG",
+      "n": 111,
+      "observers": 7
+    },
+    {
+      "date": "2026-07-08",
+      "mag": 10.1,
+      "band": "V",
+      "n": 972,
+      "observers": 22
+    },
+    {
+      "date": "2026-07-08",
+      "mag": 10.3,
+      "band": "visual",
+      "n": 15,
+      "observers": 14
+    },
+    {
+      "date": "2026-07-09",
+      "mag": 11.459,
+      "band": "B",
+      "n": 212,
+      "observers": 10
+    },
+    {
+      "date": "2026-07-09",
+      "mag": 10.02,
+      "band": "TG",
+      "n": 69,
+      "observers": 5
+    },
+    {
+      "date": "2026-07-09",
+      "mag": 10.071,
+      "band": "V",
+      "n": 260,
+      "observers": 13
+    },
+    {
+      "date": "2026-07-09",
+      "mag": 10.18,
+      "band": "visual",
+      "n": 13,
+      "observers": 12
+    },
+    {
+      "date": "2026-07-10",
+      "mag": 11.494,
+      "band": "B",
+      "n": 61,
+      "observers": 8
+    },
+    {
+      "date": "2026-07-10",
+      "mag": 10.017,
+      "band": "TG",
+      "n": 52,
+      "observers": 4
+    },
+    {
+      "date": "2026-07-10",
+      "mag": 10.076,
+      "band": "V",
+      "n": 39,
+      "observers": 11
+    },
+    {
+      "date": "2026-07-10",
+      "mag": 10.2,
+      "band": "visual",
+      "n": 11,
+      "observers": 11
+    },
+    {
+      "date": "2026-07-11",
+      "mag": 11.502,
+      "band": "B",
+      "n": 182,
+      "observers": 8
+    },
+    {
+      "date": "2026-07-11",
+      "mag": 9.997,
+      "band": "TG",
+      "n": 1083,
+      "observers": 6
+    },
+    {
+      "date": "2026-07-11",
+      "mag": 10.072,
+      "band": "V",
+      "n": 121,
+      "observers": 10
+    },
+    {
+      "date": "2026-07-11",
+      "mag": 10.2,
+      "band": "visual",
+      "n": 18,
+      "observers": 17
+    },
+    {
+      "date": "2026-07-12",
+      "mag": 11.523,
+      "band": "B",
+      "n": 294,
+      "observers": 11
+    },
+    {
+      "date": "2026-07-12",
+      "mag": 9.988,
+      "band": "TG",
+      "n": 220,
+      "observers": 4
+    },
+    {
+      "date": "2026-07-12",
+      "mag": 10.082,
+      "band": "V",
+      "n": 594,
+      "observers": 17
+    },
+    {
+      "date": "2026-07-12",
+      "mag": 10.2,
+      "band": "visual",
+      "n": 15,
+      "observers": 15
+    },
+    {
+      "date": "2026-07-13",
+      "mag": 11.54,
+      "band": "B",
+      "n": 212,
+      "observers": 12
+    },
+    {
+      "date": "2026-07-13",
+      "mag": 9.979,
+      "band": "TG",
+      "n": 124,
+      "observers": 7
+    },
+    {
+      "date": "2026-07-13",
+      "mag": 10.067,
+      "band": "V",
+      "n": 605,
+      "observers": 18
+    },
+    {
+      "date": "2026-07-13",
+      "mag": 10.2,
+      "band": "visual",
+      "n": 18,
+      "observers": 17
+    },
+    {
+      "date": "2026-07-14",
+      "mag": 11.54,
+      "band": "B",
+      "n": 137,
+      "observers": 14
+    },
+    {
+      "date": "2026-07-14",
+      "mag": 9.992,
+      "band": "TG",
+      "n": 174,
+      "observers": 4
+    },
+    {
+      "date": "2026-07-14",
+      "mag": 10.074,
+      "band": "V",
+      "n": 471,
+      "observers": 19
+    },
+    {
+      "date": "2026-07-14",
+      "mag": 10.2,
+      "band": "visual",
+      "n": 18,
+      "observers": 17
+    },
+    {
+      "date": "2026-07-15",
+      "mag": 11.488,
+      "band": "B",
+      "n": 292,
+      "observers": 13
+    },
+    {
+      "date": "2026-07-15",
+      "mag": 9.988,
+      "band": "TG",
+      "n": 54,
+      "observers": 6
+    },
+    {
+      "date": "2026-07-15",
+      "mag": 10.06,
+      "band": "V",
+      "n": 766,
+      "observers": 16
+    },
+    {
+      "date": "2026-07-15",
+      "mag": 10.1,
+      "band": "visual",
+      "n": 11,
+      "observers": 11
+    },
+    {
+      "date": "2026-07-16",
+      "mag": 11.449,
+      "band": "B",
+      "n": 463,
+      "observers": 12
+    },
+    {
+      "date": "2026-07-16",
+      "mag": 10.114,
+      "band": "TG",
+      "n": 5,
+      "observers": 2
+    },
+    {
+      "date": "2026-07-16",
+      "mag": 10.045,
+      "band": "V",
+      "n": 655,
+      "observers": 16
+    },
+    {
+      "date": "2026-07-16",
+      "mag": 10.125,
+      "band": "visual",
+      "n": 10,
+      "observers": 8
+    },
+    {
+      "date": "2026-07-17",
+      "mag": 11.461,
+      "band": "B",
+      "n": 449,
+      "observers": 11
+    },
+    {
+      "date": "2026-07-17",
+      "mag": 9.961,
+      "band": "TG",
+      "n": 110,
+      "observers": 2
+    },
+    {
+      "date": "2026-07-17",
+      "mag": 10.041,
+      "band": "V",
+      "n": 393,
+      "observers": 13
+    },
+    {
+      "date": "2026-07-17",
+      "mag": 10.2,
+      "band": "visual",
+      "n": 7,
+      "observers": 7
+    },
+    {
+      "date": "2026-07-18",
+      "mag": 11.454,
+      "band": "B",
+      "n": 245,
+      "observers": 11
+    },
+    {
+      "date": "2026-07-18",
+      "mag": 10.132,
+      "band": "TG",
+      "n": 10,
+      "observers": 2
+    },
+    {
+      "date": "2026-07-18",
+      "mag": 10.063,
+      "band": "V",
+      "n": 260,
+      "observers": 14
+    },
+    {
+      "date": "2026-07-18",
+      "mag": 10.2,
+      "band": "visual",
+      "n": 8,
+      "observers": 8
+    },
+    {
+      "date": "2026-07-19",
+      "mag": 11.447,
+      "band": "B",
+      "n": 273,
+      "observers": 5
+    },
+    {
+      "date": "2026-07-19",
+      "mag": 9.951,
+      "band": "TG",
+      "n": 5,
+      "observers": 5
+    },
+    {
+      "date": "2026-07-19",
+      "mag": 10.055,
+      "band": "V",
+      "n": 276,
+      "observers": 10
+    },
+    {
+      "date": "2026-07-19",
+      "mag": 10.1,
+      "band": "visual",
+      "n": 9,
+      "observers": 9
+    },
+    {
+      "date": "2026-07-20",
+      "mag": 11.471,
+      "band": "B",
+      "n": 404,
+      "observers": 12
+    },
+    {
+      "date": "2026-07-20",
+      "mag": 10.01,
+      "band": "TG",
+      "n": 180,
+      "observers": 5
+    },
+    {
+      "date": "2026-07-20",
+      "mag": 10.048,
+      "band": "V",
+      "n": 728,
+      "observers": 17
+    },
+    {
+      "date": "2026-07-20",
+      "mag": 10.1,
+      "band": "visual",
+      "n": 18,
+      "observers": 16
+    },
+    {
+      "date": "2026-07-21",
+      "mag": 11.454,
+      "band": "B",
+      "n": 59,
+      "observers": 11
+    },
+    {
+      "date": "2026-07-21",
+      "mag": 9.963,
+      "band": "TG",
+      "n": 144,
+      "observers": 6
+    },
+    {
+      "date": "2026-07-21",
+      "mag": 10.018,
+      "band": "V",
+      "n": 40,
+      "observers": 14
+    },
+    {
+      "date": "2026-07-21",
+      "mag": 10.15,
+      "band": "visual",
+      "n": 9,
+      "observers": 8
+    },
+    {
+      "date": "2026-07-22",
+      "mag": 11.441,
+      "band": "B",
+      "n": 139,
+      "observers": 5
+    },
+    {
+      "date": "2026-07-22",
+      "mag": 9.94,
+      "band": "TG",
+      "n": 5,
+      "observers": 5
+    },
+    {
+      "date": "2026-07-22",
+      "mag": 9.992,
+      "band": "V",
+      "n": 118,
+      "observers": 6
+    },
+    {
+      "date": "2026-07-22",
+      "mag": 10.0,
+      "band": "visual",
+      "n": 6,
+      "observers": 5
+    },
+    {
+      "date": "2026-07-23",
+      "mag": 11.326,
+      "band": "B",
+      "n": 132,
+      "observers": 10
+    },
+    {
+      "date": "2026-07-23",
+      "mag": 9.912,
+      "band": "TG",
+      "n": 5,
+      "observers": 5
+    },
+    {
+      "date": "2026-07-23",
+      "mag": 9.989,
+      "band": "V",
+      "n": 492,
+      "observers": 14
+    },
+    {
+      "date": "2026-07-23",
+      "mag": 10.1,
+      "band": "visual",
+      "n": 16,
+      "observers": 15
+    },
+    {
+      "date": "2026-07-24",
+      "mag": 11.429,
+      "band": "B",
+      "n": 173,
+      "observers": 11
+    },
+    {
+      "date": "2026-07-24",
+      "mag": 9.97,
+      "band": "TG",
+      "n": 8,
+      "observers": 5
+    },
+    {
+      "date": "2026-07-24",
+      "mag": 10.038,
+      "band": "V",
+      "n": 85,
+      "observers": 16
+    },
+    {
+      "date": "2026-07-24",
+      "mag": 10.1,
+      "band": "visual",
+      "n": 10,
+      "observers": 10
+    },
+    {
+      "date": "2026-07-25",
+      "mag": 11.423,
+      "band": "B",
+      "n": 290,
+      "observers": 13
+    },
+    {
+      "date": "2026-07-25",
+      "mag": 9.959,
+      "band": "TG",
+      "n": 1,
+      "observers": 1
+    },
+    {
+      "date": "2026-07-25",
+      "mag": 10.048,
+      "band": "V",
+      "n": 546,
+      "observers": 19
+    },
+    {
+      "date": "2026-07-25",
+      "mag": 10.1,
+      "band": "visual",
+      "n": 5,
+      "observers": 5
+    },
+    {
+      "date": "2026-07-26",
+      "mag": 11.464,
+      "band": "B",
+      "n": 76,
+      "observers": 8
+    },
+    {
+      "date": "2026-07-26",
+      "mag": 10.116,
+      "band": "TG",
+      "n": 2,
+      "observers": 2
+    },
+    {
+      "date": "2026-07-26",
+      "mag": 10.048,
+      "band": "V",
+      "n": 40,
+      "observers": 12
+    },
+    {
+      "date": "2026-07-26",
+      "mag": 10.1,
+      "band": "visual",
+      "n": 3,
+      "observers": 3
+    },
+    {
+      "date": "2026-07-27",
+      "mag": 11.479,
+      "band": "B",
+      "n": 254,
+      "observers": 13
+    },
+    {
+      "date": "2026-07-27",
+      "mag": 10.004,
+      "band": "TG",
+      "n": 192,
+      "observers": 4
+    },
+    {
+      "date": "2026-07-27",
+      "mag": 10.101,
+      "band": "V",
+      "n": 245,
+      "observers": 15
+    },
+    {
+      "date": "2026-07-27",
+      "mag": 10.1,
+      "band": "visual",
+      "n": 9,
+      "observers": 8
+    },
+    {
+      "date": "2026-07-28",
+      "mag": 11.426,
+      "band": "B",
+      "n": 249,
+      "observers": 8
+    },
+    {
+      "date": "2026-07-28",
+      "mag": 10.06,
+      "band": "TG",
+      "n": 59,
+      "observers": 4
+    },
+    {
+      "date": "2026-07-28",
+      "mag": 10.112,
+      "band": "V",
+      "n": 228,
+      "observers": 15
+    },
+    {
+      "date": "2026-07-28",
+      "mag": 10.2,
+      "band": "visual",
+      "n": 6,
+      "observers": 6
+    },
+    {
+      "date": "2026-07-29",
+      "mag": 11.366,
+      "band": "B",
+      "n": 207,
+      "observers": 5
+    },
+    {
+      "date": "2026-07-29",
+      "mag": 10.012,
+      "band": "TG",
+      "n": 185,
+      "observers": 7
+    },
+    {
+      "date": "2026-07-29",
+      "mag": 10.106,
+      "band": "V",
+      "n": 502,
+      "observers": 12
+    },
+    {
+      "date": "2026-07-29",
+      "mag": 10.2,
+      "band": "visual",
+      "n": 9,
+      "observers": 9
+    },
+    {
+      "date": "2026-07-30",
+      "mag": 11.37,
+      "band": "B",
+      "n": 211,
+      "observers": 10
+    },
+    {
+      "date": "2026-07-30",
+      "mag": 9.993,
+      "band": "TG",
+      "n": 58,
+      "observers": 4
+    },
+    {
+      "date": "2026-07-30",
+      "mag": 10.092,
+      "band": "V",
+      "n": 517,
+      "observers": 13
+    },
+    {
+      "date": "2026-07-30",
+      "mag": 10.15,
+      "band": "visual",
+      "n": 16,
+      "observers": 15
+    },
+    {
+      "date": "2026-07-31",
+      "mag": 11.391,
+      "band": "B",
+      "n": 111,
+      "observers": 12
+    },
+    {
+      "date": "2026-07-31",
+      "mag": 10.004,
+      "band": "TG",
+      "n": 1404,
+      "observers": 5
+    },
+    {
+      "date": "2026-07-31",
+      "mag": 10.092,
+      "band": "V",
+      "n": 173,
+      "observers": 16
+    },
+    {
+      "date": "2026-07-31",
+      "mag": 10.11,
+      "band": "visual",
+      "n": 7,
+      "observers": 6
+    },
+    {
+      "date": "2026-08-01",
+      "mag": 11.435,
+      "band": "B",
+      "n": 224,
+      "observers": 11
+    },
+    {
+      "date": "2026-08-01",
+      "mag": 9.986,
+      "band": "TG",
+      "n": 868,
+      "observers": 3
+    },
+    {
+      "date": "2026-08-01",
+      "mag": 10.1,
+      "band": "V",
+      "n": 192,
+      "observers": 12
+    },
+    {
+      "date": "2026-08-01",
+      "mag": 10.2,
+      "band": "visual",
+      "n": 13,
+      "observers": 13
+    },
+    {
+      "date": "2026-08-02",
+      "mag": 11.433,
+      "band": "B",
+      "n": 181,
+      "observers": 7
+    },
+    {
+      "date": "2026-08-02",
+      "mag": 9.967,
+      "band": "TG",
+      "n": 810,
+      "observers": 6
+    },
+    {
+      "date": "2026-08-02",
+      "mag": 10.111,
+      "band": "V",
+      "n": 184,
+      "observers": 12
+    },
+    {
+      "date": "2026-08-02",
+      "mag": 10.2,
+      "band": "visual",
+      "n": 9,
+      "observers": 8
+    },
+    {
+      "date": "2026-08-03",
+      "mag": 11.423,
+      "band": "B",
+      "n": 134,
+      "observers": 13
+    },
+    {
+      "date": "2026-08-03",
+      "mag": 10.155,
+      "band": "TG",
+      "n": 3,
+      "observers": 2
+    },
+    {
+      "date": "2026-08-03",
+      "mag": 10.112,
+      "band": "V",
+      "n": 404,
+      "observers": 18
+    },
+    {
+      "date": "2026-08-03",
+      "mag": 10.2,
+      "band": "visual",
+      "n": 9,
+      "observers": 9
+    },
+    {
+      "date": "2026-08-04",
+      "mag": 11.381,
+      "band": "B",
+      "n": 380,
+      "observers": 19
+    },
+    {
+      "date": "2026-08-04",
+      "mag": 10.263,
+      "band": "TG",
+      "n": 1,
+      "observers": 1
+    },
+    {
+      "date": "2026-08-04",
+      "mag": 10.089,
+      "band": "V",
+      "n": 581,
+      "observers": 24
+    },
+    {
+      "date": "2026-08-04",
+      "mag": 10.2,
+      "band": "visual",
+      "n": 12,
+      "observers": 12
+    },
+    {
+      "date": "2026-08-05",
+      "mag": 11.396,
+      "band": "B",
+      "n": 218,
+      "observers": 13
+    },
+    {
+      "date": "2026-08-05",
+      "mag": 10.223,
+      "band": "TG",
+      "n": 1,
+      "observers": 1
+    },
+    {
+      "date": "2026-08-05",
+      "mag": 10.103,
+      "band": "V",
+      "n": 229,
+      "observers": 20
+    },
+    {
+      "date": "2026-08-05",
+      "mag": 10.25,
+      "band": "visual",
+      "n": 10,
+      "observers": 10
+    },
+    {
+      "date": "2026-08-06",
+      "mag": 11.423,
+      "band": "B",
+      "n": 57,
+      "observers": 10
+    },
+    {
+      "date": "2026-08-06",
+      "mag": 10.15,
+      "band": "TG",
+      "n": 2,
+      "observers": 2
+    },
+    {
+      "date": "2026-08-06",
+      "mag": 10.118,
+      "band": "V",
+      "n": 41,
+      "observers": 11
+    },
+    {
+      "date": "2026-08-06",
+      "mag": 10.2,
+      "band": "visual",
+      "n": 10,
+      "observers": 9
+    },
+    {
+      "date": "2026-08-07",
+      "mag": 11.508,
+      "band": "B",
+      "n": 60,
+      "observers": 10
+    },
+    {
+      "date": "2026-08-07",
+      "mag": 10.064,
+      "band": "TG",
+      "n": 5,
+      "observers": 3
+    },
+    {
+      "date": "2026-08-07",
+      "mag": 10.15,
+      "band": "V",
+      "n": 66,
+      "observers": 13
+    },
+    {
+      "date": "2026-08-07",
+      "mag": 10.2,
+      "band": "visual",
+      "n": 17,
+      "observers": 17
+    },
+    {
+      "date": "2026-08-08",
+      "mag": 11.542,
+      "band": "B",
+      "n": 44,
+      "observers": 6
+    },
+    {
+      "date": "2026-08-08",
+      "mag": 10.108,
+      "band": "TG",
+      "n": 158,
+      "observers": 6
+    },
+    {
+      "date": "2026-08-08",
+      "mag": 10.196,
+      "band": "V",
+      "n": 44,
+      "observers": 9
+    },
+    {
+      "date": "2026-08-08",
+      "mag": 10.25,
+      "band": "visual",
+      "n": 12,
+      "observers": 12
+    },
+    {
+      "date": "2026-08-09",
+      "mag": 11.544,
+      "band": "B",
+      "n": 110,
+      "observers": 10
+    },
+    {
+      "date": "2026-08-09",
+      "mag": 10.163,
+      "band": "TG",
+      "n": 295,
+      "observers": 5
+    },
+    {
+      "date": "2026-08-09",
+      "mag": 10.168,
+      "band": "V",
+      "n": 342,
+      "observers": 12
+    },
+    {
+      "date": "2026-08-09",
+      "mag": 10.2,
+      "band": "visual",
+      "n": 7,
+      "observers": 7
+    },
+    {
+      "date": "2026-08-10",
+      "mag": 11.598,
+      "band": "B",
+      "n": 84,
+      "observers": 9
+    },
+    {
+      "date": "2026-08-10",
+      "mag": 10.176,
+      "band": "TG",
+      "n": 46,
+      "observers": 1
+    },
+    {
+      "date": "2026-08-10",
+      "mag": 10.184,
+      "band": "V",
+      "n": 90,
+      "observers": 11
+    },
+    {
+      "date": "2026-08-10",
+      "mag": 10.3,
+      "band": "visual",
+      "n": 15,
+      "observers": 14
+    },
+    {
+      "date": "2026-08-11",
+      "mag": 11.598,
+      "band": "B",
+      "n": 116,
+      "observers": 9
+    },
+    {
+      "date": "2026-08-11",
+      "mag": 10.21,
+      "band": "TG",
+      "n": 18,
+      "observers": 4
+    },
+    {
+      "date": "2026-08-11",
+      "mag": 10.188,
+      "band": "V",
+      "n": 114,
+      "observers": 12
+    },
+    {
+      "date": "2026-08-11",
+      "mag": 10.3,
+      "band": "visual",
+      "n": 13,
+      "observers": 10
+    },
+    {
+      "date": "2026-08-12",
+      "mag": 11.62,
+      "band": "B",
+      "n": 48,
+      "observers": 6
+    },
+    {
+      "date": "2026-08-12",
+      "mag": 10.277,
+      "band": "TG",
+      "n": 4,
+      "observers": 4
+    },
+    {
+      "date": "2026-08-12",
+      "mag": 10.204,
+      "band": "V",
+      "n": 33,
+      "observers": 7
+    },
+    {
+      "date": "2026-08-12",
+      "mag": 10.34,
+      "band": "visual",
+      "n": 6,
+      "observers": 6
+    },
+    {
+      "date": "2026-08-13",
+      "mag": 11.608,
+      "band": "B",
+      "n": 53,
+      "observers": 10
+    },
+    {
+      "date": "2026-08-13",
+      "mag": 10.12,
+      "band": "TG",
+      "n": 2,
+      "observers": 2
+    },
+    {
+      "date": "2026-08-13",
+      "mag": 10.206,
+      "band": "V",
+      "n": 40,
+      "observers": 12
+    },
+    {
+      "date": "2026-08-13",
+      "mag": 10.3,
+      "band": "visual",
+      "n": 8,
+      "observers": 8
+    },
+    {
+      "date": "2026-08-14",
+      "mag": 11.626,
+      "band": "B",
+      "n": 40,
+      "observers": 9
+    },
+    {
+      "date": "2026-08-14",
+      "mag": 10.163,
+      "band": "TG",
+      "n": 3,
+      "observers": 3
+    },
+    {
+      "date": "2026-08-14",
+      "mag": 10.247,
+      "band": "V",
+      "n": 29,
+      "observers": 10
+    },
+    {
+      "date": "2026-08-14",
+      "mag": 10.35,
+      "band": "visual",
+      "n": 10,
+      "observers": 10
+    },
+    {
+      "date": "2026-08-15",
+      "mag": 11.566,
+      "band": "B",
+      "n": 68,
+      "observers": 8
+    },
+    {
+      "date": "2026-08-15",
+      "mag": 10.232,
+      "band": "TG",
+      "n": 3,
+      "observers": 2
+    },
+    {
+      "date": "2026-08-15",
+      "mag": 10.203,
+      "band": "V",
+      "n": 73,
+      "observers": 13
+    },
+    {
+      "date": "2026-08-15",
+      "mag": 10.3,
+      "band": "visual",
+      "n": 7,
+      "observers": 7
+    },
+    {
+      "date": "2026-08-16",
+      "mag": 11.582,
+      "band": "B",
+      "n": 47,
+      "observers": 9
+    },
+    {
+      "date": "2026-08-16",
+      "mag": 10.131,
+      "band": "TG",
+      "n": 35,
+      "observers": 4
+    },
+    {
+      "date": "2026-08-16",
+      "mag": 10.199,
+      "band": "V",
+      "n": 111,
+      "observers": 12
+    },
+    {
+      "date": "2026-08-16",
+      "mag": 10.3,
+      "band": "visual",
+      "n": 7,
+      "observers": 7
+    },
+    {
+      "date": "2026-08-17",
+      "mag": 11.587,
+      "band": "B",
+      "n": 92,
+      "observers": 9
+    },
+    {
+      "date": "2026-08-17",
+      "mag": 10.347,
+      "band": "TG",
+      "n": 12,
+      "observers": 4
+    },
+    {
+      "date": "2026-08-17",
+      "mag": 10.227,
+      "band": "V",
+      "n": 90,
+      "observers": 11
+    },
+    {
+      "date": "2026-08-17",
+      "mag": 10.275,
+      "band": "visual",
+      "n": 15,
+      "observers": 14
+    },
+    {
+      "date": "2026-08-18",
+      "mag": 11.619,
+      "band": "B",
+      "n": 32,
+      "observers": 5
+    },
+    {
+      "date": "2026-08-18",
+      "mag": 10.231,
+      "band": "TG",
+      "n": 43,
+      "observers": 3
+    },
+    {
+      "date": "2026-08-18",
+      "mag": 10.238,
+      "band": "V",
+      "n": 265,
+      "observers": 10
+    },
+    {
+      "date": "2026-08-18",
+      "mag": 10.35,
+      "band": "visual",
+      "n": 12,
+      "observers": 11
+    },
+    {
+      "date": "2026-08-19",
+      "mag": 11.573,
+      "band": "B",
+      "n": 30,
+      "observers": 7
+    },
+    {
+      "date": "2026-08-19",
+      "mag": 10.15,
+      "band": "TG",
+      "n": 36,
+      "observers": 3
+    },
+    {
+      "date": "2026-08-19",
+      "mag": 10.239,
+      "band": "V",
+      "n": 31,
+      "observers": 11
+    },
+    {
+      "date": "2026-08-19",
+      "mag": 10.3,
+      "band": "visual",
+      "n": 8,
+      "observers": 8
+    },
+    {
+      "date": "2026-08-20",
+      "mag": 11.549,
+      "band": "B",
+      "n": 41,
+      "observers": 9
+    },
+    {
+      "date": "2026-08-20",
+      "mag": 10.107,
+      "band": "TG",
+      "n": 11,
+      "observers": 2
+    },
+    {
+      "date": "2026-08-20",
+      "mag": 10.236,
+      "band": "V",
+      "n": 23,
+      "observers": 11
+    },
+    {
+      "date": "2026-08-20",
+      "mag": 10.3,
+      "band": "visual",
+      "n": 8,
+      "observers": 8
+    },
+    {
+      "date": "2026-08-21",
+      "mag": 11.554,
+      "band": "B",
+      "n": 52,
+      "observers": 8
+    },
+    {
+      "date": "2026-08-21",
+      "mag": 10.226,
+      "band": "TG",
+      "n": 45,
+      "observers": 3
+    },
+    {
+      "date": "2026-08-21",
+      "mag": 10.259,
+      "band": "V",
+      "n": 235,
+      "observers": 9
+    },
+    {
+      "date": "2026-08-21",
+      "mag": 10.3,
+      "band": "visual",
+      "n": 12,
+      "observers": 10
+    },
+    {
+      "date": "2026-08-22",
+      "mag": 11.532,
+      "band": "B",
+      "n": 76,
+      "observers": 11
+    },
+    {
+      "date": "2026-08-22",
+      "mag": 10.199,
+      "band": "TG",
+      "n": 65,
+      "observers": 3
+    },
+    {
+      "date": "2026-08-22",
+      "mag": 10.229,
+      "band": "V",
+      "n": 48,
+      "observers": 14
+    },
+    {
+      "date": "2026-08-22",
+      "mag": 10.4,
+      "band": "visual",
+      "n": 11,
+      "observers": 11
+    },
+    {
+      "date": "2026-08-23",
+      "mag": 11.568,
+      "band": "B",
+      "n": 44,
+      "observers": 8
+    },
+    {
+      "date": "2026-08-23",
+      "mag": 10.108,
+      "band": "TG",
+      "n": 4,
+      "observers": 4
+    },
+    {
+      "date": "2026-08-23",
+      "mag": 10.271,
+      "band": "V",
+      "n": 27,
+      "observers": 11
+    },
+    {
+      "date": "2026-08-23",
+      "mag": 10.4,
+      "band": "visual",
+      "n": 13,
+      "observers": 13
+    },
+    {
+      "date": "2026-08-24",
+      "mag": 11.565,
+      "band": "B",
+      "n": 51,
+      "observers": 9
+    },
+    {
+      "date": "2026-08-24",
+      "mag": 10.169,
+      "band": "TG",
+      "n": 348,
+      "observers": 6
+    },
+    {
+      "date": "2026-08-24",
+      "mag": 10.259,
+      "band": "V",
+      "n": 200,
+      "observers": 12
+    },
+    {
+      "date": "2026-08-24",
+      "mag": 10.4,
+      "band": "visual",
+      "n": 9,
+      "observers": 9
+    },
+    {
+      "date": "2026-08-25",
+      "mag": 11.586,
+      "band": "B",
+      "n": 30,
+      "observers": 8
+    },
+    {
+      "date": "2026-08-25",
+      "mag": 10.298,
+      "band": "TG",
+      "n": 3,
+      "observers": 3
+    },
+    {
+      "date": "2026-08-25",
+      "mag": 10.255,
+      "band": "V",
+      "n": 33,
+      "observers": 10
+    },
+    {
+      "date": "2026-08-25",
+      "mag": 10.4,
+      "band": "visual",
+      "n": 8,
+      "observers": 8
+    },
+    {
+      "date": "2026-08-26",
+      "mag": 11.574,
+      "band": "B",
+      "n": 50,
+      "observers": 11
+    },
+    {
+      "date": "2026-08-26",
+      "mag": 10.294,
+      "band": "TG",
+      "n": 18,
+      "observers": 1
+    },
+    {
+      "date": "2026-08-26",
+      "mag": 10.263,
+      "band": "V",
+      "n": 31,
+      "observers": 12
+    },
+    {
+      "date": "2026-08-26",
+      "mag": 10.3,
+      "band": "visual",
+      "n": 7,
+      "observers": 7
+    },
+    {
+      "date": "2026-08-27",
+      "mag": 11.562,
+      "band": "B",
+      "n": 34,
+      "observers": 4
+    },
+    {
+      "date": "2026-08-27",
+      "mag": 10.179,
+      "band": "TG",
+      "n": 5,
+      "observers": 1
+    },
+    {
+      "date": "2026-08-27",
+      "mag": 10.26,
+      "band": "V",
+      "n": 16,
+      "observers": 7
+    },
+    {
+      "date": "2026-08-27",
+      "mag": 10.4,
+      "band": "visual",
+      "n": 5,
+      "observers": 5
+    },
+    {
+      "date": "2026-08-28",
+      "mag": 11.535,
+      "band": "B",
+      "n": 19,
+      "observers": 8
+    },
+    {
+      "date": "2026-08-28",
+      "mag": 10.3,
+      "band": "TG",
+      "n": 2,
+      "observers": 2
+    },
+    {
+      "date": "2026-08-28",
+      "mag": 10.276,
+      "band": "V",
+      "n": 19,
+      "observers": 10
+    },
+    {
+      "date": "2026-08-28",
+      "mag": 10.35,
+      "band": "visual",
+      "n": 5,
+      "observers": 5
+    },
+    {
+      "date": "2026-08-29",
+      "mag": 11.567,
+      "band": "B",
+      "n": 27,
+      "observers": 4
+    },
+    {
+      "date": "2026-08-29",
+      "mag": 10.157,
+      "band": "TG",
+      "n": 4,
+      "observers": 3
+    },
+    {
+      "date": "2026-08-29",
+      "mag": 10.232,
+      "band": "V",
+      "n": 38,
+      "observers": 8
+    },
+    {
+      "date": "2026-08-29",
+      "mag": 10.4,
+      "band": "visual",
+      "n": 5,
+      "observers": 5
+    },
+    {
+      "date": "2026-08-30",
+      "mag": 11.573,
+      "band": "B",
+      "n": 20,
+      "observers": 6
+    },
+    {
+      "date": "2026-08-30",
+      "mag": 10.181,
+      "band": "TG",
+      "n": 5,
+      "observers": 4
+    },
+    {
+      "date": "2026-08-30",
+      "mag": 10.276,
+      "band": "V",
+      "n": 17,
+      "observers": 8
+    },
+    {
+      "date": "2026-08-30",
+      "mag": 10.35,
+      "band": "visual",
+      "n": 10,
+      "observers": 10
+    },
+    {
+      "date": "2026-08-31",
+      "mag": 11.544,
+      "band": "B",
+      "n": 18,
+      "observers": 6
+    },
+    {
+      "date": "2026-08-31",
+      "mag": 10.255,
+      "band": "TG",
+      "n": 12,
+      "observers": 3
+    },
+    {
+      "date": "2026-08-31",
+      "mag": 10.296,
+      "band": "V",
+      "n": 15,
+      "observers": 8
+    },
+    {
+      "date": "2026-08-31",
+      "mag": 10.35,
+      "band": "visual",
+      "n": 12,
+      "observers": 12
+    },
+    {
+      "date": "2026-09-01",
+      "mag": 11.664,
+      "band": "B",
+      "n": 12,
+      "observers": 8
+    },
+    {
+      "date": "2026-09-01",
+      "mag": 10.211,
+      "band": "TG",
+      "n": 97,
+      "observers": 3
+    },
+    {
+      "date": "2026-09-01",
+      "mag": 10.283,
+      "band": "V",
+      "n": 18,
+      "observers": 12
+    },
+    {
+      "date": "2026-09-01",
+      "mag": 10.3,
+      "band": "visual",
+      "n": 10,
+      "observers": 10
+    },
+    {
+      "date": "2026-09-02",
+      "mag": 11.628,
+      "band": "B",
+      "n": 15,
+      "observers": 8
+    },
+    {
+      "date": "2026-09-02",
+      "mag": 10.185,
+      "band": "TG",
+      "n": 12,
+      "observers": 3
+    },
+    {
+      "date": "2026-09-02",
+      "mag": 10.295,
+      "band": "V",
+      "n": 20,
+      "observers": 11
+    },
+    {
+      "date": "2026-09-02",
+      "mag": 10.3,
+      "band": "visual",
+      "n": 14,
+      "observers": 14
+    },
+    {
+      "date": "2026-09-03",
+      "mag": 11.628,
+      "band": "B",
+      "n": 26,
+      "observers": 7
+    },
+    {
+      "date": "2026-09-03",
+      "mag": 10.293,
+      "band": "TG",
+      "n": 4,
+      "observers": 1
+    },
+    {
+      "date": "2026-09-03",
+      "mag": 10.295,
+      "band": "V",
+      "n": 24,
+      "observers": 10
+    },
+    {
+      "date": "2026-09-03",
+      "mag": 10.25,
+      "band": "visual",
+      "n": 8,
+      "observers": 8
+    },
+    {
+      "date": "2026-09-04",
+      "mag": 11.65,
+      "band": "B",
+      "n": 85,
+      "observers": 5
+    },
+    {
+      "date": "2026-09-04",
+      "mag": 10.197,
+      "band": "TG",
+      "n": 1,
+      "observers": 1
+    },
+    {
+      "date": "2026-09-04",
+      "mag": 10.299,
+      "band": "V",
+      "n": 167,
+      "observers": 7
+    },
+    {
+      "date": "2026-09-04",
+      "mag": 10.4,
+      "band": "visual",
+      "n": 9,
+      "observers": 9
+    },
+    {
+      "date": "2026-09-05",
+      "mag": 11.604,
+      "band": "B",
+      "n": 73,
+      "observers": 8
+    },
+    {
+      "date": "2026-09-05",
+      "mag": 10.259,
+      "band": "TG",
+      "n": 7,
+      "observers": 4
+    },
+    {
+      "date": "2026-09-05",
+      "mag": 10.275,
+      "band": "V",
+      "n": 70,
+      "observers": 12
+    },
+    {
+      "date": "2026-09-05",
+      "mag": 10.35,
+      "band": "visual",
+      "n": 9,
+      "observers": 9
+    },
+    {
+      "date": "2026-09-06",
+      "mag": 11.638,
+      "band": "B",
+      "n": 76,
+      "observers": 10
+    },
+    {
+      "date": "2026-09-06",
+      "mag": 10.107,
+      "band": "TG",
+      "n": 2,
+      "observers": 2
+    },
+    {
+      "date": "2026-09-06",
+      "mag": 10.257,
+      "band": "V",
+      "n": 118,
+      "observers": 15
+    },
+    {
+      "date": "2026-09-06",
+      "mag": 10.3,
+      "band": "visual",
+      "n": 12,
+      "observers": 11
+    },
+    {
+      "date": "2026-09-07",
+      "mag": 11.669,
+      "band": "B",
+      "n": 106,
+      "observers": 12
+    },
+    {
+      "date": "2026-09-07",
+      "mag": 10.218,
+      "band": "TG",
+      "n": 195,
+      "observers": 3
+    },
+    {
+      "date": "2026-09-07",
+      "mag": 10.291,
+      "band": "V",
+      "n": 142,
+      "observers": 16
+    },
+    {
+      "date": "2026-09-07",
+      "mag": 10.4,
+      "band": "visual",
+      "n": 11,
+      "observers": 11
+    },
+    {
+      "date": "2026-09-08",
+      "mag": 11.618,
+      "band": "B",
+      "n": 107,
+      "observers": 8
+    },
+    {
+      "date": "2026-09-08",
+      "mag": 10.197,
+      "band": "TG",
+      "n": 57,
+      "observers": 4
+    },
+    {
+      "date": "2026-09-08",
+      "mag": 10.279,
+      "band": "V",
+      "n": 107,
+      "observers": 14
+    },
+    {
+      "date": "2026-09-08",
+      "mag": 10.3,
+      "band": "visual",
+      "n": 10,
+      "observers": 10
+    },
+    {
+      "date": "2026-09-09",
+      "mag": 11.563,
+      "band": "B",
+      "n": 63,
+      "observers": 8
+    },
+    {
+      "date": "2026-09-09",
+      "mag": 10.266,
+      "band": "TG",
+      "n": 181,
+      "observers": 4
+    },
+    {
+      "date": "2026-09-09",
+      "mag": 10.252,
+      "band": "V",
+      "n": 70,
+      "observers": 10
+    },
+    {
+      "date": "2026-09-09",
+      "mag": 10.37,
+      "band": "visual",
+      "n": 11,
+      "observers": 11
+    },
+    {
+      "date": "2026-09-10",
+      "mag": 11.519,
+      "band": "B",
+      "n": 68,
+      "observers": 6
+    },
+    {
+      "date": "2026-09-10",
+      "mag": 10.169,
+      "band": "TG",
+      "n": 538,
+      "observers": 5
+    },
+    {
+      "date": "2026-09-10",
+      "mag": 10.232,
+      "band": "V",
+      "n": 44,
+      "observers": 7
+    },
+    {
+      "date": "2026-09-10",
+      "mag": 10.3,
+      "band": "visual",
+      "n": 9,
+      "observers": 9
+    },
+    {
+      "date": "2026-09-11",
+      "mag": 11.658,
+      "band": "B",
+      "n": 126,
+      "observers": 10
+    },
+    {
+      "date": "2026-09-11",
+      "mag": 10.059,
+      "band": "TG",
+      "n": 466,
+      "observers": 3
+    },
+    {
+      "date": "2026-09-11",
+      "mag": 10.294,
+      "band": "V",
+      "n": 104,
+      "observers": 9
+    },
+    {
+      "date": "2026-09-11",
+      "mag": 10.3,
+      "band": "visual",
+      "n": 12,
+      "observers": 12
+    },
+    {
+      "date": "2026-09-12",
+      "mag": 11.695,
+      "band": "B",
+      "n": 32,
+      "observers": 9
+    },
+    {
+      "date": "2026-09-12",
+      "mag": 10.2,
+      "band": "TG",
+      "n": 12,
+      "observers": 5
+    },
+    {
+      "date": "2026-09-12",
+      "mag": 10.311,
+      "band": "V",
+      "n": 17,
+      "observers": 10
+    },
+    {
+      "date": "2026-09-12",
+      "mag": 10.3,
+      "band": "visual",
+      "n": 11,
+      "observers": 11
+    },
+    {
+      "date": "2026-09-13",
+      "mag": 11.7,
+      "band": "B",
+      "n": 44,
+      "observers": 8
+    },
+    {
+      "date": "2026-09-13",
+      "mag": 10.226,
+      "band": "TG",
+      "n": 8,
+      "observers": 1
+    },
+    {
+      "date": "2026-09-13",
+      "mag": 10.324,
+      "band": "V",
+      "n": 39,
+      "observers": 10
+    },
+    {
+      "date": "2026-09-13",
+      "mag": 10.3,
+      "band": "visual",
+      "n": 4,
+      "observers": 4
+    },
+    {
+      "date": "2026-09-14",
+      "mag": 11.744,
+      "band": "B",
+      "n": 103,
+      "observers": 15
+    },
+    {
+      "date": "2026-09-14",
+      "mag": 10.24,
+      "band": "TG",
+      "n": 16,
+      "observers": 5
+    },
+    {
+      "date": "2026-09-14",
+      "mag": 10.337,
+      "band": "V",
+      "n": 90,
+      "observers": 16
     },
     {
       "date": "2026-09-14",
       "mag": 10.3,
       "band": "visual",
-      "n": 1
+      "n": 8,
+      "observers": 8
     },
     {
-      "date": "2026-09-14",
-      "mag": 11.795,
+      "date": "2026-09-15",
+      "mag": 11.756,
       "band": "B",
-      "n": 3
+      "n": 52,
+      "observers": 12
     },
     {
-      "date": "2026-09-14",
-      "mag": 10.373,
+      "date": "2026-09-15",
+      "mag": 10.234,
+      "band": "TG",
+      "n": 13,
+      "observers": 6
+    },
+    {
+      "date": "2026-09-15",
+      "mag": 10.352,
       "band": "V",
-      "n": 3
+      "n": 41,
+      "observers": 13
     },
     {
       "date": "2026-09-15",
-      "mag": 11.824,
-      "band": "B",
-      "n": 3
-    },
-    {
-      "date": "2026-09-15",
-      "mag": 10.425,
-      "band": "V",
-      "n": 2
-    },
-    {
-      "date": "2026-09-15",
-      "mag": 10.35,
+      "mag": 10.4,
       "band": "visual",
-      "n": 2
+      "n": 12,
+      "observers": 12
+    },
+    {
+      "date": "2026-09-16",
+      "mag": 11.804,
+      "band": "B",
+      "n": 33,
+      "observers": 6
+    },
+    {
+      "date": "2026-09-16",
+      "mag": 10.293,
+      "band": "TG",
+      "n": 126,
+      "observers": 4
+    },
+    {
+      "date": "2026-09-16",
+      "mag": 10.352,
+      "band": "V",
+      "n": 19,
+      "observers": 6
+    },
+    {
+      "date": "2026-09-16",
+      "mag": 10.4,
+      "band": "visual",
+      "n": 9,
+      "observers": 9
     },
     {
       "date": "2026-09-17",
-      "mag": 10.3,
+      "mag": 11.833,
+      "band": "B",
+      "n": 55,
+      "observers": 8
+    },
+    {
+      "date": "2026-09-17",
+      "mag": 10.28,
+      "band": "TG",
+      "n": 196,
+      "observers": 4
+    },
+    {
+      "date": "2026-09-17",
+      "mag": 10.374,
+      "band": "V",
+      "n": 54,
+      "observers": 9
+    },
+    {
+      "date": "2026-09-17",
+      "mag": 10.45,
       "band": "visual",
-      "n": 2
+      "n": 6,
+      "observers": 6
     },
     {
       "date": "2026-09-18",
+      "mag": 11.756,
+      "band": "B",
+      "n": 55,
+      "observers": 4
+    },
+    {
+      "date": "2026-09-18",
+      "mag": 10.295,
+      "band": "TG",
+      "n": 217,
+      "observers": 5
+    },
+    {
+      "date": "2026-09-18",
+      "mag": 10.374,
+      "band": "V",
+      "n": 67,
+      "observers": 9
+    },
+    {
+      "date": "2026-09-18",
+      "mag": 10.4,
+      "band": "visual",
+      "n": 6,
+      "observers": 5
+    },
+    {
+      "date": "2026-09-19",
+      "mag": 11.841,
+      "band": "B",
+      "n": 23,
+      "observers": 4
+    },
+    {
+      "date": "2026-09-19",
+      "mag": 10.287,
+      "band": "TG",
+      "n": 34,
+      "observers": 3
+    },
+    {
+      "date": "2026-09-19",
+      "mag": 10.316,
+      "band": "V",
+      "n": 28,
+      "observers": 8
+    },
+    {
+      "date": "2026-09-19",
+      "mag": 10.35,
+      "band": "visual",
+      "n": 9,
+      "observers": 9
+    },
+    {
+      "date": "2026-09-20",
+      "mag": 11.852,
+      "band": "B",
+      "n": 25,
+      "observers": 6
+    },
+    {
+      "date": "2026-09-20",
+      "mag": 10.233,
+      "band": "TG",
+      "n": 441,
+      "observers": 6
+    },
+    {
+      "date": "2026-09-20",
+      "mag": 10.322,
+      "band": "V",
+      "n": 26,
+      "observers": 8
+    },
+    {
+      "date": "2026-09-20",
+      "mag": 10.225,
+      "band": "visual",
+      "n": 2,
+      "observers": 2
+    },
+    {
+      "date": "2026-09-21",
+      "mag": 11.846,
+      "band": "B",
+      "n": 13,
+      "observers": 4
+    },
+    {
+      "date": "2026-09-21",
+      "mag": 10.216,
+      "band": "TG",
+      "n": 1,
+      "observers": 1
+    },
+    {
+      "date": "2026-09-21",
+      "mag": 10.304,
+      "band": "V",
+      "n": 31,
+      "observers": 8
+    },
+    {
+      "date": "2026-09-21",
+      "mag": 10.3,
+      "band": "visual",
+      "n": 4,
+      "observers": 4
+    },
+    {
+      "date": "2026-09-22",
+      "mag": 11.75,
+      "band": "B",
+      "n": 105,
+      "observers": 7
+    },
+    {
+      "date": "2026-09-22",
+      "mag": 10.206,
+      "band": "TG",
+      "n": 134,
+      "observers": 4
+    },
+    {
+      "date": "2026-09-22",
+      "mag": 10.294,
+      "band": "V",
+      "n": 13,
+      "observers": 8
+    },
+    {
+      "date": "2026-09-22",
       "mag": 10.2,
       "band": "visual",
-      "n": 1
-    },
-    {
-      "date": "2026-09-18",
-      "mag": 10.346,
-      "band": "V",
-      "n": 8
-    },
-    {
-      "date": "2026-09-19",
-      "mag": 11.876,
-      "band": "B",
-      "n": 3
-    },
-    {
-      "date": "2026-09-19",
-      "mag": 10.428,
-      "band": "V",
-      "n": 4
-    },
-    {
-      "date": "2026-09-19",
-      "mag": 10.3,
-      "band": "visual",
-      "n": 2
-    },
-    {
-      "date": "2026-09-20",
-      "mag": 11.885,
-      "band": "B",
-      "n": 2
-    },
-    {
-      "date": "2026-09-20",
-      "mag": 10.376,
-      "band": "V",
-      "n": 2
-    },
-    {
-      "date": "2026-09-21",
-      "mag": 11.962,
-      "band": "B",
-      "n": 1
-    },
-    {
-      "date": "2026-09-21",
-      "mag": 10.416,
-      "band": "V",
-      "n": 2
-    },
-    {
-      "date": "2026-09-21",
-      "mag": 10.3,
-      "band": "visual",
-      "n": 1
-    },
-    {
-      "date": "2026-09-22",
-      "mag": 11.735,
-      "band": "B",
-      "n": 4
-    },
-    {
-      "date": "2026-09-22",
-      "mag": 10.364,
-      "band": "V",
-      "n": 2
+      "n": 5,
+      "observers": 5
     },
     {
       "date": "2026-09-23",
-      "mag": 10.5,
-      "band": "visual",
-      "n": 1
-    },
-    {
-      "date": "2026-09-23",
-      "mag": 10.244,
-      "band": "V",
-      "n": 3
-    },
-    {
-      "date": "2026-09-23",
-      "mag": 11.785,
+      "mag": 11.716,
       "band": "B",
-      "n": 2
+      "n": 15,
+      "observers": 6
+    },
+    {
+      "date": "2026-09-23",
+      "mag": 10.16,
+      "band": "TG",
+      "n": 2,
+      "observers": 2
+    },
+    {
+      "date": "2026-09-23",
+      "mag": 10.296,
+      "band": "V",
+      "n": 20,
+      "observers": 7
+    },
+    {
+      "date": "2026-09-23",
+      "mag": 10.4,
+      "band": "visual",
+      "n": 5,
+      "observers": 5
     },
     {
       "date": "2026-09-24",
-      "mag": 10.5,
-      "band": "visual",
-      "n": 1
+      "mag": 11.615,
+      "band": "B",
+      "n": 12,
+      "observers": 4
     },
     {
       "date": "2026-09-24",
-      "mag": 10.217,
+      "mag": 10.447,
+      "band": "TG",
+      "n": 1,
+      "observers": 1
+    },
+    {
+      "date": "2026-09-24",
+      "mag": 10.237,
       "band": "V",
-      "n": 7
+      "n": 12,
+      "observers": 4
+    },
+    {
+      "date": "2026-09-24",
+      "mag": 10.35,
+      "band": "visual",
+      "n": 6,
+      "observers": 6
+    },
+    {
+      "date": "2026-09-25",
+      "mag": 11.639,
+      "band": "B",
+      "n": 20,
+      "observers": 6
+    },
+    {
+      "date": "2026-09-25",
+      "mag": 10.166,
+      "band": "TG",
+      "n": 131,
+      "observers": 3
+    },
+    {
+      "date": "2026-09-25",
+      "mag": 10.215,
+      "band": "V",
+      "n": 23,
+      "observers": 7
     },
     {
       "date": "2026-09-25",
       "mag": 10.4,
       "band": "visual",
-      "n": 1
+      "n": 7,
+      "observers": 7
     },
     {
       "date": "2026-09-26",
-      "mag": 10.21,
-      "band": "V",
-      "n": 4
-    },
-    {
-      "date": "2026-09-26",
-      "mag": 10.1,
-      "band": "visual",
-      "n": 1
-    },
-    {
-      "date": "2026-09-26",
-      "mag": 11.662,
+      "mag": 11.583,
       "band": "B",
-      "n": 1
+      "n": 29,
+      "observers": 3
+    },
+    {
+      "date": "2026-09-26",
+      "mag": 10.19,
+      "band": "TG",
+      "n": 4,
+      "observers": 1
+    },
+    {
+      "date": "2026-09-26",
+      "mag": 10.227,
+      "band": "V",
+      "n": 40,
+      "observers": 7
+    },
+    {
+      "date": "2026-09-26",
+      "mag": 10.4,
+      "band": "visual",
+      "n": 7,
+      "observers": 7
     },
     {
       "date": "2026-09-27",
-      "mag": 10.275,
-      "band": "visual",
-      "n": 4
-    },
-    {
-      "date": "2026-09-28",
-      "mag": 10.222,
-      "band": "V",
-      "n": 1
-    },
-    {
-      "date": "2026-09-28",
-      "mag": 11.694,
+      "mag": 11.668,
       "band": "B",
-      "n": 1
+      "n": 1,
+      "observers": 1
+    },
+    {
+      "date": "2026-09-27",
+      "mag": 10.12,
+      "band": "TG",
+      "n": 938,
+      "observers": 3
+    },
+    {
+      "date": "2026-09-27",
+      "mag": 10.243,
+      "band": "V",
+      "n": 10,
+      "observers": 5
+    },
+    {
+      "date": "2026-09-27",
+      "mag": 10.3,
+      "band": "visual",
+      "n": 7,
+      "observers": 7
+    },
+    {
+      "date": "2026-09-28",
+      "mag": 11.589,
+      "band": "B",
+      "n": 10,
+      "observers": 3
+    },
+    {
+      "date": "2026-09-28",
+      "mag": 10.235,
+      "band": "V",
+      "n": 28,
+      "observers": 8
     },
     {
       "date": "2026-09-28",
       "mag": 10.4,
       "band": "visual",
-      "n": 1
+      "n": 5,
+      "observers": 5
     },
     {
       "date": "2026-09-29",
-      "mag": 10.2,
-      "band": "visual",
-      "n": 1
+      "mag": 11.589,
+      "band": "B",
+      "n": 9,
+      "observers": 3
     },
     {
       "date": "2026-09-29",
-      "mag": 10.249,
+      "mag": 10.172,
+      "band": "TG",
+      "n": 20,
+      "observers": 3
+    },
+    {
+      "date": "2026-09-29",
+      "mag": 10.226,
       "band": "V",
-      "n": 1
+      "n": 14,
+      "observers": 5
+    },
+    {
+      "date": "2026-09-29",
+      "mag": 10.25,
+      "band": "visual",
+      "n": 6,
+      "observers": 6
     },
     {
       "date": "2026-09-30",
-      "mag": 10.183,
+      "mag": 10.164,
+      "band": "TG",
+      "n": 3,
+      "observers": 3
+    },
+    {
+      "date": "2026-09-30",
+      "mag": 10.256,
+      "band": "V",
+      "n": 1,
+      "observers": 1
+    },
+    {
+      "date": "2026-09-30",
+      "mag": 10.3,
       "band": "visual",
-      "n": 3
+      "n": 9,
+      "observers": 9
+    },
+    {
+      "date": "2026-10-01",
+      "mag": 11.611,
+      "band": "B",
+      "n": 9,
+      "observers": 3
+    },
+    {
+      "date": "2026-10-01",
+      "mag": 9.916,
+      "band": "TG",
+      "n": 97,
+      "observers": 1
+    },
+    {
+      "date": "2026-10-01",
+      "mag": 10.251,
+      "band": "V",
+      "n": 30,
+      "observers": 6
     },
     {
       "date": "2026-10-01",
       "mag": 10.3,
       "band": "visual",
-      "n": 2
+      "n": 6,
+      "observers": 6
     },
     {
-      "date": "2026-10-03",
-      "mag": 10.4,
-      "band": "visual",
-      "n": 1
+      "date": "2026-10-02",
+      "mag": 11.744,
+      "band": "B",
+      "n": 12,
+      "observers": 4
     },
     {
-      "date": "2026-10-03",
-      "mag": 10.25,
+      "date": "2026-10-02",
+      "mag": 10.156,
+      "band": "TG",
+      "n": 324,
+      "observers": 3
+    },
+    {
+      "date": "2026-10-02",
+      "mag": 10.213,
       "band": "V",
-      "n": 3
+      "n": 16,
+      "observers": 6
+    },
+    {
+      "date": "2026-10-02",
+      "mag": 10.35,
+      "band": "visual",
+      "n": 6,
+      "observers": 6
+    },
+    {
+      "date": "2026-10-03",
+      "mag": 11.663,
+      "band": "B",
+      "n": 11,
+      "observers": 4
+    },
+    {
+      "date": "2026-10-03",
+      "mag": 10.206,
+      "band": "TG",
+      "n": 410,
+      "observers": 1
+    },
+    {
+      "date": "2026-10-03",
+      "mag": 10.224,
+      "band": "V",
+      "n": 14,
+      "observers": 5
+    },
+    {
+      "date": "2026-10-03",
+      "mag": 10.3,
+      "band": "visual",
+      "n": 7,
+      "observers": 7
     },
     {
       "date": "2026-10-04",
-      "mag": 10.118,
-      "band": "V",
-      "n": 1
-    },
-    {
-      "date": "2026-10-05",
-      "mag": 10.4,
-      "band": "visual",
-      "n": 1
-    },
-    {
-      "date": "2026-10-05",
-      "mag": 10.16,
-      "band": "V",
-      "n": 1
-    },
-    {
-      "date": "2026-10-05",
-      "mag": 11.706,
+      "mag": 11.643,
       "band": "B",
-      "n": 1
+      "n": 4,
+      "observers": 2
     },
     {
-      "date": "2026-10-06",
-      "mag": 10.4,
-      "band": "visual",
-      "n": 2
+      "date": "2026-10-04",
+      "mag": 10.182,
+      "band": "TG",
+      "n": 383,
+      "observers": 3
     },
     {
-      "date": "2026-10-06",
-      "mag": 9.981,
+      "date": "2026-10-04",
+      "mag": 10.171,
       "band": "V",
-      "n": 1
+      "n": 11,
+      "observers": 4
+    },
+    {
+      "date": "2026-10-04",
+      "mag": 10.3,
+      "band": "visual",
+      "n": 5,
+      "observers": 5
+    },
+    {
+      "date": "2026-10-05",
+      "mag": 11.697,
+      "band": "B",
+      "n": 3,
+      "observers": 3
+    },
+    {
+      "date": "2026-10-05",
+      "mag": 10.113,
+      "band": "TG",
+      "n": 110,
+      "observers": 2
+    },
+    {
+      "date": "2026-10-05",
+      "mag": 10.149,
+      "band": "V",
+      "n": 14,
+      "observers": 8
+    },
+    {
+      "date": "2026-10-05",
+      "mag": 10.2,
+      "band": "visual",
+      "n": 8,
+      "observers": 8
     },
     {
       "date": "2026-10-06",
-      "mag": 11.96,
+      "mag": 11.851,
       "band": "B",
-      "n": 1
+      "n": 5,
+      "observers": 2
+    },
+    {
+      "date": "2026-10-06",
+      "mag": 10.211,
+      "band": "TG",
+      "n": 309,
+      "observers": 3
+    },
+    {
+      "date": "2026-10-06",
+      "mag": 10.073,
+      "band": "V",
+      "n": 11,
+      "observers": 4
+    },
+    {
+      "date": "2026-10-06",
+      "mag": 10.3,
+      "band": "visual",
+      "n": 6,
+      "observers": 5
+    },
+    {
+      "date": "2026-10-07",
+      "mag": 11.618,
+      "band": "B",
+      "n": 7,
+      "observers": 4
+    },
+    {
+      "date": "2026-10-07",
+      "mag": 10.087,
+      "band": "TG",
+      "n": 9,
+      "observers": 1
+    },
+    {
+      "date": "2026-10-07",
+      "mag": 10.153,
+      "band": "V",
+      "n": 18,
+      "observers": 7
+    },
+    {
+      "date": "2026-10-07",
+      "mag": 10.2,
+      "band": "visual",
+      "n": 7,
+      "observers": 7
     },
     {
       "date": "2026-10-08",
-      "mag": 10.15,
-      "band": "visual",
-      "n": 2
+      "mag": 11.54,
+      "band": "B",
+      "n": 5,
+      "observers": 2
+    },
+    {
+      "date": "2026-10-08",
+      "mag": 10.058,
+      "band": "TG",
+      "n": 16,
+      "observers": 2
     },
     {
       "date": "2026-10-08",
       "mag": 10.136,
       "band": "V",
-      "n": 8
+      "n": 19,
+      "observers": 5
+    },
+    {
+      "date": "2026-10-08",
+      "mag": 10.2,
+      "band": "visual",
+      "n": 8,
+      "observers": 8
     },
     {
       "date": "2026-10-09",
-      "mag": 9.788,
+      "mag": 11.53,
+      "band": "B",
+      "n": 6,
+      "observers": 2
+    },
+    {
+      "date": "2026-10-09",
+      "mag": 10.133,
       "band": "V",
-      "n": 6
+      "n": 18,
+      "observers": 4
     },
     {
       "date": "2026-10-09",
-      "mag": 10.267,
+      "mag": 10.25,
       "band": "visual",
-      "n": 3
-    },
-    {
-      "date": "2026-10-10",
-      "mag": 10.3,
-      "band": "visual",
-      "n": 1
+      "n": 6,
+      "observers": 6
     },
     {
       "date": "2026-10-10",
       "mag": 9.759,
       "band": "V",
       "n": 4
+    },
+    {
+      "date": "2026-10-10",
+      "mag": 10.3,
+      "band": "visual",
+      "n": 1
     }
-  ]
+  ],
+  "backfill": {
+    "source": "AAVSO International Database, apps.aavso.org/v2/data/search/photometry (CSV download)",
+    "file": "observations_20261010_121054.zip",
+    "downloaded_utc": "2026-10-10T12:10:54Z",
+    "range_covered": [
+      "2026-07-01",
+      "2026-10-09"
+    ],
+    "statistic": "median of per-observer means, per UTC date and band",
+    "bands": [
+      "B",
+      "TG",
+      "V",
+      "visual"
+    ],
+    "citation": "American Association of Variable Star Observers (AAVSO). (2026). AAVSO International Database."
+  }
 }
