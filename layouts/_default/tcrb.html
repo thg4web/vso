@@ -202,9 +202,22 @@
           <img id="tcrb-locator-img" src="/images/tcrb/locator-pre-dark.png" alt="Locator chart showing Corona Borealis with T CrB marked near naked-eye visibility threshold." loading="lazy">
           <figcaption id="tcrb-locator-caption">Quiescent: around magnitude 10, invisible to the naked eye. RA 15h 59m 30s, Dec +25° 55′.</figcaption>
         </figure>
-        <div class="tcrb__form-row">
-          <a class="tcrb__btn" href="/downloads/t-crb-locator-chart.pdf" download>Download locator chart (PDF) ↓</a>
-        </div>
+
+        <details class="tcrb__atlas-details">
+          <summary>AAVSO binocular chart, 15&deg; field to magnitude 9</summary>
+          <figure class="tcrb__figure">
+            <img class="tcrb__themed-img" data-src-light="/images/tcrb/aavso-chart-binocular.png" data-src-dark="/images/tcrb/aavso-chart-binocular-dark.png" src="/images/tcrb/aavso-chart-binocular-dark.png" alt="AAVSO binocular finder chart for T CrB, 15 degree field, North up, comparison stars labeled with their magnitudes, limiting magnitude 9." loading="lazy">
+            <figcaption>AAVSO Variable Star Plotter chart X36941C, North up. Chart &copy; 2024 AAVSO. Numbers are comparison-star magnitudes (decimal point omitted).</figcaption>
+          </figure>
+        </details>
+
+        <details class="tcrb__atlas-details">
+          <summary>AAVSO telescope chart, 3&deg; field to magnitude 11</summary>
+          <figure class="tcrb__figure">
+            <img class="tcrb__themed-img" data-src-light="/images/tcrb/aavso-chart-3deg.png" data-src-dark="/images/tcrb/aavso-chart-3deg-dark.png" src="/images/tcrb/aavso-chart-3deg-dark.png" alt="AAVSO finder chart for T CrB, 3 degree field, North up, comparison stars labeled with their magnitudes, limiting magnitude 11." loading="lazy">
+            <figcaption>AAVSO Variable Star Plotter chart X37093BD, North up. Chart &copy; 2024 AAVSO. Numbers are comparison-star magnitudes (decimal point omitted).</figcaption>
+          </figure>
+        </details>
 
         <details class="tcrb__atlas-details">
           <summary>Professional atlas reference (Will Tirion)</summary>
@@ -213,6 +226,11 @@
             <figcaption>Corona Borealis region, Will Tirion star atlas.</figcaption>
           </figure>
         </details>
+        <div class="tcrb__form-row">
+          <a class="tcrb__btn" href="/downloads/t-crb-locator-chart.pdf" download>Download locator chart (PDF) ↓</a>
+          <a class="tcrb__btn" href="/downloads/t-crb-aavso-chart-binocular.pdf" download>Download AAVSO binocular chart (PDF) &darr;</a>
+          <a class="tcrb__btn" href="/downloads/t-crb-aavso-chart-3deg.pdf" download>Download AAVSO 3&deg; chart (PDF) &darr;</a>
+        </div>
       </div>
     </section>
 
@@ -638,6 +656,9 @@
     var theme = document.body.getAttribute('data-theme');
     document.getElementById('tcrb-finder-img').src =
       theme === 'light' ? '/images/tcrb/finder-composite.jpg' : '/images/tcrb/finder-composite-dark.jpg';
+    document.querySelectorAll('.tcrb__themed-img').forEach(function (img) {
+      img.src = img.getAttribute(theme === 'light' ? 'data-src-light' : 'data-src-dark');
+    });
   }
 
   // Theme toggle — persisted per-device, defaults to dark (the space console look).
