@@ -114,24 +114,24 @@
     <section class="tcrb__section">
       <div class="tcrb__section-head">
         <h2 class="tcrb__section-title">Light curve</h2>
-        <p class="tcrb__section-sub">Brighter is up (magnitude is inverted on purpose). Colors match the real AAVSO photometric-band convention: B filter is blue, V filter is green, naked-eye visual estimates are plotted as neutral gray dots.</p>
+        <p class="tcrb__section-sub">Brighter is up (magnitude is inverted on purpose). Colors follow the AAVSO photometric-band convention: B filter is blue, V filter is green, naked-eye visual estimates are neutral gray dots. TG, the green channel of tri-color cameras, is drawn as magenta diamonds so it can't be mistaken for V. All dates are UT.</p>
       </div>
       <div class="tcrb__panel">
         <div class="tcrb__legend-row">
           <span class="tcrb__legend-item"><span class="tcrb__legend-swatch" style="background:var(--tcrb-band-v)"></span>V band (CCD/DSLR, green filter)</span>
           <span class="tcrb__legend-item"><span class="tcrb__legend-swatch" style="background:var(--tcrb-band-b)"></span>B band (blue filter)</span>
+          <span class="tcrb__legend-item" id="tcrb-legend-tg" style="display:none"><span class="tcrb__legend-swatch tcrb__legend-swatch--diamond" style="background:var(--tcrb-band-tg)"></span>TG (green channel of tri-color cameras)</span>
           <span class="tcrb__legend-item"><span class="tcrb__legend-swatch" style="background:var(--tcrb-visual)"></span>Visual (naked-eye estimate)</span>
           <span class="tcrb__legend-item"><span class="tcrb__legend-swatch" style="background:var(--tcrb-flare)"></span>Below mag 9</span>
         </div>
         <div class="tcrb__range-row" role="group" aria-label="Chart time range">
           <button class="tcrb__range-btn" type="button" data-days="30">Month</button>
-          <button class="tcrb__range-btn" type="button" data-days="90">3 Month</button>
-          <button class="tcrb__range-btn tcrb__range-btn--active" type="button" data-days="365">Year</button>
+          <button class="tcrb__range-btn tcrb__range-btn--active" type="button" data-days="90">3 Month</button>
         </div>
         <div class="tcrb__chart-wrap">
           <canvas id="tcrb-chart" aria-label="T CrB light curve, magnitude over time" role="img"></canvas>
         </div>
-        <p class="tcrb__chart-note">Real AAVSO data, one request/day (politely under their rate limit), averaged per band from whatever that day's single request returned — see <code>scripts/fetch_tcrb.py</code>. The Month/3-Month/Year buttons set the actual axis width; if a wider view looks mostly empty, that's because we haven't backfilled that far back yet, not a display bug. Browser fetches are blocked by AAVSO's Cloudflare wall by design, so refreshes run from this machine, not the page itself.</p>
+        <p class="tcrb__chart-note">Real AAVSO data. Each point is one UT day in one band: the median of per-observer means, so one observer's long run of frames can't dominate a day. History through 2026-10-09 comes from a full AAVSO database export; the most recent days come from the live refresh and can still change as late observations arrive. Observations flagged "fainter than" (non-detections) are not plotted. The refresh runs on a separate server, not in your browser (AAVSO blocks browser requests).</p>
       </div>
     </section>
 
@@ -165,7 +165,7 @@
 
     <section class="tcrb__section">
       <div class="tcrb__section-head">
-        <h2 class="tcrb__section-title">When can I see it?</h2>
+        <h2 class="tcrb__section-title">When can I see it? <span id="tcrb-rs-calculated" class="tcrb__section-calculated"></span></h2>
         <p class="tcrb__section-sub" id="tcrb-rs-sub">It's expected to brighten to around magnitude 2 -- naked-eye visible -- once it goes into outburst. Rise, transit, and set for Corona Borealis (and T CrB specifically) today, plus the real dark-sky window where it's above the horizon and the Sun is past astronomical twilight -- as seen from our US East Coast reference location, computed fresh every night at 12:01 AM, shown below converted to your own browser's local time. Want exact times for your own location? Use the Stellarium Web link below and set your own spot there.</p>
       </div>
       <div class="tcrb__panel">
@@ -238,33 +238,53 @@
   var seed = {{ $points | jsonify | safeJS }};
   var FETCHED_AT = {{ .Site.Data.tcrb_observations.fetched_at | jsonify | safeJS }};
 
-  function toDecimalYear(raw) {
-    raw = String(raw).trim();
-    var jd = parseFloat(raw);
-    if (!isNaN(jd) && jd > 2000000) {
-      var ms = (jd - 2440587.5) * 86400000;
-      var d = new Date(ms);
-      return d.getFullYear() + (d.getMonth() * 30 + d.getDate()) / 365.25;
-    }
-    var d2 = new Date(raw);
-    if (!isNaN(d2.getTime())) {
-      return d2.getFullYear() + (d2.getMonth() * 30 + d2.getDate()) / 365.25;
-    }
-    return null;
+  var DAY_MS = 86400000;
+
+  // Daily values carry only a UT calendar date. Plot each at 12:00 UT (the
+  // middle of its UT day) on a real epoch-ms axis. The old decimal-year
+  // approximation ((month*30 + day)/365.25, read through local time) put
+  // data about three days early -- Oct 9 showed up as Oct 6.
+  function dateToMs(raw) {
+    var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(raw).trim());
+    return m ? Date.UTC(+m[1], +m[2] - 1, +m[3], 12) : null;
   }
 
+  // Unknown bands return null and get dropped -- never silently drawn as V
+  // (the old fallback would have painted any new band into the V line).
   function normBand(b) {
-    if (!b) return 'V';
-    b = b.trim().toLowerCase();
-    if (b.indexOf('vis') === 0) return 'visual';
-    if (b === 'b') return 'B';
-    return 'V';
+    if (!b) return null;
+    var k = String(b).trim().toLowerCase();
+    if (k.indexOf('vis') === 0) return 'visual';
+    if (k === 'v') return 'V';
+    if (k === 'b') return 'B';
+    if (k === 'tg') return 'TG';
+    return null;
   }
 
   function seedToPoints(points) {
     return points.map(function (p) {
-      return { x: toDecimalYear(p.date), y: p.mag, band: normBand(p.band), n: p.n };
-    }).filter(function (p) { return p.x !== null; });
+      var x = dateToMs(p.date), band = normBand(p.band);
+      if (x === null || band === null) {
+        console.warn('tcrb: dropping point with unrecognized date/band', p);
+        return null;
+      }
+      return { x: x, date: p.date, y: p.mag, band: band, n: p.n, observers: p.observers };
+    }).filter(function (p) { return p !== null; });
+  }
+
+  // All dates are shown in UT.
+  function formatUtcDate(ms, withYear) {
+    return new Date(ms).toLocaleDateString('en-US', {
+      month: 'short', day: 'numeric', year: withYear ? 'numeric' : undefined, timeZone: 'UTC'
+    });
+  }
+
+  // Tick marks on exact UT midnights, so labels are real dates.
+  function buildDayTicks(min, max, stepDays) {
+    var step = stepDays * DAY_MS;
+    var ticks = [];
+    for (var t = Math.ceil(min / step) * step; t <= max; t += step) ticks.push({ value: t });
+    return ticks;
   }
 
   function byBand(points, band) {
@@ -276,6 +296,7 @@
     return {
       v: root.getPropertyValue('--tcrb-band-v').trim() || '#2fae63',
       b: root.getPropertyValue('--tcrb-band-b').trim() || '#3987e5',
+      tg: root.getPropertyValue('--tcrb-band-tg').trim() || '#cf5ca8',
       visual: root.getPropertyValue('--tcrb-visual').trim() || '#d8dce8',
       flare: root.getPropertyValue('--tcrb-flare').trim() || '#ff2d2d',
       grid: root.getPropertyValue('--tcrb-grid').trim() || 'rgba(255,255,255,0.08)',
@@ -304,11 +325,13 @@
   // "Official" reading = the most recent date's point, preferring an
   // instrumental/Measured band (V, then B) over a Visual eye-estimate when
   // both exist for that day -- instrumental photometry is the more precise
-  // reading. Falls back to Visual if that's all there is that day.
+  // reading. Falls back to Visual if that's all there is that day. TG is
+  // plotted but never used for the headline reading.
   function pickOfficial(points) {
-    if (!points.length) return null;
-    var maxX = points.reduce(function (m, p) { return p.x > m ? p.x : m; }, -Infinity);
-    var sameDay = points.filter(function (p) { return Math.abs(p.x - maxX) < 0.001; });
+    var official = points.filter(function (p) { return p.band !== 'TG'; });
+    if (!official.length) return null;
+    var latestDate = official.reduce(function (m, p) { return p.date > m ? p.date : m; }, '');
+    var sameDay = official.filter(function (p) { return p.date === latestDate; });
     var priority = ['V', 'B', 'visual'];
     for (var i = 0; i < priority.length; i++) {
       var match = sameDay.filter(function (p) { return p.band === priority[i]; });
@@ -326,7 +349,7 @@
     banner.classList.toggle('is-active', isFlaring);
     if (isFlaring) {
       document.getElementById('tcrb-flare-detail').textContent =
-        'Latest point: magnitude ' + latest.y.toFixed(2) + ' near year ' + Math.round(latest.x) + '. Go look up, right now.';
+        'Latest point: magnitude ' + latest.y.toFixed(2) + ' on ' + formatUtcDate(latest.x, true) + ' (UT). Go look up, right now.';
       badgeText.textContent = 'FLARING NOW — magnitude ' + latest.y.toFixed(2);
     } else {
       badgeText.textContent = 'AAVSO Campaign #875 · Active Watch';
@@ -370,31 +393,21 @@
     document.getElementById('tcrb-mag-value').textContent = mag.toFixed(2);
     document.getElementById('tcrb-mag-status').textContent = icon + ' ' + label;
     document.getElementById('tcrb-mag-calculated').textContent = formatCalculatedAt(FETCHED_AT);
+    var basis = latest.observers
+      ? 'median of ' + latest.observers + ' observer' + (latest.observers === 1 ? '' : 's') + (latest.n ? ' (' + latest.n + ' obs)' : '')
+      : (latest.n ? 'mean of ' + latest.n + ' obs' : '');
     document.getElementById('tcrb-mag-asof').textContent =
-      formatShortDate(latest.x) + ' · ' + bandLabel + (latest.n ? ' · mean of ' + latest.n + ' obs' : '');
+      formatUtcDate(latest.x, true) + ' UT · ' + bandLabel + (basis ? ' · ' + basis : '');
   }
 
-  var WINDOW_DAYS = 365;
+  var WINDOW_DAYS = 90;
 
-  function nowDecimalYear() {
-    var d = new Date();
-    return d.getFullYear() + (d.getMonth() * 30 + d.getDate()) / 365.25;
-  }
-
-  function decimalYearToDate(x) {
-    var year = Math.floor(x);
-    var frac = x - year;
-    return new Date(Date.UTC(year, 0, 1) + frac * 365.25 * 86400000);
-  }
-
-  function formatShortDate(x) {
-    return decimalYearToDate(x).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' });
-  }
-
+  // Today's point sits at 12:00 UT, which can be ahead of "now" earlier in
+  // the UT day -- allow a day of slack on the right so it isn't filtered out.
   function windowFilter(points) {
-    var now = nowDecimalYear();
-    var cutoff = now - WINDOW_DAYS / 365.25;
-    return points.filter(function (p) { return p.x >= cutoff && p.x <= now + 0.02; });
+    var now = Date.now();
+    var cutoff = now - WINDOW_DAYS * DAY_MS;
+    return points.filter(function (p) { return p.x >= cutoff && p.x <= now + DAY_MS; });
   }
 
   function render(points) {
@@ -415,23 +428,33 @@
         showLine: true, pointRadius: 3, tension: 0.15
       },
       {
+        // Diamonds (not just a different colour) so TG stays distinguishable
+        // from V for readers who can't separate the hues.
+        label: 'TG', data: byBand(windowed, 'TG'),
+        borderColor: pointColorBelow(c.tg, c.flare), backgroundColor: pointColorBelow(c.tg, c.flare),
+        segment: { borderColor: segmentColorBelow(c.tg, c.flare) },
+        showLine: true, pointRadius: 4, pointStyle: 'rectRot', tension: 0.15
+      },
+      {
         label: 'Visual', data: byBand(windowed, 'visual'),
         borderColor: pointColorBelow(c.visual, c.flare), backgroundColor: pointColorBelow(c.visual, c.flare),
         showLine: false, pointRadius: 4, pointStyle: 'circle'
       }
     ].filter(function (d) { return d.data.length > 0; });
 
-    var now = nowDecimalYear();
-    var cutoff = now - WINDOW_DAYS / 365.25;
+    // The legend only lists TG when TG is actually plotted.
+    document.getElementById('tcrb-legend-tg').style.display =
+      datasets.some(function (d) { return d.label === 'TG'; }) ? '' : 'none';
+
+    var now = Date.now();
     // Axis always honors the requested window width, even when real
-    // coverage is thinner than that -- e.g. right now we only have ~30
-    // days of backfilled data, so the 3-Month and Year views are mostly
-    // empty space on the left. That's correct: it's what makes those
-    // buttons visually distinct from Month at all. Clamping the axis to
-    // "whatever data we actually have" (the old behavior) collapsed all
-    // three windows to the same narrow range and made the buttons look
-    // broken -- found and reported directly by Aaron.
-    var axisMin = cutoff;
+    // coverage is thinner than that. Clamping the axis to "whatever data
+    // we actually have" (the old behavior) collapsed every range to the
+    // same narrow window and made the buttons look broken.
+    var axisMin = Math.floor((now - WINDOW_DAYS * DAY_MS) / DAY_MS) * DAY_MS;
+    var lastX = windowed.reduce(function (m, p) { return p.x > m ? p.x : m; }, 0);
+    var axisMax = Math.max(now, lastX + 6 * 3600000);
+    var tickStepDays = WINDOW_DAYS <= 31 ? 3 : 7;
 
     if (chart) chart.destroy();
     chart = new Chart(ctx, {
@@ -442,9 +465,10 @@
         maintainAspectRatio: false,
         scales: {
           x: {
-            type: 'linear', min: axisMin, max: now,
-            title: { display: true, text: 'Date (available data, up to ' + WINDOW_DAYS + ' days)', color: c.ink },
-            ticks: { color: c.ink, callback: function (val) { return formatShortDate(val); } },
+            type: 'linear', min: axisMin, max: axisMax,
+            title: { display: true, text: 'Date (UT)', color: c.ink },
+            afterBuildTicks: function (axis) { axis.ticks = buildDayTicks(axis.min, axis.max, tickStepDays); },
+            ticks: { color: c.ink, callback: function (val) { return formatUtcDate(val, false); } },
             grid: { color: c.grid }
           },
           y: { reverse: true, title: { display: true, text: 'Magnitude (brighter ↑)', color: c.ink }, ticks: { color: c.ink }, grid: { color: c.grid } }
@@ -453,7 +477,7 @@
           legend: { display: false },
           tooltip: {
             callbacks: {
-              title: function (items) { return formatShortDate(items[0].parsed.x); },
+              title: function (items) { return formatUtcDate(items[0].parsed.x, true) + ' (UT)'; },
               label: function (item) { return item.dataset.label + ': mag ' + item.parsed.y.toFixed(2); }
             }
           }
@@ -644,6 +668,7 @@
     fetch('/data/tcrb_rise_set.json', { cache: 'no-store' })
       .then(function (resp) { if (!resp.ok) throw new Error('not found'); return resp.json(); })
       .then(function (d) {
+        document.getElementById('tcrb-rs-calculated').textContent = formatCalculatedAt(d.computed_at);
         if (d.status !== 'normal') {
           nowEl.textContent = d.status === 'circumpolar'
             ? 'Circumpolar from our reference location (' + d.reference_tz_abbr + ') -- never sets, transits ' +

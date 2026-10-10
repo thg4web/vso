@@ -23,6 +23,7 @@ body.tcrb-page {
   // Photometric bands — matches the real AAVSO/variable-star convention.
   --tcrb-band-b: #3987e5; // B filter, ~440nm
   --tcrb-band-v: #2fae63; // V filter, ~550nm
+  --tcrb-band-tg: #cf5ca8; // TG (green channel of tri-color cameras). Deliberately not green: V owns green. Validated vs V/B with dataviz validate_palette.js (dark, all pairs): CVD dE 9.9, normal-vision 22.9.
   --tcrb-visual: #d8dce8; // naked-eye visual estimates, unfiltered
 
   // Status (fixed scale, never themed).
@@ -59,6 +60,7 @@ body.tcrb-page {
 
     --tcrb-band-b: #2a78d6;
     --tcrb-band-v: #178a4a;
+    --tcrb-band-tg: #a83a9c; // light-mode step, validated (all pairs vs V/B): CVD dE 10.1
     --tcrb-visual: #4b5270;
 
     .tcrb__stars { opacity: 0.12; filter: invert(1); }
@@ -217,6 +219,7 @@ body.tcrb-page {
   &__section { margin-bottom: 56px; }
   &__section-head { margin-bottom: 20px; }
   &__section-title { font-family: 'Space Grotesk', $font-body; font-size: 1.5rem; font-weight: 600; margin-bottom: 6px; }
+  &__section-calculated { font-size: 0.85rem; font-weight: 400; color: var(--tcrb-ink-muted); }
   &__section-sub { color: var(--tcrb-ink-secondary); font-size: 0.95rem; max-width: 640px; }
 
   &__panel {
@@ -233,6 +236,8 @@ body.tcrb-page {
   }
   &__legend-item { display: flex; align-items: center; gap: 8px; }
   &__legend-swatch { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
+  // Matches the diamond markers the TG series uses on the chart.
+  &__legend-swatch--diamond { width: 10px; height: 10px; border-radius: 1px; transform: rotate(45deg); margin: 0 1px; }
 
   // Finder images
   &__figure {
