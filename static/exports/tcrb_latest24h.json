@@ -1,22 +1,11 @@
 {
   "star": "T CrB",
-  "exported_at": "2026-10-12T10:13:01Z",
+  "exported_at": "2026-10-12T16:13:01Z",
   "window_hours": 24,
-  "window_start_utc": "2026-10-11T10:13:01Z",
-  "window_end_utc": "2026-10-12T10:13:01Z",
-  "count": 13,
+  "window_start_utc": "2026-10-11T16:13:01Z",
+  "window_end_utc": "2026-10-12T16:13:01Z",
+  "count": 32,
   "observations": [
-    {
-      "date_utc": "2026-10-11T15:59:02Z",
-      "jd": 2461325.166,
-      "magnitude": 4.9,
-      "fainter_than": true,
-      "band_code": "0",
-      "band_name": "Visual",
-      "uncertainty": null,
-      "observer_code": "MQA",
-      "obstype": "1"
-    },
     {
       "date_utc": "2026-10-11T16:44:21Z",
       "jd": 2461325.197468,
@@ -62,6 +51,61 @@
       "obstype": "2"
     },
     {
+      "date_utc": "2026-10-11T19:39:56Z",
+      "jd": 2461325.3194,
+      "magnitude": 10.228,
+      "fainter_than": false,
+      "band_code": "51",
+      "band_name": "Tri-Color Green",
+      "uncertainty": "0.010",
+      "observer_code": "PYG",
+      "obstype": "2"
+    },
+    {
+      "date_utc": "2026-10-11T20:11:58Z",
+      "jd": 2461325.341655,
+      "magnitude": 11.489,
+      "fainter_than": false,
+      "band_code": "3",
+      "band_name": "Johnson B",
+      "uncertainty": "0.003",
+      "observer_code": "HKEB",
+      "obstype": "2"
+    },
+    {
+      "date_utc": "2026-10-11T20:13:11Z",
+      "jd": 2461325.3425,
+      "magnitude": 10.091,
+      "fainter_than": false,
+      "band_code": "2",
+      "band_name": "Johnson V",
+      "uncertainty": "0.003",
+      "observer_code": "HKEB",
+      "obstype": "2"
+    },
+    {
+      "date_utc": "2026-10-11T20:13:53Z",
+      "jd": 2461325.342986,
+      "magnitude": 9.166,
+      "fainter_than": false,
+      "band_code": "4",
+      "band_name": "Cousins R",
+      "uncertainty": "0.003",
+      "observer_code": "HKEB",
+      "obstype": "2"
+    },
+    {
+      "date_utc": "2026-10-11T20:14:33Z",
+      "jd": 2461325.343449,
+      "magnitude": 7.515,
+      "fainter_than": false,
+      "band_code": "5",
+      "band_name": "Cousins I",
+      "uncertainty": "0.003",
+      "observer_code": "HKEB",
+      "obstype": "2"
+    },
+    {
       "date_utc": "2026-10-12T01:00:54Z",
       "jd": 2461325.5423,
       "magnitude": 10.2,
@@ -71,6 +115,171 @@
       "uncertainty": null,
       "observer_code": "WALG",
       "obstype": "1"
+    },
+    {
+      "date_utc": "2026-10-12T01:17:43Z",
+      "jd": 2461325.55397627,
+      "magnitude": 10.0787,
+      "fainter_than": false,
+      "band_code": "2",
+      "band_name": "Johnson V",
+      "uncertainty": "0.001",
+      "observer_code": "WGR",
+      "obstype": "2"
+    },
+    {
+      "date_utc": "2026-10-12T01:18:27Z",
+      "jd": 2461325.55448472,
+      "magnitude": 10.0913,
+      "fainter_than": false,
+      "band_code": "2",
+      "band_name": "Johnson V",
+      "uncertainty": "0.0009",
+      "observer_code": "WGR",
+      "obstype": "2"
+    },
+    {
+      "date_utc": "2026-10-12T01:19:11Z",
+      "jd": 2461325.55499039,
+      "magnitude": 10.0743,
+      "fainter_than": false,
+      "band_code": "2",
+      "band_name": "Johnson V",
+      "uncertainty": "0.0009",
+      "observer_code": "WGR",
+      "obstype": "2"
+    },
+    {
+      "date_utc": "2026-10-12T01:19:54Z",
+      "jd": 2461325.55549387,
+      "magnitude": 10.0848,
+      "fainter_than": false,
+      "band_code": "2",
+      "band_name": "Johnson V",
+      "uncertainty": "0.0008",
+      "observer_code": "WGR",
+      "obstype": "2"
+    },
+    {
+      "date_utc": "2026-10-12T01:20:38Z",
+      "jd": 2461325.55600069,
+      "magnitude": 10.0986,
+      "fainter_than": false,
+      "band_code": "2",
+      "band_name": "Johnson V",
+      "uncertainty": "0.0008",
+      "observer_code": "WGR",
+      "obstype": "2"
+    },
+    {
+      "date_utc": "2026-10-12T01:21:25Z",
+      "jd": 2461325.55654524,
+      "magnitude": 11.5021,
+      "fainter_than": false,
+      "band_code": "3",
+      "band_name": "Johnson B",
+      "uncertainty": "0.0026",
+      "observer_code": "WGR",
+      "obstype": "2"
+    },
+    {
+      "date_utc": "2026-10-12T01:22:09Z",
+      "jd": 2461325.55705301,
+      "magnitude": 11.5316,
+      "fainter_than": false,
+      "band_code": "3",
+      "band_name": "Johnson B",
+      "uncertainty": "0.0025",
+      "observer_code": "WGR",
+      "obstype": "2"
+    },
+    {
+      "date_utc": "2026-10-12T01:22:53Z",
+      "jd": 2461325.55756041,
+      "magnitude": 11.5206,
+      "fainter_than": false,
+      "band_code": "3",
+      "band_name": "Johnson B",
+      "uncertainty": "0.0024",
+      "observer_code": "WGR",
+      "obstype": "2"
+    },
+    {
+      "date_utc": "2026-10-12T01:23:37Z",
+      "jd": 2461325.55806898,
+      "magnitude": 11.5133,
+      "fainter_than": false,
+      "band_code": "3",
+      "band_name": "Johnson B",
+      "uncertainty": "0.0022",
+      "observer_code": "WGR",
+      "obstype": "2"
+    },
+    {
+      "date_utc": "2026-10-12T01:24:21Z",
+      "jd": 2461325.55857753,
+      "magnitude": 11.5383,
+      "fainter_than": false,
+      "band_code": "3",
+      "band_name": "Johnson B",
+      "uncertainty": "0.0021",
+      "observer_code": "WGR",
+      "obstype": "2"
+    },
+    {
+      "date_utc": "2026-10-12T01:24:56Z",
+      "jd": 2461325.55898542,
+      "magnitude": 10.0935,
+      "fainter_than": false,
+      "band_code": "2",
+      "band_name": "Johnson V",
+      "uncertainty": "0.0011",
+      "observer_code": "WGR",
+      "obstype": "2"
+    },
+    {
+      "date_utc": "2026-10-12T01:25:20Z",
+      "jd": 2461325.5592604,
+      "magnitude": 10.0727,
+      "fainter_than": false,
+      "band_code": "2",
+      "band_name": "Johnson V",
+      "uncertainty": "0.001",
+      "observer_code": "WGR",
+      "obstype": "2"
+    },
+    {
+      "date_utc": "2026-10-12T01:25:52Z",
+      "jd": 2461325.55963263,
+      "magnitude": 11.5258,
+      "fainter_than": false,
+      "band_code": "3",
+      "band_name": "Johnson B",
+      "uncertainty": "0.0023",
+      "observer_code": "WGR",
+      "obstype": "2"
+    },
+    {
+      "date_utc": "2026-10-12T01:26:26Z",
+      "jd": 2461325.56002939,
+      "magnitude": 11.5327,
+      "fainter_than": false,
+      "band_code": "3",
+      "band_name": "Johnson B",
+      "uncertainty": "0.0023",
+      "observer_code": "WGR",
+      "obstype": "2"
+    },
+    {
+      "date_utc": "2026-10-12T01:26:53Z",
+      "jd": 2461325.56033646,
+      "magnitude": 10.0944,
+      "fainter_than": false,
+      "band_code": "2",
+      "band_name": "Johnson V",
+      "uncertainty": "0.0032",
+      "observer_code": "WGR",
+      "obstype": "2"
     },
     {
       "date_utc": "2026-10-12T02:15:00Z",
