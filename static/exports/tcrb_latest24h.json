@@ -1,10 +1,10 @@
 {
   "star": "T CrB",
-  "exported_at": "2026-10-12T04:13:01Z",
+  "exported_at": "2026-10-12T10:13:01Z",
   "window_hours": 24,
-  "window_start_utc": "2026-10-11T04:13:01Z",
-  "window_end_utc": "2026-10-12T04:13:01Z",
-  "count": 9,
+  "window_start_utc": "2026-10-11T10:13:01Z",
+  "window_end_utc": "2026-10-12T10:13:01Z",
+  "count": 13,
   "observations": [
     {
       "date_utc": "2026-10-11T15:59:02Z",
@@ -82,6 +82,50 @@
       "uncertainty": null,
       "observer_code": "BALQ",
       "obstype": "1"
+    },
+    {
+      "date_utc": "2026-10-12T02:36:15Z",
+      "jd": 2461325.60851,
+      "magnitude": 9.787,
+      "fainter_than": false,
+      "band_code": "8",
+      "band_name": "Unfiltered (V zeropoint)",
+      "uncertainty": "0.002",
+      "observer_code": "SKA",
+      "obstype": "2"
+    },
+    {
+      "date_utc": "2026-10-12T02:37:01Z",
+      "jd": 2461325.60905,
+      "magnitude": 9.779,
+      "fainter_than": false,
+      "band_code": "8",
+      "band_name": "Unfiltered (V zeropoint)",
+      "uncertainty": "0.002",
+      "observer_code": "SKA",
+      "obstype": "2"
+    },
+    {
+      "date_utc": "2026-10-12T02:48:10Z",
+      "jd": 2461325.61679,
+      "magnitude": 9.81,
+      "fainter_than": false,
+      "band_code": "8",
+      "band_name": "Unfiltered (V zeropoint)",
+      "uncertainty": "0.002",
+      "observer_code": "SKA",
+      "obstype": "2"
+    },
+    {
+      "date_utc": "2026-10-12T02:49:24Z",
+      "jd": 2461325.61765,
+      "magnitude": 9.848,
+      "fainter_than": false,
+      "band_code": "8",
+      "band_name": "Unfiltered (V zeropoint)",
+      "uncertainty": "0.002",
+      "observer_code": "SKA",
+      "obstype": "2"
     },
     {
       "date_utc": "2026-10-12T03:08:38Z",

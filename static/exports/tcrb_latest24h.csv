@@ -6,5 +6,9 @@ date_utc,jd,magnitude,fainter_than,band_code,band_name,uncertainty,observer_code
 2026-10-11T17:01:14Z,2461325.209193,10.093,False,2,Johnson V,0.009,SANGA,2
 2026-10-12T01:00:54Z,2461325.5423,10.2,False,0,Visual,,WALG,1
 2026-10-12T02:15:00Z,2461325.59375,10.3,False,0,Visual,,BALQ,1
+2026-10-12T02:36:15Z,2461325.60851,9.787,False,8,Unfiltered (V zeropoint),0.002,SKA,2
+2026-10-12T02:37:01Z,2461325.60905,9.779,False,8,Unfiltered (V zeropoint),0.002,SKA,2
+2026-10-12T02:48:10Z,2461325.61679,9.81,False,8,Unfiltered (V zeropoint),0.002,SKA,2
+2026-10-12T02:49:24Z,2461325.61765,9.848,False,8,Unfiltered (V zeropoint),0.002,SKA,2
 2026-10-12T03:08:38Z,2461325.631,9.708,False,8,Unfiltered (V zeropoint),0.002,SKA,2
 2026-10-12T03:09:53Z,2461325.63187,9.763,False,8,Unfiltered (V zeropoint),0.002,SKA,2
