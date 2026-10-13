@@ -55,7 +55,14 @@ jobs:
           assert isinstance(o.get("points"), list) and len(o["points"]) > 0, "no points"
           assert isinstance(o.get("schema_version"), int), "no schema_version"
           assert (o.get("current") or {}).get("computed_at"), "no current.computed_at"
-          json.load(open("static/data/tcrb_rise_set.json"))
+          # Privacy: the observing location is never published. The pipeline no longer writes coordinates,
+          # but strip them here as well so an older copy of the data cannot leak them into the site.
+          rp = "static/data/tcrb_rise_set.json"
+          rs = json.load(open(rp))
+          if isinstance(rs.get("location"), dict):
+              for k in ("lat", "lon", "lng", "latitude", "longitude", "elev", "elevation"):
+                  rs["location"].pop(k, None)
+          json.dump(rs, open(rp, "w"), indent=2)
           json.load(open("static/exports/tcrb_latest24h.json"))
           print("data ok:", len(o["points"]), "points, computed_at", o["current"]["computed_at"])
           PY
@@ -69,6 +76,15 @@ jobs:
 
       - name: Build site
         run: hugo --minify --gc
+
+      # Fails closed: no coordinate keys or location query strings may appear anywhere in the built site.
+      - name: Privacy guard
+        run: |
+          if grep -r -n -E '"(lat|lon|lng|latitude|longitude)"[[:space:]]*:|[?&](lat|lng|lon)=' public/; then
+            echo "::error::location data found in the built site"
+            exit 1
+          fi
+          echo "privacy guard ok"
 
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v4
