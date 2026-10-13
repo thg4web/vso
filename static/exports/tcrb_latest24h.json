@@ -1,10 +1,10 @@
 {
   "star": "T CrB",
-  "exported_at": "2026-10-13T04:13:01Z",
+  "exported_at": "2026-10-13T10:13:01Z",
   "window_hours": 24,
-  "window_start_utc": "2026-10-12T04:13:01Z",
-  "window_end_utc": "2026-10-13T04:13:01Z",
-  "count": 54,
+  "window_start_utc": "2026-10-12T10:13:01Z",
+  "window_end_utc": "2026-10-13T10:13:01Z",
+  "count": 59,
   "observations": [
     {
       "date_utc": "2026-10-12T15:59:02Z",
@@ -18,6 +18,17 @@
       "obstype": "1"
     },
     {
+      "date_utc": "2026-10-12T17:33:04Z",
+      "jd": 2461326.2313,
+      "magnitude": 10.1,
+      "fainter_than": false,
+      "band_code": "0",
+      "band_name": "Visual",
+      "uncertainty": null,
+      "observer_code": "KWO",
+      "obstype": "1"
+    },
+    {
       "date_utc": "2026-10-12T17:39:50Z",
       "jd": 2461326.236,
       "magnitude": 4.9,
@@ -27,6 +38,50 @@
       "uncertainty": null,
       "observer_code": "MQA",
       "obstype": "1"
+    },
+    {
+      "date_utc": "2026-10-12T19:00:35Z",
+      "jd": 2461326.292078,
+      "magnitude": 10.129,
+      "fainter_than": false,
+      "band_code": "2",
+      "band_name": "Johnson V",
+      "uncertainty": "0.008",
+      "observer_code": "DFS",
+      "obstype": "2"
+    },
+    {
+      "date_utc": "2026-10-12T19:00:49Z",
+      "jd": 2461326.29224,
+      "magnitude": 11.399,
+      "fainter_than": false,
+      "band_code": "3",
+      "band_name": "Johnson B",
+      "uncertainty": "0.01",
+      "observer_code": "DFS",
+      "obstype": "2"
+    },
+    {
+      "date_utc": "2026-10-12T20:19:00Z",
+      "jd": 2461326.346528,
+      "magnitude": 10.065,
+      "fainter_than": false,
+      "band_code": "2",
+      "band_name": "Johnson V",
+      "uncertainty": "0.01",
+      "observer_code": "HGEA",
+      "obstype": "2"
+    },
+    {
+      "date_utc": "2026-10-12T20:41:00Z",
+      "jd": 2461326.361806,
+      "magnitude": 11.746,
+      "fainter_than": false,
+      "band_code": "3",
+      "band_name": "Johnson B",
+      "uncertainty": "0.01",
+      "observer_code": "HGEA",
+      "obstype": "2"
     },
     {
       "date_utc": "2026-10-12T23:55:59Z",
