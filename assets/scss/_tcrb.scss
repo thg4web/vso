@@ -295,25 +295,23 @@ body.tcrb-page {
     .tcrb__figure { margin-top: 12px; }
   }
 
-  // Timeline
+  // Timeline: compact vertical list, thin line down the left, one dot per row, no animation
   &__timeline {
-    display: flex; flex-wrap: wrap; gap: 0; position: relative;
-    border-top: 1px dashed var(--tcrb-border); padding-top: 28px; margin-top: 8px;
+    position: relative; margin: 0; padding: 0 0 0 22px;
+    border-left: 1px solid var(--tcrb-border);
   }
   &__timeline-item {
-    flex: 1 1 160px; position: relative; padding: 0 16px 8px 0;
+    position: relative; padding: 0 0 14px 0;
+    &:last-child { padding-bottom: 0; }
   }
   &__timeline-dot {
-    width: 11px; height: 11px; border-radius: 50%; background: var(--tcrb-wd-glow);
-    position: absolute; top: -34px; left: 0;
-    box-shadow: 0 0 0 4px var(--tcrb-bg), 0 0 14px var(--tcrb-wd-glow);
+    width: 9px; height: 9px; border-radius: 50%; background: var(--tcrb-ink-muted);
+    position: absolute; top: 0.5em; left: -27px;
+    box-shadow: 0 0 0 3px var(--tcrb-bg);
   }
-  &__timeline-item--pending .tcrb__timeline-dot {
-    background: var(--tcrb-warning); box-shadow: 0 0 0 4px var(--tcrb-bg), 0 0 14px var(--tcrb-warning);
-    animation: tcrb-pulse 2.2s ease-out infinite;
-  }
-  &__timeline-year { font-weight: 600; font-size: 1rem; color: var(--tcrb-ink); }
-  &__timeline-text { font-size: 0.85rem; color: var(--tcrb-ink-secondary); margin-top: 4px; }
+  &__timeline-item--pending .tcrb__timeline-dot { background: var(--tcrb-warning); }
+  &__timeline-year { font-weight: 600; font-size: 0.95rem; color: var(--tcrb-ink); }
+  &__timeline-text { font-size: 0.85rem; color: var(--tcrb-ink-secondary); margin-top: 2px; line-height: 1.4; }
 
   // Chart
   &__chart-wrap { position: relative; height: 360px; }
@@ -410,7 +408,7 @@ body.tcrb-page {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .tcrb__badge-dot, .tcrb__timeline-item--pending .tcrb__timeline-dot,
+  .tcrb__badge-dot,
   .tcrb__flare-banner, .tcrb__flare-burst {
     animation: none !important;
   }
@@ -426,8 +424,6 @@ body.tcrb-page {
 
 @media (max-width: 860px) {
   .tcrb__stats { grid-template-columns: repeat(2, 1fr); }
-  .tcrb__timeline { flex-direction: column; gap: 32px; }
-  .tcrb__timeline-dot { top: -20px; }
   .tcrb__theme-toggle { position: static; display: inline-flex; margin-bottom: 16px; }
   .tcrb__flare-banner { flex-direction: column; text-align: center; }
 }
