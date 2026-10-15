@@ -2942,10 +2942,10 @@
     },
     {
       "date": "2026-10-14",
-      "mag": 10.09,
+      "mag": 10.075,
       "band": "V",
-      "n": 10,
-      "observers": 4
+      "n": 21,
+      "observers": 6
     },
     {
       "date": "2026-10-14",
@@ -2977,10 +2977,10 @@
     },
     {
       "date": "2026-10-15",
-      "mag": 10.1,
+      "mag": 10.2,
       "band": "visual",
-      "n": 2,
-      "observers": 2
+      "n": 4,
+      "observers": 4
     }
   ],
   "backfill": {
@@ -3001,15 +3001,15 @@
     "citation": "American Association of Variable Star Observers (AAVSO). (2026). AAVSO International Database."
   },
   "schema_version": 2,
-  "fetched_at": "2026-10-15T16:13:01Z",
+  "fetched_at": "2026-10-15T22:13:01Z",
   "current": {
-    "computed_at": "2026-10-15T16:13:01Z",
-    "value": 10.087,
+    "computed_at": "2026-10-15T22:13:01Z",
+    "value": 10.1,
     "band": "V",
     "mode": "trailing_24h",
     "window_hours": 24,
-    "n_obs": 50,
-    "n_observers": 4,
+    "n_obs": 47,
+    "n_observers": 1,
     "newest_obs_utc": "2026-10-15T00:40:59Z"
   },
   "nova": {
