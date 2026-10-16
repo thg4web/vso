@@ -1,9 +1,9 @@
 {
   "star": "T CrB",
-  "exported_at": "2026-10-16T10:13:01Z",
+  "exported_at": "2026-10-16T16:13:01Z",
   "window_hours": 24,
-  "window_start_utc": "2026-10-15T10:13:01Z",
-  "window_end_utc": "2026-10-16T10:13:01Z",
+  "window_start_utc": "2026-10-15T16:13:01Z",
+  "window_end_utc": "2026-10-16T16:13:01Z",
   "count": 6,
   "observations": [
     {
