@@ -1,55 +1,11 @@
 {
   "star": "T CrB",
-  "exported_at": "2026-10-16T16:13:01Z",
+  "exported_at": "2026-10-16T22:13:01Z",
   "window_hours": 24,
-  "window_start_utc": "2026-10-15T16:13:01Z",
-  "window_end_utc": "2026-10-16T16:13:01Z",
-  "count": 6,
+  "window_start_utc": "2026-10-15T22:13:01Z",
+  "window_end_utc": "2026-10-16T22:13:01Z",
+  "count": 4,
   "observations": [
-    {
-      "date_utc": "2026-10-15T18:07:35Z",
-      "jd": 2461329.25527,
-      "magnitude": 10.43,
-      "fainter_than": false,
-      "band_code": "0",
-      "band_name": "Visual",
-      "uncertainty": null,
-      "observer_code": "PREB",
-      "obstype": "1"
-    },
-    {
-      "date_utc": "2026-10-15T18:55:32Z",
-      "jd": 2461329.288571,
-      "magnitude": 10.074,
-      "fainter_than": false,
-      "band_code": "2",
-      "band_name": "Johnson V",
-      "uncertainty": "0.008",
-      "observer_code": "DFS",
-      "obstype": "2"
-    },
-    {
-      "date_utc": "2026-10-15T18:55:45Z",
-      "jd": 2461329.288721,
-      "magnitude": 11.342,
-      "fainter_than": false,
-      "band_code": "3",
-      "band_name": "Johnson B",
-      "uncertainty": "0.01",
-      "observer_code": "DFS",
-      "obstype": "2"
-    },
-    {
-      "date_utc": "2026-10-15T20:53:00Z",
-      "jd": 2461329.370139,
-      "magnitude": 10.2,
-      "fainter_than": false,
-      "band_code": "0",
-      "band_name": "Visual",
-      "uncertainty": null,
-      "observer_code": "LEDE",
-      "obstype": "1"
-    },
     {
       "date_utc": "2026-10-16T00:43:55Z",
       "jd": 2461329.5305,
@@ -70,6 +26,28 @@
       "band_name": "Visual",
       "uncertainty": null,
       "observer_code": "BALQ",
+      "obstype": "1"
+    },
+    {
+      "date_utc": "2026-10-16T17:30:00Z",
+      "jd": 2461330.229167,
+      "magnitude": 10.0,
+      "fainter_than": false,
+      "band_code": "0",
+      "band_name": "Visual",
+      "uncertainty": null,
+      "observer_code": "SIVB",
+      "obstype": "1"
+    },
+    {
+      "date_utc": "2026-10-16T19:11:00Z",
+      "jd": 2461330.299306,
+      "magnitude": 10.1,
+      "fainter_than": false,
+      "band_code": "0",
+      "band_name": "Visual",
+      "uncertainty": null,
+      "observer_code": "LEDE",
       "obstype": "1"
     }
   ]
