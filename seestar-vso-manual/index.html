@@ -1,0 +1,124 @@
+<!doctype html><html lang=en-us><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Seestar Variable Star Observing Manual | VSO</title><meta name=description content="Real, sourced steps for doing variable-star photometry with a ZWO Seestar S50/S30 Pro, built from AAVSO's own docs and community reports."><link rel=icon type=image/svg+xml href=/favicon.svg><link rel="alternate icon" type=image/x-icon href=/favicon.ico><link rel=apple-touch-icon href=/apple-touch-icon.png><link rel=stylesheet href=/scss/main.min.css></head><body><header class=site-header><div class=wrap><a href=/ class=site-title>VSO</a><nav><a href=/>Home</a>
+<a href=/t-crb/>Blaze Star Watch</a>
+<a href=/seestar-vso-manual/>Seestar VSO Manual</a></nav></div></header><main><article class=wrap><h1>Seestar Variable Star Observing Manual</h1><p><strong>Status: first draft, building this out as we go.</strong> Every claim here is attributed to a
+real source — AAVSO&rsquo;s own documentation, or a named person in a public forum post, with
+the date. Where sources disagree, both sides are here rather than picked for you. Nothing
+below is invented; if a step isn&rsquo;t sourced yet, it isn&rsquo;t in here yet.</p><hr><h2 id=is-this-realistic>Is this realistic?</h2><p>Yes, with real limits worth knowing up front:</p><ul><li><strong>Precision</strong>: beginner-level work with careful technique lands around <strong>0.05–0.1 mag</strong>
+agreement against other observers (arnaudfiocret, AAVSO forum, Sep 2024, using ASTAP +
+the green channel). That&rsquo;s good enough to track real variability in stars with an
+amplitude of a few tenths of a magnitude or more — not good enough to chase
+millimagnitude transits.</li><li><strong>Saturation</strong>: the Seestar&rsquo;s sensor saturates around <strong>V ≈ 8</strong>. Linear and well-behaved
+below that (cross-checked against Gaia DR2 by a Cloudy Nights user). Above it — don&rsquo;t
+trust the numbers. Independently reported by multiple people (see the SUNY
+Dutchess/MHAA project below) — this is a real, recurring limit, not a one-off.</li><li><strong>Field rotation</strong> used to be a real problem for long time-series runs in the Seestar&rsquo;s
+native alt-az mode. Andrew Pearce (AAVSO forum, Aug 2025) calls <strong>EQ mode</strong> &ldquo;a key
+enabler&rdquo; that removed this as an issue entirely.</li></ul><h2 id=its-already-been-done-on-t-crb-specifically>It&rsquo;s already been done, on T CrB specifically</h2><p><strong>Bikeman</strong> (British Astronomical Association, Variable Star Section — BAA-VSS), AAVSO
+forum, <strong>April 12, 2024</strong>: picked T CrB as a target specifically <em>because</em> it was sitting
+around V≈10 at the time — &ldquo;a sweet spot for the S50&mldr; not too bright, not too faint&rdquo; —
+and noted the ongoing campaign watching for her next eruption. By averaging <strong>10×10s
+subs</strong>, got down to a standard deviation of about <strong>0.01 mag in TG</strong>. Results are in the
+AAVSO light curve under <strong>observer code EHEA</strong>, date <strong>2024-04-10</strong>.</p><p>That&rsquo;s direct precedent: someone already ran this exact playbook, on this exact star, with
+this exact scope, and it worked. Worth pulling up EHEA&rsquo;s AAVSO submissions as a reference
+point for what a clean run looks like.</p><p><strong>A second, ongoing real project</strong>: Leonides Lopez and Maria Garcia Martinez, students at
+SUNY Dutchess, presented a status report to the <strong>Mid-Hudson Astronomical Association</strong>
+(MHAA) in April 2026 — the fifth in a line of MHAA student experiments specifically testing
+whether a Seestar S50 is viable for at-home variable star research. They&rsquo;ve been tracking
+T CrB continuously since <strong>June 20, 2025</strong> (a baseline started by their advisor, Dr.
+Myers), alongside Polaris and a couple of other targets, using AstroImageJ. Source: <a href="https://www.youtube.com/watch?v=m1aasfGGWE4">&ldquo;Variable
+Star Photometry & T CrB Nova Watch with the Seestar
+S50&rdquo;</a>, MHAA YouTube, Sep 2026. (It&rsquo;s an
+auto-captioned transcript — the numbers and names below came through clearly, a couple of
+other star names did not and aren&rsquo;t repeated here.)</p><p>What they found, worth knowing before you start:</p><ul><li>Checked their AstroImageJ-derived T CrB magnitudes against AAVSO&rsquo;s published community
+data over their observing baseline: <strong>average percent error 0.845%</strong>, best case 0.15%,
+worst case 1.65% on one specific day. Independent confirmation this approach gets you
+genuinely close to the crowd-sourced consensus.</li><li><strong>Hit the same saturation problem independently</strong> — AstroImageJ flagged &ldquo;oversaturated&rdquo;
+stars on some of their stacks (sometimes a soft yellow warning, sometimes a hard error),
+and they hadn&rsquo;t fully root-caused whether it was an AstroImageJ setting or a genuine
+Seestar limit by the time of this talk. Their advisor separately found Vega itself &ldquo;too
+darn bright&rdquo; to use and had to pick dimmer stars nearby instead. Three independent
+reports of saturation trouble now (this one, Bikeman&rsquo;s V≈8 ceiling, and the general
+forum discussion) — treat it as a real, recurring limit, not a fluke.</li><li><strong>Pointing drift fix</strong>: when the Seestar wouldn&rsquo;t stay pointed at their actual target,
+they&rsquo;d manually resync on <strong>Polaris</strong> first (fixed, never moves, so the scope &ldquo;knows
+exactly where it is&rdquo; again) before re-slewing to the variable star.</li><li>They sourced comparison-star magnitudes from <strong>both Stellarium and AAVSO&rsquo;s own
+comparison-star sequence charts</strong> — two independent cross-checks rather than trusting
+one source blind.</li><li>When graphing in Excel, they <strong>reverse the Y-axis</strong> specifically to match AAVSO&rsquo;s own
+light-curve convention (brighter = up) — exactly the same choice this project&rsquo;s own T CrB
+chart already makes.</li><li>They explicitly <strong>excluded AAVSO&rsquo;s &ldquo;Fainter-than&rdquo; flagged points</strong> from their comparison
+data, since those are upper-limit non-detections that don&rsquo;t represent a real measured
+brightness — also exactly how this project&rsquo;s own data pipeline already treats
+<code>fainter_than</code> observations.</li><li>One fact worth folding into the T CrB page itself at some point: in the Q&amp;A, they cited
+T CrB&rsquo;s eclipsing-binary <strong>orbital period as roughly 227 days</strong> — a completely different
+number from, and not to be confused with, her ~80-year recurrent-nova eruption cycle.
+Stated informally in a student Q&amp;A, not footnoted to a paper, so treat it as &ldquo;worth
+verifying against a real catalog&rdquo; rather than fully confirmed.</li><li>Honest null result: they also tried Polaris as a target and got nothing useful — its real
+variability range (~0.07 mag) is smaller than their measurement precision can resolve.
+Their own words: &ldquo;not variable enough.&rdquo; Good reminder that not every target is a fit for
+this gear, and that&rsquo;s a legitimate finding, not a failure.</li></ul><h2 id=two-paths>Two paths</h2><h3 id=path-a--quick-whole-image-plate-solve-no-differential-setup>Path A — Quick: whole-image plate-solve, no differential setup</h3><p>Reported by <strong>arnaudfiocret</strong> (AAVSO forum, Sep 2024):</p><ol><li>Shoot your target with the Seestar as normal (stacked FITS).</li><li>Open the stack in <strong>ASTAP</strong>. It automatically recognizes variable stars in the field.</li><li>ASTAP photometrically calibrates the <em>entire image</em> via plate-solving — you don&rsquo;t set
+up comparison stars by hand.</li><li>Read the magnitude directly off the variable star it identified.</li><li>This only works on the <strong>green layer (TG)</strong> — but for casual LPV (long-period variable)
+monitoring, that&rsquo;s enough. Reported agreement: 0.05–0.1 mag vs. other observers in CCD
+Green or visual.</li></ol><p>Good for: fast checks, long-period variables, beginners who don&rsquo;t want to build a
+comparison-star workflow yet.</p><h3 id=path-b--rigorous-differential-photometry-against-aavso-comp-stars>Path B — Rigorous: differential photometry against AAVSO comp stars</h3><ol><li>Get the AAVSO-standard comparison star sequence for your target from their <strong>Variable
+Star Plotter (VSP)</strong> — never substitute a star you just happen to know.</li><li>Stack your Seestar subs (the native app does this).</li><li>Split into channels if your tool needs it. <strong>The Seestar&rsquo;s Bayer pattern is BGGR —
+don&rsquo;t crop before extracting channels</strong>, cropping shifts which pixels map to which
+color and breaks the math (community-derived transformation coefficients post, AAVSO
+forum, Jan 2024).</li><li>Run differential (or ensemble) aperture photometry: target vs. one or more comparison
+stars, same frame, same exposure.</li></ol><p><strong>Easiest option — VPhot now handles Seestar files natively.</strong> George Silvis (SGEO, AAVSO
+staff), AAVSO forum, <strong>April 19, 2024</strong>: VPhot can demosaic Seestar color FITS directly
+into separate TB/TG/TR images, no manual channel-splitting needed.</p><ul><li>Set a telescope profile with <strong>plate scale 2.378</strong>, mapping TB→B, TG→V, TR→R.</li><li>Use <strong>Quick Upload</strong> so you can set the target name.</li><li>Either Light (sub) frames or Stacked frames work.</li><li>Problems: contact George via AAVSO Slack or <a href=mailto:gsilvis@aavso.org>gsilvis@aavso.org</a>.</li><li>Goal going forward is broader support for Unistellar, Dwarf, and DSLR color images too —
+not Seestar-only.</li></ul><p><strong>Alternative — Phoranso</strong> (by Tonny Vanmunster, free, cbabelgium.com — <em>not</em> &ldquo;Peranso,&rdquo; an
+earlier version of this manual had that wrong). Bikeman&rsquo;s actual worked T CrB
+workflow, AAVSO forum, April 2024:</p><ol><li>Convert the Seestar&rsquo;s OSC FITS to green-channel-only images (Bikeman used AstroArt;
+any FITS tool works — Fitswork is a free option).</li><li>Follow <a href=https://www.cbabelgium.com/Phoranso/UserGuideHTML/html/Tutorial.html>Phoranso&rsquo;s own tutorial</a>
+— skip the calibration section, the Seestar&rsquo;s files are already calibrated.</li><li>Use <a href=https://www.cbabelgium.com/Phoranso/UserGuideHTML/html/FITSHeadereditor.html>Phoranso&rsquo;s FITS Header Editor</a>
+to set the <code>FILTER</code> header to <code>"V"</code> on all images, so Phoranso calibrates against V
+comparison-star magnitudes.</li><li>In the generated report, replace <code>"V"</code> back with <code>"TG"</code> before submitting — same
+principle as MZK&rsquo;s rule below: calibrate with V, report honestly as TG.</li></ol><p>Pablo Lewin (LPAC), AAVSO forum, May 2024, after getting direct help from Ken Menzies and
+Tonny Vanmunster himself: calls Phoranso &ldquo;my go to software,&rdquo; notes it can also mine <em>old</em>
+data (exoplanet/NEO/asteroid images, even general astrophotos) for variables after the
+fact, auto-requests an AUID when one doesn&rsquo;t exist yet, and has an &ldquo;Advised Stars&rdquo; fallback
+for targets without an AAVSO comp-star sequence loaded.</p><p><strong>Other tools people are actually using for this step:</strong></p><ul><li><strong>AstroImageJ</strong> — free, widely used, has a multi-aperture tool built for exactly this.</li><li><strong>TychoTracker</strong> — demilson (AAVSO forum, Aug 2025) used it with Python scripting for
+a 5-hour SX Phe (Delta Scuti) session.</li></ul><h2 id=what-to-call-your-band-important--dont-mislabel-this>What to call your band (important — don&rsquo;t mislabel this)</h2><p>The Seestar&rsquo;s native R/G/B channels, <strong>reported untransformed</strong>, are AAVSO&rsquo;s <strong>TR / TG /
+TB</strong> bands (Tri-Color Red / Green / Blue — these are real AAVSO band codes, not a Seestar
+invention).</p><p><strong>MZK&rsquo;s rule</strong> (AAVSO forum, Sep 2024): <em>&ldquo;If your camera image has a TG bayer filter
+channel, report your magnitude as TG but use the known V comparison star magnitudes for
+untransformed photometry.&rdquo;</em> — i.e. it&rsquo;s fine to measure against V-magnitude comp stars
+without deriving a full transformation, as long as you&rsquo;re honest that your result is TG,
+not true V.</p><p><strong>If you want closer-to-standard V/B/R</strong>, apply AAVSO&rsquo;s own BVR transformation
+coefficients for the Seestar S50 (official page, plus a community-derived set posted by
+Andrew Pearce with R² near 0.99 from the NGC 3532 standard field — worth having both to
+cross-check).</p><p><strong>Known color problems, reported directly, not smoothed over</strong> (Bikeman, AAVSO forum, Sep
+2024, observing a nova in Vulpecula):</p><ul><li><strong>TR</strong> (red channel): results looked &ldquo;ok-ish.&rdquo;</li><li><strong>TG</strong> (green channel): scattered a lot for this particular target — likely because the
+object was red with emission concentrated near the edge of the green filter&rsquo;s band
+(probably H-alpha). TG is not universally reliable; it depends on your target&rsquo;s color
+and spectrum.</li><li><strong>TB</strong> (blue channel): internally consistent with other observers&rsquo; blue measurements,
+but &ldquo;very much off&rdquo; compared to true Johnson B.</li></ul><p><strong>Takeaway</strong>: TG is the most commonly used and generally most reliable channel, but check
+your specific target isn&rsquo;t a case (very red, strong narrow emission near 500-560nm) where
+it&rsquo;s known to misbehave.</p><h2 id=capture-technique>Capture technique</h2><ul><li><strong>Use EQ mode</strong> for anything longer than a quick check — kills field rotation, which
+otherwise ruins long time-series photometry (Andrew Pearce, Aug 2025).</li><li><strong>Average multiple short subs per data point</strong>, don&rsquo;t rely on single frames. kb0fhp
+(AAVSO forum, Aug 2025) uses groups of 12–18 subs at 20s each (240–360s total) per
+point — &ldquo;lets me see a little deeper, and reduces the noise in the data,&rdquo; from a Bortle
+7 (light-polluted) backyard.</li><li><strong>More averaging reduces scatter in the light curve itself</strong>, but doesn&rsquo;t necessarily
+improve derived quantities like time-of-maximum in a polynomial fit — Roy Axelsen (AAVSO
+forum, Mar 2026) ran this as a real experiment on a Delta Scuti star and found the fit
+error was about the same either way, even though the averaged curve looked visually
+cleaner. One run, not a broad study — worth keeping in mind rather than assuming &ldquo;more
+averaging = more precise&rdquo; unconditionally.</li><li><strong>Take flat frames</strong> — the native Seestar app gained this capability at some point before
+Aug 2025 (Andrew Pearce), along with a <strong>planning mode</strong> that lets you set up an
+all-night unattended run.</li></ul><h2 id=automation--control-software>Automation / control software</h2><ul><li><strong>seestar_run</strong> — Python batching script. Andrew Pearce used this for 10-11 hour
+unattended all-night runs (Jul 2024 post) and, as of Aug 2025, still calls it sufficient
+for his needs even after seestar_alp matured.</li><li><strong>seestar_alp</strong> — broader control software. Andrew had trouble getting it working as of
+Sep 2024; by Aug 2025 he reports it&rsquo;s become his &ldquo;go to software to control the Seestar.&rdquo;
+Software that was rough a year ago may be solid now — check current state before
+dismissing it.</li></ul><h2 id=good-first-targets-to-practice-on>Good first targets to practice on</h2><p>Andrew Pearce&rsquo;s method (Smart Telescope Underworld, Jul 2024): search AAVSO&rsquo;s <strong>VSX</strong> for
+stars in your scope&rsquo;s clean brightness range, with periods under 4-6 hours and amplitude
+0.4-0.5 mag. Delta Scuti variables (short-period pulsators) fit this well — his example
+was <strong>EH Lib</strong>, amplitude ~0.5 mag, period ~2 hours, clean light curve from a single
+night&rsquo;s run.</p><p>T CrB herself isn&rsquo;t a good <em>practice</em> target by this method — her &ldquo;period&rdquo; is a human
+lifetime, not a few hours — but these short-period stars are a good way to build skill and
+confidence on the workflow while you wait on her.</p><h2 id=further-resources>Further resources</h2><ul><li>Andrew Pearce&rsquo;s YouTube video, <strong>&ldquo;Doing Science with the Seestar S50&rdquo;</strong> — covers
+photometry and astrometry of variable stars, comets, and asteroids.</li><li>demilson&rsquo;s YouTube videos: <strong>&ldquo;SX Phe: 5-Hour Loop of a Delta Scuti Star&rsquo;s Pulsations and
+Light Curve&rdquo;</strong> and <strong>&ldquo;SS S50: Comet C/2025 K1 (Atlas).&rdquo;</strong></li><li>AAVSO forum thread this manual draws from: <strong>&ldquo;Using the ZWO Seestar S50 for
+photometry&rdquo;</strong> (Technology → Instrumentation & Equipment category).</li><li>AAVSO&rsquo;s <strong>DSLR Observing Manual</strong> — the Seestar is treated like a one-shot-color DSLR for
+photometry purposes, so this is the underlying reference.</li></ul><hr><p><em>Built from real forum posts and AAVSO documentation, attributed and dated. If you find
+something that updates or contradicts a claim here, bring it back and we&rsquo;ll fix the page,
+not just add to it.</em></p></article></main><footer class=site-footer><div class=wrap><p>&copy; 2026 Aaron Henderson. All rights reserved.</p></div></footer></body></html>

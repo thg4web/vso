@@ -1,0 +1,35 @@
+{
+  "date": "2026-10-17",
+  "location": {
+    "name": "Reference location (US East Coast)"
+  },
+  "reference_timezone": "America/New_York",
+  "reference_tz_abbr": "EDT",
+  "computed_at": "2026-10-17T04:01:01.516417+00:00",
+  "status": "normal",
+  "rise_utc": "2026-10-17T12:05:56.915041Z",
+  "transit_utc": "2026-10-17T19:29:26.869712Z",
+  "set_utc": "2026-10-18T02:52:56.824383Z",
+  "transit_altitude_deg": 80.3,
+  "visible_hours": 14.8,
+  "astronomical_dusk_utc": "2026-10-18T00:01:55.304879Z",
+  "astronomical_dawn_utc": "2026-10-18T09:59:17.688389Z",
+  "dark_windows_utc": [
+    [
+      "2026-10-18T00:01:55.304879Z",
+      "2026-10-18T02:52:56.824383Z"
+    ]
+  ],
+  "dark_visible_hours": 2.9,
+  "previous_night": {
+    "astronomical_dusk_utc": "2026-10-17T00:03:08.416043Z",
+    "astronomical_dawn_utc": "2026-10-17T09:58:28.730071Z",
+    "dark_windows_utc": [
+      [
+        "2026-10-17T00:03:08.416043Z",
+        "2026-10-17T02:56:52.733823Z"
+      ]
+    ],
+    "dark_visible_hours": 2.9
+  }
+}
