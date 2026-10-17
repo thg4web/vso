@@ -1,10 +1,10 @@
 {
   "star": "T CrB",
-  "exported_at": "2026-10-17T04:13:01Z",
+  "exported_at": "2026-10-17T10:13:01Z",
   "window_hours": 24,
-  "window_start_utc": "2026-10-16T04:13:01Z",
-  "window_end_utc": "2026-10-17T04:13:01Z",
-  "count": 3,
+  "window_start_utc": "2026-10-16T10:13:01Z",
+  "window_end_utc": "2026-10-17T10:13:01Z",
+  "count": 6,
   "observations": [
     {
       "date_utc": "2026-10-16T17:30:00Z",
@@ -16,6 +16,39 @@
       "uncertainty": null,
       "observer_code": "SIVB",
       "obstype": "1"
+    },
+    {
+      "date_utc": "2026-10-16T17:41:47Z",
+      "jd": 2461330.2373571,
+      "magnitude": 10.004,
+      "fainter_than": false,
+      "band_code": "51",
+      "band_name": "Tri-Color Green",
+      "uncertainty": "0.0128",
+      "observer_code": "APBA",
+      "obstype": "2"
+    },
+    {
+      "date_utc": "2026-10-16T18:54:11Z",
+      "jd": 2461330.287633,
+      "magnitude": 10.065,
+      "fainter_than": false,
+      "band_code": "2",
+      "band_name": "Johnson V",
+      "uncertainty": "0.008",
+      "observer_code": "DFS",
+      "obstype": "2"
+    },
+    {
+      "date_utc": "2026-10-16T18:54:25Z",
+      "jd": 2461330.287795,
+      "magnitude": 11.375,
+      "fainter_than": false,
+      "band_code": "3",
+      "band_name": "Johnson B",
+      "uncertainty": "0.01",
+      "observer_code": "DFS",
+      "obstype": "2"
     },
     {
       "date_utc": "2026-10-16T19:11:00Z",
