@@ -51,7 +51,7 @@
         </div>
       </div>
 
-      <p class="tcrb__meta">Page built {{ now.Format "January 2, 2006" }}. Eruption status is not baked in — check the live AAVSO links below before you rely on any data on this page. The outburst condition can change pretty quickly and this site only updates 4 times a day.</p>
+      <p class="tcrb__meta">Updated {{ with .Site.Data.tcrb_observations.fetched_at }}{{ (time .).Format "January 2, 2006 15:04" }} UT{{ else }}at an unknown time{{ end }}, 4x a day. For the absolute latest data, go to the AAVSO links on this page. T CrB can flare quickly, so check often.</p>
     </section>
 
     <section class="tcrb__stats" aria-label="Key facts">
