@@ -185,6 +185,26 @@
 
     <section class="tcrb__section">
       <div class="tcrb__section-head">
+        <h2 class="tcrb__section-title">When is it difficult to see or photograph?</h2>
+        <p class="tcrb__section-sub">T CrB is never lost in the Sun's glare, but for some weeks each autumn it only sits low in the sky when the sky is truly dark. Black is easy; blue is difficult. Shown for latitude 36° N across one year.</p>
+      </div>
+      <div class="tcrb__panel">
+        <div class="tcrb__vis-toggle" role="group" aria-label="Minimum altitude">
+          <button type="button" id="tcrb-vis-b10" aria-pressed="false">Above 10°</button>
+          <button type="button" id="tcrb-vis-b20" aria-pressed="true">Above 20°</button>
+          <button type="button" id="tcrb-vis-b30" aria-pressed="false">Above 30°</button>
+        </div>
+        <div class="tcrb__vis-wrap" id="tcrb-vis-wrap"><canvas id="tcrb-vis-strip" class="tcrb__vis-strip" aria-label="Difficulty across the year: black is easy, blue is difficult"></canvas><div class="tcrb__vis-cursor" id="tcrb-vis-cursor"></div></div>
+        <div class="tcrb__vis-months" id="tcrb-vis-months" aria-hidden="true"></div>
+        <p class="tcrb__vis-tip" id="tcrb-vis-tip">Hover or tap the strip for a date.</p>
+        <p class="tcrb__chart-note" id="tcrb-vis-periods"></p>
+        <div class="tcrb__vis-legend"><span>Easy (3 h or more of dark sky)</span><span class="tcrb__vis-bar"></span><span>Difficult (none)</span></div>
+        <p class="tcrb__chart-note">Each day's colour is how much astronomical-night time T CrB spends above the chosen altitude: 3 h or more is black, none is full blue. "Evening" means T CrB is east of the Sun and up after sunset, "Morning" means it is west of the Sun and up before sunrise, and "All night" means it is near the opposite side of the sky from the Sun. Computed with the same sky maths as the rise and set times above, for a typical position at 36° N; your own latitude will shift the edges by days.</p>
+      </div>
+    </section>
+
+    <section class="tcrb__section">
+      <div class="tcrb__section-head">
         <h2 class="tcrb__section-title">Finding it in the sky</h2>
         <p class="tcrb__section-sub">Corona Borealis, the "Northern Crown" — a small, distinctive semicircle of stars between Boötes and Hercules. T CrB sits just off the arc, too faint to see normally. Aaron's own capture, Seestar S50, 2024-08-24.</p>
       </div>
@@ -871,4 +891,79 @@
   });
 })();
 </script>
+
+<script>
+(function () {
+  // Seasonal difficulty strip: black = easy, blue = difficult. Data is precomputed
+  // (data/tcrb_visibility.json), one value per day of dark-sky hours with T CrB above 10/20/30 degrees.
+  var D = {{ .Site.Data.tcrb_visibility | jsonify | safeJS }};
+  var cv = document.getElementById('tcrb-vis-strip');
+  if (!D || !cv || !D.alt20) return;
+  var N = D.alt20.length, THRESH = 3, mode = 'alt20';
+  var ALT = { alt10: '10°', alt20: '20°', alt30: '30°' };
+  var tip = document.getElementById('tcrb-vis-tip'), cur = document.getElementById('tcrb-vis-cursor');
+  var start = new Date(D.start + 'T00:00:00Z');
+  function dayDate(i) { return new Date(start.getTime() + i * 864e5); }
+  function fmt(d) { return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' }); }
+  function draw() {
+    var w = cv.clientWidth, h = cv.clientHeight, dpr = window.devicePixelRatio || 1;
+    cv.width = w * dpr; cv.height = h * dpr;
+    var c = cv.getContext('2d'); c.scale(dpr, dpr);
+    var arr = D[mode], cw = w / N;
+    for (var i = 0; i < N; i++) {
+      var t = Math.max(0, Math.min(1, 1 - arr[i] / THRESH)), e = t * t * (3 - 2 * t);
+      c.fillStyle = 'rgb(' + Math.round(47 * e) + ',' + Math.round(123 * e) + ',' + Math.round(255 * e) + ')';
+      c.fillRect(i * cw, 0, cw + 1, h);
+    }
+  }
+  function months() {
+    var el = document.getElementById('tcrb-vis-months'); el.innerHTML = '';
+    for (var i = 0; i < N; i++) {
+      var d = dayDate(i);
+      if (d.getUTCDate() === 1) {
+        var s = document.createElement('span');
+        s.style.left = ((i + 15) / N * 100) + '%';
+        s.textContent = d.toLocaleDateString('en-US', { month: 'short', timeZone: 'UTC' }) + (d.getUTCMonth() === 0 ? ' ' + d.getUTCFullYear() : '');
+        el.appendChild(s);
+      }
+    }
+  }
+  function periods() {
+    var arr = D[mode], runs = [], s = null;
+    for (var i = 0; i <= N; i++) {
+      var hard = i < N && arr[i] < 0.5;
+      if (hard && s === null) s = i;
+      if (!hard && s !== null) { runs.push([s, i - 1]); s = null; }
+    }
+    document.getElementById('tcrb-vis-periods').textContent = runs.length
+      ? 'Difficult (under half an hour of dark sky above ' + ALT[mode] + '): ' +
+        runs.map(function (r) { return fmt(dayDate(r[0])) + ' to ' + fmt(dayDate(r[1])) + ' (' + (r[1] - r[0] + 1) + ' nights)'; }).join('; ') + '.'
+      : 'No night is difficult at this altitude.';
+  }
+  function show(ev) {
+    var r = cv.getBoundingClientRect(), x = (ev.touches ? ev.touches[0].clientX : ev.clientX) - r.left;
+    var i = Math.max(0, Math.min(N - 1, Math.floor(x / r.width * N))), h = D[mode][i];
+    cur.style.display = 'block'; cur.style.left = ((i + 0.5) / N * 100) + '%';
+    tip.textContent = fmt(dayDate(i)) + ': ' + h.toFixed(1) + ' h of dark sky with T CrB above ' + ALT[mode] +
+      (h < 0.5 ? ' (difficult)' : h < 3 ? ' (limited)' : ' (easy)') + ' \u00b7 ' + D.side[i];
+  }
+  cv.addEventListener('mousemove', show);
+  cv.addEventListener('touchstart', show, { passive: true });
+  cv.addEventListener('touchmove', show, { passive: true });
+  cv.addEventListener('mouseleave', function () { cur.style.display = 'none'; });
+  function setMode(m) {
+    mode = m;
+    ['10', '20', '30'].forEach(function (a) {
+      document.getElementById('tcrb-vis-b' + a).setAttribute('aria-pressed', m === 'alt' + a);
+    });
+    draw(); periods();
+  }
+  ['10', '20', '30'].forEach(function (a) {
+    document.getElementById('tcrb-vis-b' + a).onclick = function () { setMode('alt' + a); };
+  });
+  window.addEventListener('resize', draw);
+  months(); draw(); periods();
+})();
+</script>
+
 {{ end }}
