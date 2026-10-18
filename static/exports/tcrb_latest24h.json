@@ -1,10 +1,10 @@
 {
   "star": "T CrB",
-  "exported_at": "2026-10-18T10:13:01Z",
+  "exported_at": "2026-10-18T16:13:01Z",
   "window_hours": 24,
-  "window_start_utc": "2026-10-17T10:13:01Z",
-  "window_end_utc": "2026-10-18T10:13:01Z",
-  "count": 35,
+  "window_start_utc": "2026-10-17T16:13:01Z",
+  "window_end_utc": "2026-10-18T16:13:01Z",
+  "count": 37,
   "observations": [
     {
       "date_utc": "2026-10-17T16:28:00Z",
@@ -26,6 +26,17 @@
       "band_name": "Tri-Color Green",
       "uncertainty": "0.11",
       "observer_code": "OAR",
+      "obstype": "2"
+    },
+    {
+      "date_utc": "2026-10-17T16:45:40Z",
+      "jd": 2461331.198388,
+      "magnitude": 10.03,
+      "fainter_than": false,
+      "band_code": "2",
+      "band_name": "Johnson V",
+      "uncertainty": "0.008",
+      "observer_code": "SANGA",
       "obstype": "2"
     },
     {
@@ -235,6 +246,17 @@
       "band_name": "Tri-Color Green",
       "uncertainty": "0.13",
       "observer_code": "OAR",
+      "obstype": "2"
+    },
+    {
+      "date_utc": "2026-10-17T19:44:58Z",
+      "jd": 2461331.3229,
+      "magnitude": 10.116,
+      "fainter_than": false,
+      "band_code": "51",
+      "band_name": "Tri-Color Green",
+      "uncertainty": "0.009",
+      "observer_code": "PYG",
       "obstype": "2"
     },
     {
