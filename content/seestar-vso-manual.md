@@ -25,7 +25,8 @@ Yes, with real limits worth knowing up front:
 - **Saturation**: the Seestar's sensor saturates around **V ≈ 8**. Linear and well-behaved
   below that (cross-checked against Gaia DR2 by a Cloudy Nights user). *Our own S30 Pro frames
   (Oct 2026, 30 and 60 s at gain 200) add a nuance: the red and blue pixels reached 65535 on stars
-  of V 7.9 to 9.3, but the green pixels never did, even on the V 7.9 star. It depends on the
+  of V 7.9 to 9.3, while the green pixels topped out near 48,000 to 49,000 for all of them, a soft
+  ceiling below 65535 (a reader who examined our files pointed this out). It depends on the
   channel, exposure, gain and model, so check the pixel values in your own frames.* Above it — don't
   trust the numbers. Independently reported by multiple people (see the SUNY
   Dutchess/MHAA project below) — this is a real, recurring limit, not a one-off.
@@ -99,7 +100,11 @@ summary CSV with the star's position, `Mag(obs)`, `Mag(err)` and SNR. What we fo
 
 - **Its magnitude is not V.** On T CrB (a red star) it read about 9.2 while AAVSO observers reported
   about 10.0: roughly 0.8 to 1.1 magnitude too bright. Which band and catalogue it uses is not documented.
-- **`Mag(err)` is not photon noise** (0.19 reported where the noise alone gives about 0.017).
+- **`Mag(err)` is not photon noise** (0.19 reported where the noise alone gives about 0.017). On our
+  files it is mostly the scatter of the app's own reference stars: one clipped bright reference (catalogue
+  magnitude 3.76, measured about 2.5 magnitudes too faint) dominates it, and when that star dropped out of
+  4 of 35 frames the error fell to 0.07 to 0.08 and T CrB's app magnitude moved 0.2 to 0.3 fainter. The app's
+  magnitude therefore depends on which references it happens to use.
 - **ZWO has not published how it works.** The v3.4.0 and v3.4.1 release notes say only "Added
   Photometry" and that the dark-frame library workflow changed. Whether the saved frames are
   dark-subtracted is unknown.
@@ -126,9 +131,9 @@ we learn more.
 2. **Use equatorial (EQ) mode** and keep it the same every night. Alt-az rotates the field during an
    exposure; we have not tested it. The FITS keyword `EQMODE` records the mode.
 3. **Choose one exposure and one gain for the whole night.** Set the gain before you enter Photometry
-   mode. Choose them so that your target and comparison stars stay below the 16-bit ceiling of 65535 in the
-   channel you will measure (as a starting point, a brightest pixel of 30,000 to 40,000; this is a suggestion,
-   not tested).
+   mode. Choose them so that your target and comparison stars stay below the ceiling in the channel you will
+   measure: 65535 for red and blue, but only about 45,000 for green, which saturates near 48,000 to 49,000
+   (as a starting point, a brightest pixel of 30,000 to 40,000; this is a suggestion, not tested).
 4. **Record** the app version (it is not in the FITS headers), the date, conditions (seeing, transparency,
    Moon), exposure, gain and mount mode.
 
@@ -144,14 +149,18 @@ we learn more.
 7. **Work on the raw FITS** (16-bit, `BITPIX 16`, `BZERO 32768`). Do not debayer. Read the `BAYERPAT` header:
    our S30 Pro frames read **GRBG** (checked against the star signals); the community reports the original
    S50 as BGGR, so check yours, and do not crop before you separate the colour planes.
-8. **Measure the green pixels only.** In our frames the green pixels never reached the ceiling even on a
-   V 7.9 star whose red and blue pixels clipped, so green has the most headroom. Place the target and each
+8. **Measure the green pixels only.** On our frames the red and blue pixels reached 65535 on bright stars
+   while the green pixels topped out near 48,000 to 49,000, so green gives more room than red or blue, but it
+   still saturates below 65535. Place the target and each
    comparison star on every frame (we fit the app's per-frame CSV positions to RA and Dec, then re-centre each
    star with a centroid), then do aperture photometry: radius 5 pixels, sky as the median of an annulus from
    9 to 14 pixels, flux as the sum of (pixel − sky). The S30 Pro's plate scale is about 3.7 arcseconds per pixel
    (2.9 µm pixels, 160 mm focal length, 3.67 measured).
-9. **Reject clipped stars.** Treat any pixel at 65000 or more as clipped, in the channel you measure, for the
-   target and for every comparison star. If a star clips, drop it or shorten the exposure.
+9. **Reject saturated stars.** In the red and blue planes treat any pixel at 65000 or more as clipped; in the
+   green plane treat about 45,000 or more as saturated, because the green peaks of stars of very different
+   brightness pile up at about 48,000 to 49,000 (a soft ceiling). Apply this to the target and every comparison
+   star. If a star saturates, drop it or shorten the exposure. Dropping our near-ceiling T CrB frames moved the
+   result by 0.015 magnitude or less.
 10. **Calibrate each frame.** The zero point is the median of (catalogue V − instrumental magnitude) over your
     comparison stars. Then check it: treat each comparison star in turn as the unknown and see whether you
     recover its catalogue value (we got within about 0.02 to 0.05 magnitude). A star that does not recover its
@@ -178,7 +187,7 @@ we learn more.
     AAVSO pages before your first submission. We have not submitted anything yet.
 
 **Quality checklist before you trust a night:** no saturated pixels in the target or any comparison star, in the
-measured channel; at least one comparison star recovered within its expected error; a steady zero point; at
+measured channel (for green, no peak above about 45,000); at least one comparison star recovered within its expected error; a steady zero point; at
 least 5 frames; your colour correction stated with its uncertainty; and your location removed from anything you
 share. FITS headers carry your observing latitude and longitude, and some JPGs carry GPS and an owner field
 with the same.
