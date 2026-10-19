@@ -1,38 +1,187 @@
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body {
-  background: $bg;
-  color: $text;
+  background: var(--site-bg, #{$bg});
+  color: var(--site-ink, #{$text});
   font-family: $font-body;
   line-height: 1.55;
 }
 .wrap { max-width: $max-width; margin: 0 auto; padding: 0 $padding; }
-a { color: $accent; text-decoration: none; &:hover { color: $accent-hover; } }
+a { color: var(--site-link, #{$accent}); text-decoration: none; &:hover { color: var(--site-link-hover, #{$accent-hover}); } }
 h1, h2, h3, h4, h5, h6 { font-family: $font-heading; line-height: 1.1; }
 
-// Topic card — a dark "window" preview linking out to a themed watch page.
+// ---- Site skin for the plain pages (home, manual, guide) ---------------------------
+// Mirrors astro.thgnetworks.com: Audiowide display, Exo 2 body, IBM Plex Mono, the same colour
+// tokens, and the fixed M31 photo behind a theme veil with a twinkling starfield.
+// Dark by default; the T CrB page keeps its own theme (tcrb-page) and shares only the saved choice.
+body:not(.tcrb-page) {
+  --site-bg: #0a0e16;
+  --site-surface: #131b28;
+  --site-ink: #e9eef8;
+  --site-ink2: #9aa6be;
+  --site-muted: #9aa6be;
+  --site-border: #26324a;
+  --site-accent: #2f78bd;
+  --site-link: #7cb8ea;
+  --site-link-hover: #b7d9f5;
+  --site-card-bg: rgba(17, 24, 37, 0.64);
+  --site-card-title: #e9eef8;
+  --site-card-desc: #9aa6be;
+  --site-card-hover: #7cb8ea;
+  --site-th-bg: #131b28;
+  --site-code-bg: rgba(255, 255, 255, 0.09);
+  --site-callout-bg: rgba(250, 178, 25, 0.12);
+  --site-callout-bar: #fab219;
+  --site-veil: rgba(6, 10, 20, 0.56);
+  --site-photo-filter: none;
+  --site-glow: 0 0 40px rgba(47, 120, 189, 0.45), 0 0 90px rgba(47, 120, 189, 0.20);
+
+  font-family: "Exo 2", "Segoe UI", system-ui, -apple-system, sans-serif;
+  line-height: 1.62;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+
+  &[data-theme="light"] {
+    --site-bg: #eef3f9;
+    --site-surface: #ffffff;
+    --site-ink: #111823;
+    --site-ink2: #3f4a5e;
+    --site-muted: #3f4a5e;
+    --site-border: #c9d5e6;
+    --site-accent: #2f78bd;
+    --site-link: #1f5688;
+    --site-link-hover: #123a60;
+    --site-card-bg: rgba(255, 255, 255, 0.82);
+    --site-card-title: #111823;
+    --site-card-desc: #3f4a5e;
+    --site-card-hover: #2f78bd;
+    --site-th-bg: #e3ebf6;
+    --site-code-bg: rgba(17, 24, 35, 0.07);
+    --site-callout-bg: rgba(199, 119, 0, 0.12);
+    --site-callout-bar: #c77700;
+    --site-veil: rgba(240, 244, 250, 0.50);
+    --site-photo-filter: invert(1) grayscale(1) brightness(2);
+    --site-glow: none;
+  }
+
+  h1, h2, h3, h4 { font-family: "Audiowide", "Arial Narrow", sans-serif; font-weight: 400; letter-spacing: 0.02em; line-height: 1.18; }
+  h1 { color: var(--site-accent); text-shadow: var(--site-glow); }
+  code, pre { font-family: "IBM Plex Mono", ui-monospace, Menlo, monospace; }
+}
+
+// Fixed M31 photo and twinkling starfield behind everything (same layering as the astro site).
+.bg-photo {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background: url("/images/andromeda.jpg") center center / cover no-repeat;
+  filter: var(--site-photo-filter);
+  &::after { content: ""; position: absolute; inset: 0; background: var(--site-veil); }
+}
+#sky { position: fixed; inset: 0; z-index: 0; pointer-events: none; display: block; }
+body:not(.tcrb-page) main, body:not(.tcrb-page) .site-footer { position: relative; z-index: 1; }
+
+// Topic cards on the home page.
 .topic-card {
   display: block;
   max-width: 480px;
   margin-top: 16px;
   padding: 24px 28px;
-  background: #0b0e1a;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: var(--site-card-bg, #0b0e1a);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--site-border, rgba(255, 255, 255, 0.12));
+  border-top: 3px solid var(--site-accent, #2f78bd);
   border-radius: 14px;
   text-decoration: none;
   transition: transform 0.15s ease, border-color 0.15s ease;
 
-  &:hover { transform: translateY(-2px); border-color: #8ec9ff; }
+  &:hover { transform: translateY(-2px); border-color: var(--site-card-hover, #8ec9ff); }
 
   &__eyebrow {
-    display: block; font-size: 0.72rem; text-transform: uppercase;
-    letter-spacing: 0.08em; color: #aab3d6; margin-bottom: 6px;
+    display: block; font-family: "IBM Plex Mono", ui-monospace, Menlo, monospace; font-size: 0.72rem; text-transform: uppercase;
+    letter-spacing: 0.08em; color: var(--site-card-desc, #aab3d6); margin-bottom: 6px;
   }
   &__title {
-    display: block; font-size: 1.15rem; font-weight: 600;
-    color: #f3f6ff; margin-bottom: 8px;
+    display: block; font-family: "Audiowide", "Arial Narrow", sans-serif; font-size: 1.1rem; font-weight: 400;
+    color: var(--site-card-title, #f3f6ff); margin-bottom: 8px;
   }
   &__desc {
-    display: block; font-size: 0.88rem; color: #aab3d6; line-height: 1.5;
+    display: block; font-size: 0.9rem; color: var(--site-card-desc, #aab3d6); line-height: 1.5;
   }
 }
+
+// Notice box for provisional or early-stage content
+.callout {
+  border: 1px solid var(--site-border, #{$border});
+  border-left: 5px solid var(--site-callout-bar, #c77700);
+  background: var(--site-callout-bg, rgba(199, 119, 0, 0.08));
+  border-radius: 6px;
+  padding: 14px 18px;
+  margin: 0 0 28px;
+}
+
+// "Download as PDF" link under a page title
+.pdf-link {
+  margin: -8px 0 22px;
+  font-size: 0.95rem;
+  a { font-weight: 600; }
+}
+
+// Pages sit on a translucent panel so long text stays readable over the photo.
+body:not(.tcrb-page) main > .wrap,
+body:not(.tcrb-page) article.wrap {
+  max-width: 940px;
+  margin: 56px auto 28px;
+  padding: 28px clamp(1.1rem, 4vw, 2.2rem) 34px;
+  background: var(--site-card-bg);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--site-border);
+  border-radius: 14px;
+}
+article.wrap {
+  h1 { margin-bottom: 14px; }
+  h2 { margin: 1.6em 0 0.5em; padding-bottom: 0.2em; border-bottom: 1px solid var(--site-border); font-size: 1.3rem; }
+  h3 { margin: 1.2em 0 0.4em; }
+  p, ul, ol { margin: 0.6em 0; }
+  ul, ol { padding-left: 1.5em; }
+  li { margin: 0.25em 0; }
+  table { border-collapse: collapse; width: 100%; margin: 1em 0; font-size: 0.92rem; }
+  th, td { border: 1px solid var(--site-border); padding: 7px 10px; text-align: left; vertical-align: top; }
+  th { background: var(--site-th-bg); }
+  code { background: var(--site-code-bg); padding: 1px 5px; border-radius: 4px; font-size: 0.88em; }
+  blockquote { border-left: 3px solid var(--site-border); margin: 1em 0; padding: 0.2em 1em; color: var(--site-ink2); }
+  hr { border: 0; border-top: 1px solid var(--site-border); margin: 1.6em 0; }
+}
+body:not(.tcrb-page) .site-footer {
+  max-width: 940px; margin: 0 auto; padding: 18px clamp(1.1rem, 4vw, 2rem) 40px;
+  color: var(--site-ink2); font-size: 0.85rem;
+  .wrap { padding: 0; }
+  p { margin: 0.2rem 0; }
+  .fine { font-family: "IBM Plex Mono", ui-monospace, Menlo, monospace; font-size: 0.72rem; letter-spacing: 0.04em; }
+}
+
+// Light/dark switch for the plain pages (same look and saved choice as the T CrB page).
+.site-theme-toggle {
+  position: fixed; top: 14px; right: 14px; z-index: 50;
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 8px 14px; border-radius: 999px;
+  background: var(--site-card-bg); border: 1px solid var(--site-border);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  color: var(--site-ink2); font-size: 0.8rem; cursor: pointer; font-family: inherit;
+  &:hover { color: var(--site-ink); border-color: var(--site-card-hover); }
+}
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+// "VSO" link back to the main page (the only navigation; shown on every page but the main one).
+.site-home { position: absolute; top: 14px; left: 0; right: 0; z-index: 10; pointer-events: none; }
+.site-home-link {
+  pointer-events: auto; display: inline-block; padding: 2px 2px;
+  font-family: "Audiowide", "Arial Narrow", sans-serif; font-size: 1.05rem; letter-spacing: 0.06em;
+  color: var(--site-accent, #2f78bd);
+  &:hover { color: var(--site-link-hover, #{$accent-hover}); }
+}
+.site-home-sep { pointer-events: none; margin: 0 0.55em; font-size: 1.05rem; color: var(--site-ink2, #9aa6be); }
+body.tcrb-page .site-home-sep { color: var(--tcrb-ink-muted); }
+body:not(.tcrb-page) .site-home { max-width: 940px; margin: 0 auto; padding-inline: clamp(1.1rem, 4vw, 2rem); }
+body.tcrb-page .site-home-link { font-family: 'Space Grotesk', $font-body; font-weight: 700; color: var(--tcrb-ink); &:hover { color: var(--tcrb-wd-glow); } }

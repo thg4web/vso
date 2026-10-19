@@ -1,6 +1,7 @@
 {{ define "main" }}
 <article class="wrap">
   <h1>{{ .Title }}</h1>
+  {{ with .Params.pdf }}<p class="pdf-link"><a href="{{ . }}" download>Download this page as a PDF &darr;</a></p>{{ end }}
   {{ .Content }}
 </article>
 {{ end }}

@@ -1,5 +1,6 @@
 <footer class="site-footer">
   <div class="wrap">
     <p>&copy; {{ now.Year }} {{ .Site.Params.author }}. All rights reserved.</p>
+    {{ if ne .Layout "tcrb" }}<p class="fine">Part of the thgnetworks.com family. &nbsp;Background: M31 &mdash; Aaron Henderson.</p>{{ end }}
   </div>
 </footer>

@@ -333,6 +333,19 @@ body.tcrb-page {
   &__vis-legend { display: flex; align-items: center; gap: 10px; margin-top: 14px; font-size: 0.8rem; color: var(--tcrb-ink-muted); }
   &__vis-bar { flex: 1; max-width: 220px; height: 10px; border-radius: 5px; background: linear-gradient(90deg, #000, #2f7bff); border: 1px solid var(--tcrb-border); }
 
+  // Reference marks and the reference list
+  &__ref {
+    font-size: 0.7em; line-height: 0; margin-left: 1px;
+    a { color: var(--tcrb-wd-glow); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+  }
+  &__references {
+    margin: 0; padding-left: 1.4em; color: var(--tcrb-ink-secondary); font-size: 0.9rem; max-width: 760px;
+    li { margin-bottom: 10px; scroll-margin-top: 80px; }
+    li:target { color: var(--tcrb-ink); }
+    a { color: var(--tcrb-wd-glow); }
+  }
+
   // Chart
   &__chart-wrap { position: relative; height: 360px; }
   &__chart-note { margin-top: 14px; font-size: 0.78rem; color: var(--tcrb-ink-muted); }

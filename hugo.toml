@@ -23,16 +23,3 @@ summaryLength = 40
   tag = "tags"
   category = "categories"
 
-[menu]
-  [[menu.main]]
-    name = "Home"
-    url = "/"
-    weight = 1
-  [[menu.main]]
-    name = "Blaze Star Watch"
-    url = "/t-crb/"
-    weight = 2
-  [[menu.main]]
-    name = "Seestar VSO Manual"
-    url = "/seestar-vso-manual/"
-    weight = 3

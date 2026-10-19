@@ -1,0 +1,3 @@
+{{/* The only navigation. Main page: a plain "Henderson Astronomy" link to the family site. Other pages:
+     "Henderson Astronomy > VSO", the first going to the family site and the second back to the main page. */}}
+<div class="wrap site-home">{{ if .IsHome }}<a class="site-home-link" href="https://astro.thgnetworks.com/">Henderson Astronomy</a>{{ else }}<a class="site-home-link" href="https://astro.thgnetworks.com/">Henderson Astronomy</a><span class="site-home-sep" aria-hidden="true">&rsaquo;</span><a class="site-home-link" href="/">VSO</a>{{ end }}</div>

@@ -4,7 +4,8 @@
   {{ partial "head.html" . }}
 </head>
 <body{{ with .Params.bodyClass }} class="{{ . }}"{{ end }}>
-  {{ partial "header.html" . }}
+  {{ if ne .Layout "tcrb" }}{{ partial "theme.html" . }}{{ end }}
+  {{ partial "home-link.html" . }}
   <main>
     {{ block "main" . }}{{ end }}
   </main>

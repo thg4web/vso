@@ -1,12 +1,14 @@
 ---
+pdf: "/downloads/seestar-vso-manual.pdf"
 title: "Seestar Variable Star Observing Manual"
 keywords: ["Seestar photometry", "Seestar variable star", "Seestar S30 Pro photometry", "Seestar S50 photometry", "Seestar TG", "AAVSO Seestar", "variable star photometry", "variable star observing", "smart telescope photometry"]
-description: "Real, sourced steps for doing variable-star photometry with a ZWO Seestar S50/S30 Pro, built from AAVSO's own docs and community reports."
+description: "Variable-star photometry with a ZWO Seestar: AAVSO guidance and attributed community reports, plus our own provisional S30 Pro measuring steps, tested on T CrB."
 ---
 
 **Status: first draft, building this out as we go.** Every claim here is attributed to a
 real source — AAVSO's own documentation, or a named person in a public forum post, with
-the date. Where sources disagree, both sides are here rather than picked for you. Nothing
+the date. Where we add our own measurements and steps (S30 Pro, T CrB, October 2026), they are
+labelled as ours, are provisional, and are covered in more detail in the [provisional T CrB photometry guide](/seestar-tcrb-photometry-guide/). Where sources disagree, both sides are here rather than picked for you. Nothing
 below is invented; if a step isn't sourced yet, it isn't in here yet.
 
 ---
@@ -21,7 +23,10 @@ Yes, with real limits worth knowing up front:
   amplitude of a few tenths of a magnitude or more — not good enough to chase
   millimagnitude transits.
 - **Saturation**: the Seestar's sensor saturates around **V ≈ 8**. Linear and well-behaved
-  below that (cross-checked against Gaia DR2 by a Cloudy Nights user). Above it — don't
+  below that (cross-checked against Gaia DR2 by a Cloudy Nights user). *Our own S30 Pro frames
+  (Oct 2026, 30 and 60 s at gain 200) add a nuance: the red and blue pixels reached 65535 on stars
+  of V 7.9 to 9.3, but the green pixels never did, even on the V 7.9 star. It depends on the
+  channel, exposure, gain and model, so check the pixel values in your own frames.* Above it — don't
   trust the numbers. Independently reported by multiple people (see the SUNY
   Dutchess/MHAA project below) — this is a real, recurring limit, not a one-off.
 - **Field rotation** used to be a real problem for long time-series runs in the Seestar's
@@ -78,78 +83,105 @@ What they found, worth knowing before you start:
   brightness — also exactly how this project's own data pipeline already treats
   `fainter_than` observations.
 - One fact worth folding into the T CrB page itself at some point: in the Q&A, they cited
-  T CrB's eclipsing-binary **orbital period as roughly 227 days** — a completely different
-  number from, and not to be confused with, her ~80-year recurrent-nova eruption cycle.
-  Stated informally in a student Q&A, not footnoted to a paper, so treat it as "worth
-  verifying against a real catalog" rather than fully confirmed.
+  T CrB's **orbital period as roughly 227 days** — a completely different number from, and
+  not to be confused with, her ~80-year recurrent-nova eruption cycle. This checks out: Schaefer
+  (2023, MNRAS 524, 3146) gives an orbital period of 227.5687 ± 0.0099 days.
 - Honest null result: they also tried Polaris as a target and got nothing useful — its real
   variability range (~0.07 mag) is smaller than their measurement precision can resolve.
   Their own words: "not variable enough." Good reminder that not every target is a fit for
   this gear, and that's a legitimate finding, not a failure.
 
-## Two paths
+## The app's Photometry mode (v3.4.x): what it is and is not
 
-### Path A — Quick: whole-image plate-solve, no differential setup
+The Seestar app gained a Photometry mode in v3.4.0 (October 2026). It writes a CSV per frame and a
+summary CSV with the star's position, `Mag(obs)`, `Mag(err)` and SNR. What we found on the S30 Pro
+(measured from our own files, October 2026):
 
-Reported by **arnaudfiocret** (AAVSO forum, Sep 2024):
+- **Its magnitude is not V.** On T CrB (a red star) it read about 9.2 while AAVSO observers reported
+  about 10.0: roughly 0.8 to 1.1 magnitude too bright. Which band and catalogue it uses is not documented.
+- **`Mag(err)` is not photon noise** (0.19 reported where the noise alone gives about 0.017).
+- **ZWO has not published how it works.** The v3.4.0 and v3.4.1 release notes say only "Added
+  Photometry" and that the dark-frame library workflow changed. Whether the saved frames are
+  dark-subtracted is unknown.
+- **Use it to identify the star and to get pixel positions**, not for the magnitude. The `X Axis` and
+  `Y Axis` columns are 1-based pixel positions in the raw frame (we verified that the pixel peaks sit at X−1, Y−1).
+- It has also been reported that Photometry mode can measure several targets in one session. We have not tried it.
 
-1. Shoot your target with the Seestar as normal (stacked FITS).
-2. Open the stack in **ASTAP**. It automatically recognizes variable stars in the field.
-3. ASTAP photometrically calibrates the *entire image* via plate-solving — you don't set
-   up comparison stars by hand.
-4. Read the magnitude directly off the variable star it identified.
-5. This only works on the **green layer (TG)** — but for casual LPV (long-period variable)
-   monitoring, that's enough. Reported agreement: 0.05–0.1 mag vs. other observers in CCD
-   Green or visual.
+## Our Seestar photometry steps (provisional)
 
-Good for: fast checks, long-period variables, beginners who don't want to build a
-comparison-star workflow yet.
+**These steps are ours, from two test nights on one telescope, and they are early.** We tested them on
+a Seestar **S30 Pro** (telephoto camera, IRCUT filter, equatorial mode, gain 200, app v3.4.0) on the red
+recurrent nova T CrB. They should carry over to other targets and to the S50 and S50 Pro, but we have not
+tried that, so check each point on your own frames. The worked numbers, and what is still unknown, are in
+the [provisional T CrB photometry guide](/seestar-tcrb-photometry-guide/). We will revise this section as
+we learn more.
 
-### Path B — Rigorous: differential photometry against AAVSO comp stars
+**Before the session**
 
-1. Get the AAVSO-standard comparison star sequence for your target from their **Variable
-   Star Plotter (VSP)** — never substitute a star you just happen to know.
-2. Stack your Seestar subs (the native app does this).
-3. Split into channels if your tool needs it. **The Seestar's Bayer pattern is BGGR —
-   don't crop before extracting channels**, cropping shifts which pixels map to which
-   color and breaks the math (community-derived transformation coefficients post, AAVSO
-   forum, Jan 2024).
-4. Run differential (or ensemble) aperture photometry: target vs. one or more comparison
-   stars, same frame, same exposure.
+1. **Get AAVSO's comparison stars.** Fetch the comparison sequence for your target from AAVSO's Variable
+   Star Plotter (VSP) and write down each star's AUID and V magnitude. Never substitute a star you merely
+   know. Pick comparison stars within about one magnitude of your target, not much brighter (bright stars
+   saturate and force a long extrapolation). For T CrB (V about 10) we used chart X43296GGQ, stars V 10.17,
+   10.55, 10.74 and 11.17.
+2. **Use equatorial (EQ) mode** and keep it the same every night. Alt-az rotates the field during an
+   exposure; we have not tested it. The FITS keyword `EQMODE` records the mode.
+3. **Choose one exposure and one gain for the whole night.** Set the gain before you enter Photometry
+   mode. Choose them so that your target and comparison stars stay below the 16-bit ceiling of 65535 in the
+   channel you will measure (as a starting point, a brightest pixel of 30,000 to 40,000; this is a suggestion,
+   not tested).
+4. **Record** the app version (it is not in the FITS headers), the date, conditions (seeing, transparency,
+   Moon), exposure, gain and mount mode.
 
-**Easiest option — VPhot now handles Seestar files natively.** George Silvis (SGEO, AAVSO
-staff), AAVSO forum, **April 19, 2024**: VPhot can demosaic Seestar color FITS directly
-into separate TB/TG/TR images, no manual channel-splitting needed.
-- Set a telescope profile with **plate scale 2.378**, mapping TB→B, TG→V, TR→R.
-- Use **Quick Upload** so you can set the target name.
-- Either Light (sub) frames or Stacked frames work.
-- Problems: contact George via AAVSO Slack or gsilvis@aavso.org.
-- Goal going forward is broader support for Unistellar, Dwarf, and DSLR color images too —
-  not Seestar-only.
+**At the telescope**
 
-**Alternative — Phoranso** (by Tonny Vanmunster, free, cbabelgium.com — *not* "Peranso," an
-earlier version of this manual had that wrong). Bikeman's actual worked T CrB
-workflow, AAVSO forum, April 2024:
-1. Convert the Seestar's OSC FITS to green-channel-only images (Bikeman used AstroArt;
-   any FITS tool works — Fitswork is a free option).
-2. Follow [Phoranso's own tutorial](https://www.cbabelgium.com/Phoranso/UserGuideHTML/html/Tutorial.html)
-   — skip the calibration section, the Seestar's files are already calibrated.
-3. Use [Phoranso's FITS Header Editor](https://www.cbabelgium.com/Phoranso/UserGuideHTML/html/FITSHeadereditor.html)
-   to set the `FILTER` header to `"V"` on all images, so Phoranso calibrates against V
-   comparison-star magnitudes.
-4. In the generated report, replace `"V"` back with `"TG"` before submitting — same
-   principle as MZK's rule below: calibrate with V, report honestly as TG.
+5. **Take at least 5 individual sub-frames; 15 or more is better** so you can see the scatter. Keep every sub:
+   the stack hides per-frame problems.
+6. **Save a short, non-enhanced stack at the end.** You need it to place stars on the frames. Do not use an
+   AI-enhanced image for measuring: it is stretched and denoised, so it is no longer linear.
 
-Pablo Lewin (LPAC), AAVSO forum, May 2024, after getting direct help from Ken Menzies and
-Tonny Vanmunster himself: calls Phoranso "my go to software," notes it can also mine *old*
-data (exoplanet/NEO/asteroid images, even general astrophotos) for variables after the
-fact, auto-requests an AUID when one doesn't exist yet, and has an "Advised Stars" fallback
-for targets without an AAVSO comp-star sequence loaded.
+**Measuring**
 
-**Other tools people are actually using for this step:**
-- **AstroImageJ** — free, widely used, has a multi-aperture tool built for exactly this.
-- **TychoTracker** — demilson (AAVSO forum, Aug 2025) used it with Python scripting for
-  a 5-hour SX Phe (Delta Scuti) session.
+7. **Work on the raw FITS** (16-bit, `BITPIX 16`, `BZERO 32768`). Do not debayer. Read the `BAYERPAT` header:
+   our S30 Pro frames read **GRBG** (checked against the star signals); the community reports the original
+   S50 as BGGR, so check yours, and do not crop before you separate the colour planes.
+8. **Measure the green pixels only.** In our frames the green pixels never reached the ceiling even on a
+   V 7.9 star whose red and blue pixels clipped, so green has the most headroom. Place the target and each
+   comparison star on every frame (we fit the app's per-frame CSV positions to RA and Dec, then re-centre each
+   star with a centroid), then do aperture photometry: radius 5 pixels, sky as the median of an annulus from
+   9 to 14 pixels, flux as the sum of (pixel − sky). The S30 Pro's plate scale is about 3.7 arcseconds per pixel
+   (2.9 µm pixels, 160 mm focal length, 3.67 measured).
+9. **Reject clipped stars.** Treat any pixel at 65000 or more as clipped, in the channel you measure, for the
+   target and for every comparison star. If a star clips, drop it or shorten the exposure.
+10. **Calibrate each frame.** The zero point is the median of (catalogue V − instrumental magnitude) over your
+    comparison stars. Then check it: treat each comparison star in turn as the unknown and see whether you
+    recover its catalogue value (we got within about 0.02 to 0.05 magnitude). A star that does not recover its
+    value means the night is not usable. Confirm the zero point is steady across frames and that flux scales with
+    exposure time (60 s against 30 s gave a ratio of about 2.0).
+11. **Combine the frames** and report the mean with its scatter.
+
+**The colour problem**
+
+12. **A red star measured against bluer comparison stars reads too bright.** T CrB is far redder than any
+    AAVSO comparison star in its field, and the green channel measured against V comparison stars read about
+    0.06 to 0.3 magnitude too bright. If your target is much redder (or bluer) than your comparison stars,
+    correct for colour. Our method: use Gaia DR3 stars in the same field, find how the instrumental green
+    magnitude relates to Gaia colour (BP−RP), apply it to the target's Gaia colour, and convert Gaia G to V with
+    the relation in the Gaia documentation (we checked it against AAVSO's V for eight comparison stars: root-mean-square
+    0.025). On our two T CrB nights this gave V between 10.06 and 10.33 (night 1) and between 10.09 and 10.31
+    (night 2), with a systematic uncertainty we put at about ±0.2 magnitude. The red end is the weak spot:
+    very few calibration stars are as red as T CrB.
+
+**Reporting**
+
+13. **Call it TG.** A green-channel measurement calibrated against V comparison stars, without a
+    transformation, is reported to AAVSO as **TG**, not V (see "What to call your band" below). Read the current
+    AAVSO pages before your first submission. We have not submitted anything yet.
+
+**Quality checklist before you trust a night:** no saturated pixels in the target or any comparison star, in the
+measured channel; at least one comparison star recovered within its expected error; a steady zero point; at
+least 5 frames; your colour correction stated with its uncertainty; and your location removed from anything you
+share. FITS headers carry your observing latitude and longitude, and some JPGs carry GPS and an owner field
+with the same.
 
 ## What to call your band (important — don't mislabel this)
 
@@ -164,7 +196,7 @@ without deriving a full transformation, as long as you're honest that your resul
 not true V.
 
 **If you want closer-to-standard V/B/R**, apply AAVSO's own BVR transformation
-coefficients for the Seestar S50 (official page, plus a community-derived set posted by
+coefficients for the Seestar S50 (S50 only: they do not carry over to the S30 Pro or S50 Pro without checking) (official page, plus a community-derived set posted by
 Andrew Pearce with R² near 0.99 from the NGC 3532 standard field — worth having both to
 cross-check).
 
@@ -180,10 +212,18 @@ cross-check).
 
 **Takeaway**: TG is the most commonly used and generally most reliable channel, but check
 your specific target isn't a case (very red, strong narrow emission near 500-560nm) where
-it's known to misbehave.
+it's known to misbehave. *A very red star without strong emission lines also needs care: on two
+October 2026 S30 Pro nights, T CrB (a red giant) measured in the green channel against V
+comparison stars read brighter than its true V, by roughly 0.06 to 0.3 magnitude, until we added a
+Gaia colour correction. Details and caveats are in the
+[provisional T CrB guide](/seestar-tcrb-photometry-guide/).*
 
 ## Capture technique
 
+- **Several targets in one session — reported, not yet tried here.** It has been reported
+  that the Seestar app's Photometry mode lets you select more than one target to measure in
+  the same session. We have not tried this and do not yet have the original source for the
+  report, so treat it as unconfirmed until we do.
 - **Use EQ mode** for anything longer than a quick check — kills field rotation, which
   otherwise ruins long time-series photometry (Andrew Pearce, Aug 2025).
 - **Average multiple short subs per data point**, don't rely on single frames. kb0fhp
