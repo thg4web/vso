@@ -18,6 +18,7 @@ summaryLength = 40
 [params]
   description = "Variable star observing: the T Coronae Borealis (Blaze Star) nova watch with live AAVSO data, and a sourced Seestar variable-star photometry manual."
   author = "Aaron Henderson"
+  goatcounter = "tcrb"
 
 [taxonomies]
   tag = "tags"
