@@ -3,6 +3,7 @@ languageCode = 'en-us'
 title = 'VSO'
 
 enableRobotsTXT = true
+disableKinds = ["taxonomy", "term"]
 enableGitInfo = false
 summaryLength = 40
 
@@ -15,7 +16,7 @@ summaryLength = 40
       unsafe = true
 
 [params]
-  description = "Variable star observing: the T CrB nova watch, and a real, sourced Seestar photometry manual."
+  description = "Variable star observing: the T Coronae Borealis (Blaze Star) nova watch with live AAVSO data, and a sourced Seestar variable-star photometry manual."
   author = "Aaron Henderson"
 
 [taxonomies]
