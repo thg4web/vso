@@ -1,5 +1,6 @@
 ---
 title: "Seestar Variable Star Observing Manual"
+keywords: ["Seestar photometry", "Seestar variable star", "Seestar S30 Pro photometry", "Seestar S50 photometry", "Seestar TG", "AAVSO Seestar", "variable star photometry", "variable star observing", "smart telescope photometry"]
 description: "Real, sourced steps for doing variable-star photometry with a ZWO Seestar S50/S30 Pro, built from AAVSO's own docs and community reports."
 ---
 

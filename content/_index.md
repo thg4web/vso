@@ -1,5 +1,7 @@
 ---
 title: "VSO"
+seoTitle: "VSO: Variable Star Observing, T CrB Blaze Star Nova Watch"
+keywords: ["variable star observing", "VSO", "T CrB", "Blaze Star", "T Coronae Borealis", "AAVSO", "Seestar photometry", "nova watch"]
 ---
 
 Variable star observing — real data, real sourcing, nothing guessed.
