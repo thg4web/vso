@@ -23,11 +23,10 @@ Yes, with real limits worth knowing up front:
   amplitude of a few tenths of a magnitude or more — not good enough to chase
   millimagnitude transits.
 - **Saturation**: the Seestar's sensor saturates around **V ≈ 8**. Linear and well-behaved
-  below that (cross-checked against Gaia DR2 by a Cloudy Nights user). *Our own S30 Pro frames
-  (Oct 2026, 30 and 60 s at gain 200) add a nuance: the red and blue pixels reached 65535 on stars
-  of V 7.9 to 9.3, while the green pixels topped out near 48,000 to 49,000 for all of them, a soft
-  ceiling below 65535 (a reader who examined our files pointed this out). It depends on the
-  channel, exposure, gain and model, so check the pixel values in your own frames.* Above it — don't
+  below that (cross-checked against Gaia DR2 by a Cloudy Nights user). *On our S30 Pro frames the
+  red and blue pixels reach 65535 on bright stars, while the green pixels top out near 48,000 to 49,000, a soft
+  ceiling below 65535. It depends on the channel, exposure, gain and model, so check the pixel values in your
+  own frames.* Above it — don't
   trust the numbers. Independently reported by multiple people (see the SUNY
   Dutchess/MHAA project below) — this is a real, recurring limit, not a one-off.
 - **Field rotation** used to be a real problem for long time-series runs in the Seestar's
@@ -95,27 +94,21 @@ What they found, worth knowing before you start:
 ## The app's Photometry mode (v3.4.x): what it is and is not
 
 The Seestar app gained a Photometry mode in v3.4.0 (October 2026). It writes a CSV per frame and a
-summary CSV with the star's position, `Mag(obs)`, `Mag(err)` and SNR. What we found on the S30 Pro
-(measured from our own files, October 2026):
+summary CSV with the star's position, `Mag(obs)`, `Mag(err)` and SNR. What we found on the S30 Pro:
 
-- **Its magnitude is not V, and it reads about 0.9 magnitude too bright.** On T CrB it read about 9.2 while AAVSO
-  observers reported about 10.0, and on four ordinary field stars it read 0.8 to 0.94 too bright (against V worked
-  out from Gaia), so it is a roughly constant zero-point error and not mainly a red-star effect. Which band and
+- **Its magnitude is not V, and it reads about 0.9 magnitude too bright** for every star we checked (a roughly
+  constant zero-point error). It read about 9.2 for T CrB where AAVSO observers reported about 10.0. Which band and
   catalogue it uses is not documented.
-- **`Mag(err)` is not photon noise** (0.19 reported where the noise alone gives about 0.017). On our
-  files it is mostly the scatter of the app's own reference stars: one clipped bright reference (catalogue
-  magnitude 3.76, measured about 2.5 magnitudes too faint) dominates it, and when that star dropped out of
-  4 of 35 frames the error fell to 0.07 to 0.08 and T CrB's app magnitude moved 0.2 to 0.3 fainter. The app's
-  magnitude therefore depends on which references it happens to use.
+- **`Mag(err)` is not photon noise.** It is mostly the scatter of the app's own reference stars, and one clipped
+  bright reference can dominate it, so the app's magnitude depends on which references it happens to use. Do not
+  quote it as the measurement error.
 - **ZWO has not published how it works.** The v3.4.0 and v3.4.1 release notes say only "Added
   Photometry" and that the dark-frame library workflow changed. Whether the saved frames are
   dark-subtracted is unknown.
 - **Use it to identify the star and to get pixel positions**, not for the magnitude. The `X Axis` and
   `Y Axis` columns are 1-based pixel positions in the raw frame (we verified that the pixel peaks sit at X−1, Y−1).
-- **It can record several stars at once (verified by us).** On 19 October 2026 we selected five stars, T CrB and
-  four field stars, in one 20-minute session of 21 frames. The app wrote a row for each selected star in every
-  frame's CSV, plus a summary CSV per star. It did not always keep every star: the four field stars appear in 15 to
-  19 of the 21 frames.
+- **It can record several stars at once.** Select more than one star and the app writes a row for each in every
+  frame's CSV, plus a summary CSV per star. It may not keep every star in every frame.
 
 ## Our Seestar photometry steps (provisional)
 
@@ -136,8 +129,7 @@ we learn more.
 2. **Use equatorial (EQ) mode** and keep it the same every night. Alt-az rotates the field during an
    exposure; we have not tested it. The FITS keyword `EQMODE` records the mode.
 3. **Choose one exposure and one gain for the whole night, and check the FITS `GAIN` header afterwards.** A gain
-   of 50% set in the app before starting did not change our frames (gain 200 in every header, star fluxes within 1% of
-   a gain 200 night), so do not assume the setting took effect. Choose them so that your target and comparison stars stay below the ceiling in the channel you will
+   set in the app beforehand did not take effect for us (the header stayed at 200), so do not assume it did. Choose them so that your target and comparison stars stay below the ceiling in the channel you will
    measure: 65535 for red and blue, but only about 45,000 for green, which saturates near 48,000 to 49,000
    (as a starting point, a brightest pixel of 30,000 to 40,000; this is a suggestion, not tested).
 4. **Record** the app version (it is not in the FITS headers), the date, conditions (seeing, transparency,
@@ -165,8 +157,7 @@ we learn more.
 9. **Reject saturated stars.** In the red and blue planes treat any pixel at 65000 or more as clipped; in the
    green plane treat about 45,000 or more as saturated, because the green peaks of stars of very different
    brightness pile up at about 48,000 to 49,000 (a soft ceiling). Apply this to the target and every comparison
-   star. If a star saturates, drop it or shorten the exposure. Dropping our near-ceiling T CrB frames moved the
-   result by 0.015 magnitude or less.
+   star. If a star saturates, drop it or shorten the exposure.
 10. **Calibrate each frame.** The zero point is the median of (catalogue V − instrumental magnitude) over your
     comparison stars. Then check it: treat each comparison star in turn as the unknown and see whether you
     recover its catalogue value (we got within about 0.02 to 0.05 magnitude). A star that does not recover its
@@ -177,14 +168,13 @@ we learn more.
 **The colour problem**
 
 12. **A red star measured against bluer comparison stars reads too bright.** T CrB is far redder than any
-    AAVSO comparison star in its field, and the green channel measured against V comparison stars read about
-    0.06 to 0.3 magnitude too bright. If your target is much redder (or bluer) than your comparison stars,
+    AAVSO comparison star in its field, and the green channel measured against V comparison stars read too
+    bright. If your target is much redder (or bluer) than your comparison stars,
     correct for colour. Our method: use Gaia DR3 stars in the same field, find how the instrumental green
     magnitude relates to Gaia colour (BP−RP), apply it to the target's Gaia colour, and convert Gaia G to V with
     the relation in the Gaia documentation (we checked it against AAVSO's V for eight comparison stars: root-mean-square
-    0.025). On our two T CrB nights this gave V between 10.06 and 10.33 (night 1) and between 10.09 and 10.31
-    (night 2), with a systematic uncertainty we put at about ±0.2 magnitude. The red end is the weak spot:
-    very few calibration stars are as red as T CrB.
+    0.025). Expect a systematic uncertainty of about ±0.2 magnitude for a very red star: the red end is the weak spot,
+    because very few calibration stars are as red as T CrB. The guide has our early numbers.
 
 **Reporting**
 
@@ -235,10 +225,8 @@ Gaia colour correction. Details and caveats are in the
 
 ## Capture technique
 
-- **Several stars in one session — verified.** The app's Photometry mode lets you select more than one
-  star to measure in the same session. We recorded five at once on 19 October 2026 (T CrB and four field stars) and
-  got data for all of them. Choosing extra stars that are fainter than the target is useful: ours stayed well below
-  the saturation ceiling and served as check stars.
+- **Several stars in one session.** The app's Photometry mode lets you select more than one star to measure at
+  once. Extra stars that are fainter than the target stay below the saturation ceiling and make useful check stars.
 - **Use EQ mode** for anything longer than a quick check — kills field rotation, which
   otherwise ruins long time-series photometry (Andrew Pearce, Aug 2025).
 - **Average multiple short subs per data point**, don't rely on single frames. kb0fhp

@@ -28,9 +28,9 @@ The app writes a CSV per frame (and a summary CSV), with the star's name, positi
 
 What we found, measured from the files:
 
-- **The app's magnitude is not V, and it reads about 0.9 magnitude too bright.** It reported about **9.2** for T CrB while AAVSO observers reported about **10.0**. On a third night we also had the app measure four ordinary field stars (not red: Gaia colours 0.95 to 1.17), and it read 0.8 to 0.94 magnitude too bright for each of them (against V worked out from Gaia). So the offset is a roughly constant zero-point error, consistent with the clipped reference star described below, and not mainly a red-star effect. We do not know which band or catalogue it uses.
-- **You can record several stars at once (verified).** On 19 October 2026 we selected five stars in one session of 21 frames over 20 minutes: T CrB and four field stars. The app wrote one row per selected star in each frame's CSV (T CrB as "Blaze Star", one star under its catalogue name, the others named by their coordinates) and one summary CSV per star. It did not always keep every star: the four field stars appear in 15 to 19 of the 21 frames. Choosing fainter extra stars gave us unsaturated check stars (see section 5).
-- **`Mag(err)` is not photon noise; it is mostly the scatter of the app's own reference stars.** For a frame with SNR 62.7, noise alone would give about 0.017 mag, but the app reported 0.19. On our files it is reproduced to within about 0.001 by √[(s/√N)² + (1.0857/SNR)² + 0.01²], where s is the scatter of (app magnitude − catalogue magnitude) over the N = 15 reference stars. One of those reference stars (catalogue magnitude 3.76) is clipped and was measured about 2.5 magnitudes too faint, so it dominates s. In 4 of our 35 frames it dropped out of the reference set: the error fell from about 0.17 to 0.20 down to 0.07 to 0.08, and the app's magnitude for T CrB moved about 0.2 to 0.3 fainter. So the error does not say how well the star was measured, and the app's magnitude depends on which references it happens to use. *(A reader who reviewed our files suspected the reference stars; we then reproduced the result ourselves.)*
+- **The app's magnitude is not V, and it reads about 0.9 magnitude too bright** for every star we checked, a roughly constant zero-point error. It reported about **9.2** for T CrB while AAVSO observers reported about **10.0**. We do not know which band or catalogue it uses.
+- **You can record several stars at once.** Select more than one star in Photometry mode and the app writes a row for each in every frame's CSV, plus a summary CSV per star. It may not keep every star in every frame. Fainter extra stars make useful check stars.
+- **`Mag(err)` is not photon noise.** It is mostly the scatter of the app's own reference stars, and one clipped bright reference can dominate it, so the app's magnitude depends on which references it happens to use. Do not quote it as the measurement error.
 - **ZWO has not documented it yet.** The release notes for 3.4.0 and 3.4.1 say only "Added Photometry" (and that the dark-frame library workflow changed). The catalogue, the measured colour channel, the CSV columns and the error calculation are not described. Questions have been put to ZWO; there has been no reply.
 - **Whether the saved frames have the dark library applied is unknown.** The FITS headers have no keyword for it.
 
@@ -39,12 +39,10 @@ What we found, measured from the files:
 ## 3. Setting up the session
 
 - **Use equatorial mode** and keep it the same every night. (Alt-az rotates the field during an exposure. We have not tested it.) The FITS header keyword `EQMODE` records the mode.
-- **Pick one exposure and one gain for the whole night, and check the FITS `GAIN` header afterwards.** The app does not appear to offer a gain control inside Photometry mode. We tried setting the gain to 50% in the app before starting a session, and it had no effect: every frame's header still read gain 200, and the comparison stars' fluxes matched an earlier 60 s, gain 200 night to within 1%. So we do not yet know how to change the gain for photometry. The header is the only reliable record of what was used.
-- **Mind the clipping.** The raw frames are 16-bit (2160 × 3840), so 65535 is the ceiling.
-  - At **60 s, gain 200** T CrB's *red* pixels reached the 65535 ceiling in 12 of 15 frames. The *green* pixels never reached 65535, but green saturates much lower, at about 48,000 to 49,000 (next point).
-  - At **30 s, gain 200** the red pixels clipped in 7 of 20 frames, and the app's frame-to-frame scatter roughly halved (0.155 to 0.077).
-  - **Staying below 65535 does not mean the green pixels were unsaturated.** The green peaks of very different stars (V 7.9 to 9.8) all sit at about **47,600 to 49,500**, and the largest green value anywhere in a frame is about 51,000 to 51,800, a soft ceiling well below 65535, while red and blue reach 65535. A reader who examined our files pointed this out, and our measurements confirm it. We now treat a green peak above about **45,000** as saturated. T CrB itself reached that level in 9 of 15 frames on night 1 and 5 of 20 on night 2. Dropping those frames, and any comparison star above it, changed our results by 0.015 magnitude or less (section 5). An eruption to magnitude 2 would saturate it badly, so you would need much shorter exposures then.
-  - As a starting point, aim for the star's brightest pixel at roughly 30,000 to 40,000 (my suggestion, not tested). Other gains are untested so far (our one attempt to change the gain did not take effect).
+- **Pick one exposure and one gain for the whole night, and check the FITS `GAIN` header afterwards.** The app does not appear to offer a gain control inside Photometry mode, and a gain set in the app beforehand did not take effect for us (the header stayed at 200), so do not assume it did. The header is the only reliable record of what was used.
+- **Mind the clipping.** The raw frames are 16-bit, so 65535 is the ceiling for red and blue. **Green saturates lower, at about 48,000 to 49,000, so treat a green peak above about 45,000 as saturated.**
+  - At 60 s, gain 200, T CrB itself reaches that level in a large share of frames, and shorter exposures (30 s) do much better. An eruption to magnitude 2 would saturate it badly, so you would need much shorter exposures then.
+  - As a starting point, aim for the star's brightest pixel at roughly 30,000 to 40,000 (a suggestion, not tested). Other gains are untested so far.
 - **Keep every individual sub-frame**, not just the stack. The stack hides per-frame problems.
 - **Save a short, non-enhanced stack at the end of the session.** You need it later to place stars on the frames. Do not use an AI-enhanced image for measurement: it is stretched and denoised, so it is no longer linear.
 - **Write down** the app version, date, conditions (seeing, transparency, Moon), exposure, gain and mount mode. The app version is *not* in the FITS headers.
@@ -68,14 +66,11 @@ Measured against bluer comparison stars, a very red star reads too bright. We co
 | Green channel against V comparison stars (TG-style) | 9.999 ± 0.036 | 9.963 ± 0.036 |
 | With the Gaia colour correction (V, a range from different fits) | 10.06 to 10.33 | 10.09 to 10.31 |
 | T CrB red pixels at the ceiling | 12 of 15 frames | 7 of 20 frames |
-| T CrB green peak above about 45,000 (near the green ceiling) | 9 of 15 frames | 5 of 20 frames |
-| Green (TG-style) using only frames where T CrB and the comparison stars are below that | 9.985 ± 0.015 (6 frames) | 9.957 ± 0.033 (15 frames) |
 | AAVSO observers that UT day | visual 10.0 to 10.56 | V about 10.02 (two observers), visual 10.0 to 10.39 |
 
-- **The near-ceiling frames barely matter:** dropping them moves the green result by 0.014 magnitude (night 1) and 0.006 (night 2).
 - **Systematic uncertainty is about ±0.2 magnitude.** Frame-to-frame scatter is only about 0.04, but the colour correction dominates.
-- **Night 2 is a weaker colour calibration than night 1.** I had no stack from that night, so only about 60 calibration stars matched (none redder than a colour index of 1.6), against about 360 on night 1. A same-night stack matters.
-- **A check on unsaturated stars (third night, 19 October 2026).** We had the app measure four field stars as well as T CrB. All four stayed well below the green ceiling (green peaks 12,800 to 23,600). Measured with our method against the AAVSO comparison stars, they agree with the V worked out from their Gaia magnitudes to between −0.05 and +0.10 magnitude (one of them is AAVSO comparison star 124 and matches its catalogue V of 12.37 to 0.02). That is a good independent check of the method on stars that are not saturated. T CrB itself was saturated that night, so it is not a result.
+- **Night 2's colour calibration is weaker than night 1's:** it had no stack of its own, so far fewer calibration stars matched. A same-night stack matters.
+- **Extra checks agree:** dropping frames where T CrB is near the green ceiling moves the result by 0.015 magnitude or less, and unsaturated field stars measured the same way agree with their Gaia-based V to about 0.1 magnitude.
 - **Conditions:** night 2 had above-average transparency and average seeing. I did not record night 1's sky.
 - Both nights agree with AAVSO's values to within the uncertainty, and neither showed any sign of brightening.
 
@@ -101,9 +96,9 @@ If you try this and get different numbers, or you know any of the answers above,
 
 ## Update log
 
-- **19 October 2026:** first provisional version, from two test nights (17 and 18 October 2026, S30 Pro).
-- **19 October 2026 (later):** corrected two points after a reader reviewed our files. The green channel does saturate, at about 48,000 to 49,000, well below 65535 (the first version said it never clipped). And the app's `Mag(err)` is mostly the scatter of its own reference stars, driven by one clipped bright star, not photon noise.
-- **20 October 2026:** a third night taken with the gain set to 50% in the app showed no change: gain 200 in every header, and star fluxes within 1% of a gain 200 night. The guide now says to check the header, and notes we do not yet know how to change the gain for photometry. The same night verified that Photometry mode can record several stars at once (five in one session), and the four extra stars gave unsaturated check stars.
+- **19 October 2026:** first provisional version.
+- **19 October 2026 (later):** corrected the green saturation limit (about 45,000, not 65535) and the explanation of the app's error value.
+- **20 October 2026:** corrected the app's offset (about 0.9 magnitude too bright for every star, not only red ones), added that several stars can be recorded at once, and changed the gain advice to check the FITS `GAIN` header.
 
 ## References and further reading
 
