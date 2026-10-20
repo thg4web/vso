@@ -98,8 +98,10 @@ The Seestar app gained a Photometry mode in v3.4.0 (October 2026). It writes a C
 summary CSV with the star's position, `Mag(obs)`, `Mag(err)` and SNR. What we found on the S30 Pro
 (measured from our own files, October 2026):
 
-- **Its magnitude is not V.** On T CrB (a red star) it read about 9.2 while AAVSO observers reported
-  about 10.0: roughly 0.8 to 1.1 magnitude too bright. Which band and catalogue it uses is not documented.
+- **Its magnitude is not V, and it reads about 0.9 magnitude too bright.** On T CrB it read about 9.2 while AAVSO
+  observers reported about 10.0, and on four ordinary field stars it read 0.8 to 0.94 too bright (against V worked
+  out from Gaia), so it is a roughly constant zero-point error and not mainly a red-star effect. Which band and
+  catalogue it uses is not documented.
 - **`Mag(err)` is not photon noise** (0.19 reported where the noise alone gives about 0.017). On our
   files it is mostly the scatter of the app's own reference stars: one clipped bright reference (catalogue
   magnitude 3.76, measured about 2.5 magnitudes too faint) dominates it, and when that star dropped out of
@@ -110,7 +112,10 @@ summary CSV with the star's position, `Mag(obs)`, `Mag(err)` and SNR. What we fo
   dark-subtracted is unknown.
 - **Use it to identify the star and to get pixel positions**, not for the magnitude. The `X Axis` and
   `Y Axis` columns are 1-based pixel positions in the raw frame (we verified that the pixel peaks sit at X−1, Y−1).
-- It has also been reported that Photometry mode can measure several targets in one session. We have not tried it.
+- **It can record several stars at once (verified by us).** On 19 October 2026 we selected five stars, T CrB and
+  four field stars, in one 20-minute session of 21 frames. The app wrote a row for each selected star in every
+  frame's CSV, plus a summary CSV per star. It did not always keep every star: the four field stars appear in 15 to
+  19 of the 21 frames.
 
 ## Our Seestar photometry steps (provisional)
 
@@ -130,8 +135,9 @@ we learn more.
    10.55, 10.74 and 11.17.
 2. **Use equatorial (EQ) mode** and keep it the same every night. Alt-az rotates the field during an
    exposure; we have not tested it. The FITS keyword `EQMODE` records the mode.
-3. **Choose one exposure and one gain for the whole night.** Set the gain before you enter Photometry
-   mode. Choose them so that your target and comparison stars stay below the ceiling in the channel you will
+3. **Choose one exposure and one gain for the whole night, and check the FITS `GAIN` header afterwards.** A gain
+   of 50% set in the app before starting did not change our frames (gain 200 in every header, star fluxes within 1% of
+   a gain 200 night), so do not assume the setting took effect. Choose them so that your target and comparison stars stay below the ceiling in the channel you will
    measure: 65535 for red and blue, but only about 45,000 for green, which saturates near 48,000 to 49,000
    (as a starting point, a brightest pixel of 30,000 to 40,000; this is a suggestion, not tested).
 4. **Record** the app version (it is not in the FITS headers), the date, conditions (seeing, transparency,
@@ -229,10 +235,10 @@ Gaia colour correction. Details and caveats are in the
 
 ## Capture technique
 
-- **Several targets in one session — reported, not yet tried here.** It has been reported
-  that the Seestar app's Photometry mode lets you select more than one target to measure in
-  the same session. We have not tried this and do not yet have the original source for the
-  report, so treat it as unconfirmed until we do.
+- **Several stars in one session — verified.** The app's Photometry mode lets you select more than one
+  star to measure in the same session. We recorded five at once on 19 October 2026 (T CrB and four field stars) and
+  got data for all of them. Choosing extra stars that are fainter than the target is useful: ours stayed well below
+  the saturation ceiling and served as check stars.
 - **Use EQ mode** for anything longer than a quick check — kills field rotation, which
   otherwise ruins long time-series photometry (Andrew Pearce, Aug 2025).
 - **Average multiple short subs per data point**, don't rely on single frames. kb0fhp
