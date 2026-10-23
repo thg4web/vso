@@ -1,5 +1,4 @@
 date_utc,jd,magnitude,fainter_than,band_code,band_name,uncertainty,observer_code,obstype
-2026-10-22T15:38:52Z,2461336.152,4.9,True,0,Visual,,MQA,1
 2026-10-22T16:18:44Z,2461336.17968,5.0,True,51,Tri-Color Green,0.1,OAR,2
 2026-10-22T16:27:33Z,2461336.1858,7.1,True,51,Tri-Color Green,0.11,OAR,2
 2026-10-22T16:38:07Z,2461336.19314,7.1,True,51,Tri-Color Green,0.11,OAR,2
