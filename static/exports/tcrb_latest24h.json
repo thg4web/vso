@@ -1,44 +1,11 @@
 {
   "star": "T CrB",
-  "exported_at": "2026-10-23T22:13:01Z",
+  "exported_at": "2026-10-24T04:13:01Z",
   "window_hours": 24,
-  "window_start_utc": "2026-10-22T22:13:01Z",
-  "window_end_utc": "2026-10-23T22:13:01Z",
-  "count": 8,
+  "window_start_utc": "2026-10-23T04:13:01Z",
+  "window_end_utc": "2026-10-24T04:13:01Z",
+  "count": 7,
   "observations": [
-    {
-      "date_utc": "2026-10-22T23:28:59Z",
-      "jd": 2461336.478472,
-      "magnitude": 5.0,
-      "fainter_than": true,
-      "band_code": "0",
-      "band_name": "Visual",
-      "uncertainty": null,
-      "observer_code": "TRIB",
-      "obstype": "1"
-    },
-    {
-      "date_utc": "2026-10-23T00:20:59Z",
-      "jd": 2461336.514583,
-      "magnitude": 8.4,
-      "fainter_than": true,
-      "band_code": "0",
-      "band_name": "Visual",
-      "uncertainty": null,
-      "observer_code": "SSHA",
-      "obstype": "1"
-    },
-    {
-      "date_utc": "2026-10-23T02:39:59Z",
-      "jd": 2461336.611111,
-      "magnitude": 9.9,
-      "fainter_than": false,
-      "band_code": "0",
-      "band_name": "Visual",
-      "uncertainty": null,
-      "observer_code": "BALQ",
-      "obstype": "1"
-    },
     {
       "date_utc": "2026-10-23T16:40:49Z",
       "jd": 2461337.195018,
@@ -92,6 +59,28 @@
       "band_name": "Visual",
       "uncertainty": null,
       "observer_code": "LEDE",
+      "obstype": "1"
+    },
+    {
+      "date_utc": "2026-10-23T23:13:50Z",
+      "jd": 2461337.46794,
+      "magnitude": 9.3,
+      "fainter_than": true,
+      "band_code": "0",
+      "band_name": "Visual",
+      "uncertainty": null,
+      "observer_code": "WCR",
+      "obstype": "1"
+    },
+    {
+      "date_utc": "2026-10-24T01:48:00Z",
+      "jd": 2461337.575,
+      "magnitude": 10.0,
+      "fainter_than": false,
+      "band_code": "0",
+      "band_name": "Visual",
+      "uncertainty": null,
+      "observer_code": "BALQ",
       "obstype": "1"
     }
   ]
