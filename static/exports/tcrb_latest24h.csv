@@ -1,5 +1,5 @@
 date_utc,jd,magnitude,fainter_than,band_code,band_name,uncertainty,observer_code,obstype
-2026-10-24T15:28:48Z,2461338.145,4.9,True,0,Visual,,MQA,1
 2026-10-24T16:29:16Z,2461338.187,4.9,True,0,Visual,,MQA,1
 2026-10-24T17:34:56Z,2461338.2326,9.9,False,0,Visual,,KWO,1
+2026-10-24T19:55:03Z,2461338.3299,10.0,False,0,Visual,,VTY,1
 2026-10-25T02:12:59Z,2461338.592361,9.7,False,0,Visual,,BALQ,1
