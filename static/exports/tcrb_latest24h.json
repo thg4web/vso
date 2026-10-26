@@ -1,22 +1,11 @@
 {
   "star": "T CrB",
-  "exported_at": "2026-10-26T10:13:01Z",
+  "exported_at": "2026-10-26T16:13:01Z",
   "window_hours": 24,
-  "window_start_utc": "2026-10-25T10:13:01Z",
-  "window_end_utc": "2026-10-26T10:13:01Z",
-  "count": 11,
+  "window_start_utc": "2026-10-25T16:13:01Z",
+  "window_end_utc": "2026-10-26T16:13:01Z",
+  "count": 14,
   "observations": [
-    {
-      "date_utc": "2026-10-25T15:28:48Z",
-      "jd": 2461339.145,
-      "magnitude": 4.9,
-      "fainter_than": true,
-      "band_code": "0",
-      "band_name": "Visual",
-      "uncertainty": null,
-      "observer_code": "MQA",
-      "obstype": "1"
-    },
     {
       "date_utc": "2026-10-25T16:29:16Z",
       "jd": 2461339.187,
@@ -59,6 +48,50 @@
       "band_name": "Johnson V",
       "uncertainty": "0.009",
       "observer_code": "SANGA",
+      "obstype": "2"
+    },
+    {
+      "date_utc": "2026-10-25T17:44:12Z",
+      "jd": 2461339.239032,
+      "magnitude": 9.946,
+      "fainter_than": false,
+      "band_code": "2",
+      "band_name": "Johnson V",
+      "uncertainty": "0.004",
+      "observer_code": "DUBF",
+      "obstype": "2"
+    },
+    {
+      "date_utc": "2026-10-25T17:44:41Z",
+      "jd": 2461339.239375,
+      "magnitude": 11.53,
+      "fainter_than": false,
+      "band_code": "3",
+      "band_name": "Johnson B",
+      "uncertainty": "0.009",
+      "observer_code": "DUBF",
+      "obstype": "2"
+    },
+    {
+      "date_utc": "2026-10-25T17:45:09Z",
+      "jd": 2461339.23969,
+      "magnitude": 8.907,
+      "fainter_than": false,
+      "band_code": "4",
+      "band_name": "Cousins R",
+      "uncertainty": "0.003",
+      "observer_code": "DUBF",
+      "obstype": "2"
+    },
+    {
+      "date_utc": "2026-10-25T17:45:25Z",
+      "jd": 2461339.239879,
+      "magnitude": 7.198,
+      "fainter_than": false,
+      "band_code": "5",
+      "band_name": "Cousins I",
+      "uncertainty": "0.005",
+      "observer_code": "DUBF",
       "obstype": "2"
     },
     {
