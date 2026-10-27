@@ -1,10 +1,10 @@
 {
   "star": "T CrB",
-  "exported_at": "2026-10-27T04:13:01Z",
+  "exported_at": "2026-10-27T10:13:01Z",
   "window_hours": 24,
-  "window_start_utc": "2026-10-26T04:13:01Z",
-  "window_end_utc": "2026-10-27T04:13:01Z",
-  "count": 6,
+  "window_start_utc": "2026-10-26T10:13:01Z",
+  "window_end_utc": "2026-10-27T10:13:01Z",
+  "count": 7,
   "observations": [
     {
       "date_utc": "2026-10-26T15:28:48Z",
@@ -48,6 +48,17 @@
       "band_name": "Johnson V",
       "uncertainty": "0.008",
       "observer_code": "SANGA",
+      "obstype": "2"
+    },
+    {
+      "date_utc": "2026-10-26T18:55:20Z",
+      "jd": 2461340.288432,
+      "magnitude": 9.945,
+      "fainter_than": false,
+      "band_code": "2",
+      "band_name": "Johnson V",
+      "uncertainty": "0.012",
+      "observer_code": "DFS",
       "obstype": "2"
     },
     {
