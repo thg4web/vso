@@ -1,55 +1,11 @@
 {
   "star": "T CrB",
-  "exported_at": "2026-10-27T16:13:01Z",
+  "exported_at": "2026-10-27T22:13:01Z",
   "window_hours": 24,
-  "window_start_utc": "2026-10-26T16:13:01Z",
-  "window_end_utc": "2026-10-27T16:13:01Z",
-  "count": 21,
+  "window_start_utc": "2026-10-26T22:13:01Z",
+  "window_end_utc": "2026-10-27T22:13:01Z",
+  "count": 20,
   "observations": [
-    {
-      "date_utc": "2026-10-26T16:43:32Z",
-      "jd": 2461340.196903,
-      "magnitude": 9.944,
-      "fainter_than": false,
-      "band_code": "2",
-      "band_name": "Johnson V",
-      "uncertainty": "0.011",
-      "observer_code": "SANGA",
-      "obstype": "2"
-    },
-    {
-      "date_utc": "2026-10-26T16:46:53Z",
-      "jd": 2461340.199231,
-      "magnitude": 9.98,
-      "fainter_than": false,
-      "band_code": "2",
-      "band_name": "Johnson V",
-      "uncertainty": "0.011",
-      "observer_code": "SANGA",
-      "obstype": "2"
-    },
-    {
-      "date_utc": "2026-10-26T16:50:24Z",
-      "jd": 2461340.201675,
-      "magnitude": 9.949,
-      "fainter_than": false,
-      "band_code": "2",
-      "band_name": "Johnson V",
-      "uncertainty": "0.008",
-      "observer_code": "SANGA",
-      "obstype": "2"
-    },
-    {
-      "date_utc": "2026-10-26T18:55:20Z",
-      "jd": 2461340.288432,
-      "magnitude": 9.945,
-      "fainter_than": false,
-      "band_code": "2",
-      "band_name": "Johnson V",
-      "uncertainty": "0.012",
-      "observer_code": "DFS",
-      "obstype": "2"
-    },
     {
       "date_utc": "2026-10-26T23:19:59Z",
       "jd": 2461340.472222,
@@ -236,6 +192,39 @@
       "uncertainty": "0.007",
       "observer_code": "CCHD",
       "obstype": "2"
+    },
+    {
+      "date_utc": "2026-10-27T16:42:54Z",
+      "jd": 2461341.196461,
+      "magnitude": 9.977,
+      "fainter_than": false,
+      "band_code": "2",
+      "band_name": "Johnson V",
+      "uncertainty": "0.009",
+      "observer_code": "SANGA",
+      "obstype": "2"
+    },
+    {
+      "date_utc": "2026-10-27T16:47:55Z",
+      "jd": 2461341.199952,
+      "magnitude": 9.981,
+      "fainter_than": false,
+      "band_code": "2",
+      "band_name": "Johnson V",
+      "uncertainty": "0.009",
+      "observer_code": "SANGA",
+      "obstype": "2"
+    },
+    {
+      "date_utc": "2026-10-27T17:29:45Z",
+      "jd": 2461341.229,
+      "magnitude": 10.1,
+      "fainter_than": false,
+      "band_code": "0",
+      "band_name": "Visual",
+      "uncertainty": null,
+      "observer_code": "OGAA",
+      "obstype": "1"
     }
   ]
 }
