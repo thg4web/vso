@@ -1,198 +1,11 @@
 {
   "star": "T CrB",
-  "exported_at": "2026-10-27T22:13:01Z",
+  "exported_at": "2026-10-28T04:13:01Z",
   "window_hours": 24,
-  "window_start_utc": "2026-10-26T22:13:01Z",
-  "window_end_utc": "2026-10-27T22:13:01Z",
-  "count": 20,
+  "window_start_utc": "2026-10-27T04:13:01Z",
+  "window_end_utc": "2026-10-28T04:13:01Z",
+  "count": 6,
   "observations": [
-    {
-      "date_utc": "2026-10-26T23:19:59Z",
-      "jd": 2461340.472222,
-      "magnitude": 5.0,
-      "fainter_than": true,
-      "band_code": "0",
-      "band_name": "Visual",
-      "uncertainty": null,
-      "observer_code": "TRIB",
-      "obstype": "1"
-    },
-    {
-      "date_utc": "2026-10-27T02:03:59Z",
-      "jd": 2461340.586111,
-      "magnitude": 10.0,
-      "fainter_than": false,
-      "band_code": "0",
-      "band_name": "Visual",
-      "uncertainty": null,
-      "observer_code": "BALQ",
-      "obstype": "1"
-    },
-    {
-      "date_utc": "2026-10-27T02:46:52Z",
-      "jd": 2461340.61588,
-      "magnitude": 11.475,
-      "fainter_than": false,
-      "band_code": "3",
-      "band_name": "Johnson B",
-      "uncertainty": "0.007",
-      "observer_code": "CCHD",
-      "obstype": "2"
-    },
-    {
-      "date_utc": "2026-10-27T02:47:23Z",
-      "jd": 2461340.61625,
-      "magnitude": 11.457,
-      "fainter_than": false,
-      "band_code": "3",
-      "band_name": "Johnson B",
-      "uncertainty": "0.007",
-      "observer_code": "CCHD",
-      "obstype": "2"
-    },
-    {
-      "date_utc": "2026-10-27T02:47:53Z",
-      "jd": 2461340.616597,
-      "magnitude": 11.512,
-      "fainter_than": false,
-      "band_code": "3",
-      "band_name": "Johnson B",
-      "uncertainty": "0.007",
-      "observer_code": "CCHD",
-      "obstype": "2"
-    },
-    {
-      "date_utc": "2026-10-27T02:48:23Z",
-      "jd": 2461340.616933,
-      "magnitude": 11.522,
-      "fainter_than": false,
-      "band_code": "3",
-      "band_name": "Johnson B",
-      "uncertainty": "0.007",
-      "observer_code": "CCHD",
-      "obstype": "2"
-    },
-    {
-      "date_utc": "2026-10-27T02:48:49Z",
-      "jd": 2461340.617245,
-      "magnitude": 11.473,
-      "fainter_than": false,
-      "band_code": "3",
-      "band_name": "Johnson B",
-      "uncertainty": "0.007",
-      "observer_code": "CCHD",
-      "obstype": "2"
-    },
-    {
-      "date_utc": "2026-10-27T02:49:20Z",
-      "jd": 2461340.617593,
-      "magnitude": 11.441,
-      "fainter_than": false,
-      "band_code": "3",
-      "band_name": "Johnson B",
-      "uncertainty": "0.007",
-      "observer_code": "CCHD",
-      "obstype": "2"
-    },
-    {
-      "date_utc": "2026-10-27T02:49:46Z",
-      "jd": 2461340.617905,
-      "magnitude": 11.503,
-      "fainter_than": false,
-      "band_code": "3",
-      "band_name": "Johnson B",
-      "uncertainty": "0.007",
-      "observer_code": "CCHD",
-      "obstype": "2"
-    },
-    {
-      "date_utc": "2026-10-27T02:50:14Z",
-      "jd": 2461340.618218,
-      "magnitude": 11.495,
-      "fainter_than": false,
-      "band_code": "3",
-      "band_name": "Johnson B",
-      "uncertainty": "0.007",
-      "observer_code": "CCHD",
-      "obstype": "2"
-    },
-    {
-      "date_utc": "2026-10-27T02:50:40Z",
-      "jd": 2461340.61853,
-      "magnitude": 11.503,
-      "fainter_than": false,
-      "band_code": "3",
-      "band_name": "Johnson B",
-      "uncertainty": "0.007",
-      "observer_code": "CCHD",
-      "obstype": "2"
-    },
-    {
-      "date_utc": "2026-10-27T02:51:08Z",
-      "jd": 2461340.618854,
-      "magnitude": 11.491,
-      "fainter_than": false,
-      "band_code": "3",
-      "band_name": "Johnson B",
-      "uncertainty": "0.007",
-      "observer_code": "CCHD",
-      "obstype": "2"
-    },
-    {
-      "date_utc": "2026-10-27T02:51:36Z",
-      "jd": 2461340.619167,
-      "magnitude": 11.489,
-      "fainter_than": false,
-      "band_code": "3",
-      "band_name": "Johnson B",
-      "uncertainty": "0.007",
-      "observer_code": "CCHD",
-      "obstype": "2"
-    },
-    {
-      "date_utc": "2026-10-27T02:52:02Z",
-      "jd": 2461340.619479,
-      "magnitude": 11.418,
-      "fainter_than": false,
-      "band_code": "3",
-      "band_name": "Johnson B",
-      "uncertainty": "0.007",
-      "observer_code": "CCHD",
-      "obstype": "2"
-    },
-    {
-      "date_utc": "2026-10-27T02:52:30Z",
-      "jd": 2461340.619792,
-      "magnitude": 11.477,
-      "fainter_than": false,
-      "band_code": "3",
-      "band_name": "Johnson B",
-      "uncertainty": "0.007",
-      "observer_code": "CCHD",
-      "obstype": "2"
-    },
-    {
-      "date_utc": "2026-10-27T02:52:56Z",
-      "jd": 2461340.620104,
-      "magnitude": 11.499,
-      "fainter_than": false,
-      "band_code": "3",
-      "band_name": "Johnson B",
-      "uncertainty": "0.007",
-      "observer_code": "CCHD",
-      "obstype": "2"
-    },
-    {
-      "date_utc": "2026-10-27T02:53:24Z",
-      "jd": 2461340.620417,
-      "magnitude": 11.502,
-      "fainter_than": false,
-      "band_code": "3",
-      "band_name": "Johnson B",
-      "uncertainty": "0.007",
-      "observer_code": "CCHD",
-      "obstype": "2"
-    },
     {
       "date_utc": "2026-10-27T16:42:54Z",
       "jd": 2461341.196461,
@@ -225,6 +38,39 @@
       "uncertainty": null,
       "observer_code": "OGAA",
       "obstype": "1"
+    },
+    {
+      "date_utc": "2026-10-28T00:48:57Z",
+      "jd": 2461341.534,
+      "magnitude": 9.9,
+      "fainter_than": false,
+      "band_code": "0",
+      "band_name": "Visual",
+      "uncertainty": null,
+      "observer_code": "WALG",
+      "obstype": "1"
+    },
+    {
+      "date_utc": "2026-10-28T01:58:37Z",
+      "jd": 2461341.58238,
+      "magnitude": 9.589,
+      "fainter_than": false,
+      "band_code": "8",
+      "band_name": "Unfiltered (V zeropoint)",
+      "uncertainty": "0.004",
+      "observer_code": "SKA",
+      "obstype": "2"
+    },
+    {
+      "date_utc": "2026-10-28T02:02:16Z",
+      "jd": 2461341.58491,
+      "magnitude": 9.563,
+      "fainter_than": false,
+      "band_code": "8",
+      "band_name": "Unfiltered (V zeropoint)",
+      "uncertainty": "0.004",
+      "observer_code": "SKA",
+      "obstype": "2"
     }
   ]
 }
