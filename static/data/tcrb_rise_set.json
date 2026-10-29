@@ -1,35 +1,35 @@
 {
-  "date": "2026-10-28",
+  "date": "2026-10-29",
   "location": {
     "name": "Reference location (US East Coast)"
   },
   "reference_timezone": "America/New_York",
   "reference_tz_abbr": "EDT",
-  "computed_at": "2026-10-28T04:01:01.084585+00:00",
+  "computed_at": "2026-10-29T04:01:01.551510+00:00",
   "status": "normal",
-  "rise_utc": "2026-10-28T11:22:41.910865Z",
-  "transit_utc": "2026-10-28T18:46:11.865536Z",
-  "set_utc": "2026-10-29T02:09:41.820207Z",
+  "rise_utc": "2026-10-29T11:18:46.001395Z",
+  "transit_utc": "2026-10-29T18:42:15.956066Z",
+  "set_utc": "2026-10-30T02:05:45.910737Z",
   "transit_altitude_deg": 80.3,
   "visible_hours": 14.8,
-  "astronomical_dusk_utc": "2026-10-28T23:49:52.607224Z",
-  "astronomical_dawn_utc": "2026-10-29T10:08:21.703032Z",
+  "astronomical_dusk_utc": "2026-10-29T23:48:54.943882Z",
+  "astronomical_dawn_utc": "2026-10-30T10:09:11.771439Z",
   "dark_windows_utc": [
     [
-      "2026-10-28T23:49:52.607224Z",
-      "2026-10-29T02:09:41.820207Z"
+      "2026-10-29T23:48:54.943882Z",
+      "2026-10-30T02:05:45.910737Z"
     ]
   ],
   "dark_visible_hours": 2.3,
   "previous_night": {
-    "astronomical_dusk_utc": "2026-10-27T23:50:51.686981Z",
-    "astronomical_dawn_utc": "2026-10-28T10:07:31.743985Z",
+    "astronomical_dusk_utc": "2026-10-28T23:49:52.607224Z",
+    "astronomical_dawn_utc": "2026-10-29T10:08:21.703032Z",
     "dark_windows_utc": [
       [
-        "2026-10-27T23:50:51.686981Z",
-        "2026-10-28T02:13:37.729647Z"
+        "2026-10-28T23:49:52.607224Z",
+        "2026-10-29T02:09:41.820177Z"
       ]
     ],
-    "dark_visible_hours": 2.4
+    "dark_visible_hours": 2.3
   }
 }
