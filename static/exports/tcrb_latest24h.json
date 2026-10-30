@@ -1,33 +1,11 @@
 {
   "star": "T CrB",
-  "exported_at": "2026-10-30T10:13:01Z",
+  "exported_at": "2026-10-30T16:13:01Z",
   "window_hours": 24,
-  "window_start_utc": "2026-10-29T10:13:01Z",
-  "window_end_utc": "2026-10-30T10:13:01Z",
-  "count": 8,
+  "window_start_utc": "2026-10-29T16:13:01Z",
+  "window_end_utc": "2026-10-30T16:13:01Z",
+  "count": 6,
   "observations": [
-    {
-      "date_utc": "2026-10-29T15:28:48Z",
-      "jd": 2461343.145,
-      "magnitude": 4.9,
-      "fainter_than": true,
-      "band_code": "0",
-      "band_name": "Visual",
-      "uncertainty": null,
-      "observer_code": "MQA",
-      "obstype": "1"
-    },
-    {
-      "date_utc": "2026-10-29T16:09:07Z",
-      "jd": 2461343.173,
-      "magnitude": 4.9,
-      "fainter_than": true,
-      "band_code": "0",
-      "band_name": "Visual",
-      "uncertainty": null,
-      "observer_code": "MQA",
-      "obstype": "1"
-    },
     {
       "date_utc": "2026-10-29T17:51:52Z",
       "jd": 2461343.24436,
