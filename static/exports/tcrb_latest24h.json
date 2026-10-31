@@ -1,11 +1,66 @@
 {
   "star": "T CrB",
-  "exported_at": "2026-10-31T04:13:01Z",
+  "exported_at": "2026-10-31T10:13:01Z",
   "window_hours": 24,
-  "window_start_utc": "2026-10-30T04:13:01Z",
-  "window_end_utc": "2026-10-31T04:13:01Z",
-  "count": 2,
+  "window_start_utc": "2026-10-30T10:13:01Z",
+  "window_end_utc": "2026-10-31T10:13:01Z",
+  "count": 8,
   "observations": [
+    {
+      "date_utc": "2026-10-30T17:05:59Z",
+      "jd": 2461344.2125,
+      "magnitude": 9.8,
+      "fainter_than": false,
+      "band_code": "0",
+      "band_name": "Visual",
+      "uncertainty": null,
+      "observer_code": "KWO",
+      "obstype": "1"
+    },
+    {
+      "date_utc": "2026-10-30T17:38:34Z",
+      "jd": 2461344.235119,
+      "magnitude": 9.899,
+      "fainter_than": false,
+      "band_code": "2",
+      "band_name": "Johnson V",
+      "uncertainty": "0.004",
+      "observer_code": "DUBF",
+      "obstype": "2"
+    },
+    {
+      "date_utc": "2026-10-30T17:39:04Z",
+      "jd": 2461344.235467,
+      "magnitude": 11.405,
+      "fainter_than": false,
+      "band_code": "3",
+      "band_name": "Johnson B",
+      "uncertainty": "0.009",
+      "observer_code": "DUBF",
+      "obstype": "2"
+    },
+    {
+      "date_utc": "2026-10-30T17:39:31Z",
+      "jd": 2461344.235781,
+      "magnitude": 8.867,
+      "fainter_than": false,
+      "band_code": "4",
+      "band_name": "Cousins R",
+      "uncertainty": "0.003",
+      "observer_code": "DUBF",
+      "obstype": "2"
+    },
+    {
+      "date_utc": "2026-10-30T17:39:47Z",
+      "jd": 2461344.235968,
+      "magnitude": 7.186,
+      "fainter_than": false,
+      "band_code": "5",
+      "band_name": "Cousins I",
+      "uncertainty": "0.005",
+      "observer_code": "DUBF",
+      "obstype": "2"
+    },
     {
       "date_utc": "2026-10-30T17:48:13Z",
       "jd": 2461344.24182,
@@ -15,6 +70,17 @@
       "band_name": "Visual",
       "uncertainty": null,
       "observer_code": "PREB",
+      "obstype": "1"
+    },
+    {
+      "date_utc": "2026-10-30T18:20:59Z",
+      "jd": 2461344.264583,
+      "magnitude": 10.1,
+      "fainter_than": false,
+      "band_code": "0",
+      "band_name": "Visual",
+      "uncertainty": null,
+      "observer_code": "OJR",
       "obstype": "1"
     },
     {
