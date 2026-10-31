@@ -1,10 +1,10 @@
 {
   "star": "T CrB",
-  "exported_at": "2026-10-31T10:13:01Z",
+  "exported_at": "2026-10-31T16:13:01Z",
   "window_hours": 24,
-  "window_start_utc": "2026-10-30T10:13:01Z",
-  "window_end_utc": "2026-10-31T10:13:01Z",
-  "count": 8,
+  "window_start_utc": "2026-10-30T16:13:01Z",
+  "window_end_utc": "2026-10-31T16:13:01Z",
+  "count": 20,
   "observations": [
     {
       "date_utc": "2026-10-30T17:05:59Z",
@@ -62,6 +62,17 @@
       "obstype": "2"
     },
     {
+      "date_utc": "2026-10-30T17:47:39Z",
+      "jd": 2461344.24143015,
+      "magnitude": 9.732,
+      "fainter_than": false,
+      "band_code": "51",
+      "band_name": "Tri-Color Green",
+      "uncertainty": "0.08",
+      "observer_code": "WVOA",
+      "obstype": "6"
+    },
+    {
       "date_utc": "2026-10-30T17:48:13Z",
       "jd": 2461344.24182,
       "magnitude": 10.15,
@@ -82,6 +93,127 @@
       "uncertainty": null,
       "observer_code": "OJR",
       "obstype": "1"
+    },
+    {
+      "date_utc": "2026-10-30T19:20:55Z",
+      "jd": 2461344.3062,
+      "magnitude": 9.83,
+      "fainter_than": false,
+      "band_code": "0",
+      "band_name": "Visual",
+      "uncertainty": null,
+      "observer_code": "DPV",
+      "obstype": "1"
+    },
+    {
+      "date_utc": "2026-10-30T19:27:05Z",
+      "jd": 2461344.31048,
+      "magnitude": 9.909,
+      "fainter_than": false,
+      "band_code": "2",
+      "band_name": "Johnson V",
+      "uncertainty": "0.033",
+      "observer_code": "DPAH",
+      "obstype": "2"
+    },
+    {
+      "date_utc": "2026-10-30T19:27:15Z",
+      "jd": 2461344.310601,
+      "magnitude": 9.925,
+      "fainter_than": false,
+      "band_code": "2",
+      "band_name": "Johnson V",
+      "uncertainty": "0.046",
+      "observer_code": "DPAH",
+      "obstype": "2"
+    },
+    {
+      "date_utc": "2026-10-30T19:27:26Z",
+      "jd": 2461344.310721,
+      "magnitude": 9.943,
+      "fainter_than": false,
+      "band_code": "2",
+      "band_name": "Johnson V",
+      "uncertainty": "0.031",
+      "observer_code": "DPAH",
+      "obstype": "2"
+    },
+    {
+      "date_utc": "2026-10-30T19:27:36Z",
+      "jd": 2461344.310842,
+      "magnitude": 9.899,
+      "fainter_than": false,
+      "band_code": "2",
+      "band_name": "Johnson V",
+      "uncertainty": "0.053",
+      "observer_code": "DPAH",
+      "obstype": "2"
+    },
+    {
+      "date_utc": "2026-10-30T19:27:47Z",
+      "jd": 2461344.310963,
+      "magnitude": 9.837,
+      "fainter_than": false,
+      "band_code": "2",
+      "band_name": "Johnson V",
+      "uncertainty": "0.036",
+      "observer_code": "DPAH",
+      "obstype": "2"
+    },
+    {
+      "date_utc": "2026-10-30T19:27:57Z",
+      "jd": 2461344.311084,
+      "magnitude": 9.836,
+      "fainter_than": false,
+      "band_code": "2",
+      "band_name": "Johnson V",
+      "uncertainty": "0.048",
+      "observer_code": "DPAH",
+      "obstype": "2"
+    },
+    {
+      "date_utc": "2026-10-30T19:28:08Z",
+      "jd": 2461344.311205,
+      "magnitude": 9.832,
+      "fainter_than": false,
+      "band_code": "2",
+      "band_name": "Johnson V",
+      "uncertainty": "0.071",
+      "observer_code": "DPAH",
+      "obstype": "2"
+    },
+    {
+      "date_utc": "2026-10-30T19:28:18Z",
+      "jd": 2461344.311325,
+      "magnitude": 9.874,
+      "fainter_than": false,
+      "band_code": "2",
+      "band_name": "Johnson V",
+      "uncertainty": "0.051",
+      "observer_code": "DPAH",
+      "obstype": "2"
+    },
+    {
+      "date_utc": "2026-10-30T19:28:29Z",
+      "jd": 2461344.311447,
+      "magnitude": 9.903,
+      "fainter_than": false,
+      "band_code": "2",
+      "band_name": "Johnson V",
+      "uncertainty": "0.073",
+      "observer_code": "DPAH",
+      "obstype": "2"
+    },
+    {
+      "date_utc": "2026-10-30T19:28:39Z",
+      "jd": 2461344.311567,
+      "magnitude": 9.917,
+      "fainter_than": false,
+      "band_code": "2",
+      "band_name": "Johnson V",
+      "uncertainty": "0.069",
+      "observer_code": "DPAH",
+      "obstype": "2"
     },
     {
       "date_utc": "2026-10-30T23:48:00Z",
