@@ -1,4 +1,4 @@
 date_utc,jd,magnitude,fainter_than,band_code,band_name,uncertainty,observer_code,obstype
-2026-10-31T17:39:52Z,2461345.23603,9.91,False,0,Visual,,PREB,1
-2026-10-31T18:47:57Z,2461345.2833,9.8,False,0,Visual,,DPV,1
-2026-10-31T19:30:59Z,2461345.313194,10.1,False,0,Visual,,OJR,1
+2026-11-01T17:01:44Z,2461346.209538,9.82,False,2,Johnson V,0.003,LPEB,2
+2026-11-01T18:22:00Z,2461346.265278,10.0,False,0,Visual,,GKI,1
+2026-11-01T18:29:00Z,2461346.270139,10.0,False,0,Visual,,LEDE,1

@@ -1,42 +1,42 @@
 {
   "star": "T CrB",
-  "exported_at": "2026-11-01T16:13:01Z",
+  "exported_at": "2026-11-01T22:13:01Z",
   "window_hours": 24,
-  "window_start_utc": "2026-10-31T16:13:01Z",
-  "window_end_utc": "2026-11-01T16:13:01Z",
+  "window_start_utc": "2026-10-31T22:13:01Z",
+  "window_end_utc": "2026-11-01T22:13:01Z",
   "count": 3,
   "observations": [
     {
-      "date_utc": "2026-10-31T17:39:52Z",
-      "jd": 2461345.23603,
-      "magnitude": 9.91,
+      "date_utc": "2026-11-01T17:01:44Z",
+      "jd": 2461346.209538,
+      "magnitude": 9.82,
+      "fainter_than": false,
+      "band_code": "2",
+      "band_name": "Johnson V",
+      "uncertainty": "0.003",
+      "observer_code": "LPEB",
+      "obstype": "2"
+    },
+    {
+      "date_utc": "2026-11-01T18:22:00Z",
+      "jd": 2461346.265278,
+      "magnitude": 10.0,
       "fainter_than": false,
       "band_code": "0",
       "band_name": "Visual",
       "uncertainty": null,
-      "observer_code": "PREB",
+      "observer_code": "GKI",
       "obstype": "1"
     },
     {
-      "date_utc": "2026-10-31T18:47:57Z",
-      "jd": 2461345.2833,
-      "magnitude": 9.8,
+      "date_utc": "2026-11-01T18:29:00Z",
+      "jd": 2461346.270139,
+      "magnitude": 10.0,
       "fainter_than": false,
       "band_code": "0",
       "band_name": "Visual",
       "uncertainty": null,
-      "observer_code": "DPV",
-      "obstype": "1"
-    },
-    {
-      "date_utc": "2026-10-31T19:30:59Z",
-      "jd": 2461345.313194,
-      "magnitude": 10.1,
-      "fainter_than": false,
-      "band_code": "0",
-      "band_name": "Visual",
-      "uncertainty": null,
-      "observer_code": "OJR",
+      "observer_code": "LEDE",
       "obstype": "1"
     }
   ]
