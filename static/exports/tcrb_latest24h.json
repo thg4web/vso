@@ -1,21 +1,9 @@
 {
   "star": "T CrB",
-  "exported_at": "2026-11-02T22:13:01Z",
+  "exported_at": "2026-11-03T04:13:02Z",
   "window_hours": 24,
-  "window_start_utc": "2026-11-01T22:13:01Z",
-  "window_end_utc": "2026-11-02T22:13:01Z",
-  "count": 1,
-  "observations": [
-    {
-      "date_utc": "2026-11-02T00:34:59Z",
-      "jd": 2461346.5243,
-      "magnitude": 9.9,
-      "fainter_than": false,
-      "band_code": "0",
-      "band_name": "Visual",
-      "uncertainty": null,
-      "observer_code": "WALG",
-      "obstype": "1"
-    }
-  ]
+  "window_start_utc": "2026-11-02T04:13:02Z",
+  "window_end_utc": "2026-11-03T04:13:02Z",
+  "count": 0,
+  "observations": []
 }
