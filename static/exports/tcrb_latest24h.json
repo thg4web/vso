@@ -1,44 +1,11 @@
 {
   "star": "T CrB",
-  "exported_at": "2026-11-03T16:13:01Z",
+  "exported_at": "2026-11-03T22:13:02Z",
   "window_hours": 24,
-  "window_start_utc": "2026-11-02T16:13:01Z",
-  "window_end_utc": "2026-11-03T16:13:01Z",
-  "count": 13,
+  "window_start_utc": "2026-11-02T22:13:02Z",
+  "window_end_utc": "2026-11-03T22:13:02Z",
+  "count": 16,
   "observations": [
-    {
-      "date_utc": "2026-11-02T18:45:04Z",
-      "jd": 2461347.2813,
-      "magnitude": 9.9,
-      "fainter_than": false,
-      "band_code": "0",
-      "band_name": "Visual",
-      "uncertainty": null,
-      "observer_code": "DPV",
-      "obstype": "1"
-    },
-    {
-      "date_utc": "2026-11-02T18:55:12Z",
-      "jd": 2461347.288339,
-      "magnitude": 9.857,
-      "fainter_than": false,
-      "band_code": "2",
-      "band_name": "Johnson V",
-      "uncertainty": "0.018",
-      "observer_code": "DFS",
-      "obstype": "2"
-    },
-    {
-      "date_utc": "2026-11-02T18:55:26Z",
-      "jd": 2461347.288501,
-      "magnitude": 10.999,
-      "fainter_than": false,
-      "band_code": "3",
-      "band_name": "Johnson B",
-      "uncertainty": "0.025",
-      "observer_code": "DFS",
-      "obstype": "2"
-    },
     {
       "date_utc": "2026-11-02T23:13:03Z",
       "jd": 2461347.4674,
@@ -148,6 +115,72 @@
       "uncertainty": "0.0005",
       "observer_code": "WGR",
       "obstype": "2"
+    },
+    {
+      "date_utc": "2026-11-03T16:06:31Z",
+      "jd": 2461348.1712,
+      "magnitude": 9.91,
+      "fainter_than": false,
+      "band_code": "2",
+      "band_name": "Johnson V",
+      "uncertainty": "0.003",
+      "observer_code": "OAR",
+      "obstype": "2"
+    },
+    {
+      "date_utc": "2026-11-03T16:07:20Z",
+      "jd": 2461348.17177,
+      "magnitude": 9.91,
+      "fainter_than": false,
+      "band_code": "2",
+      "band_name": "Johnson V",
+      "uncertainty": "0.003",
+      "observer_code": "OAR",
+      "obstype": "2"
+    },
+    {
+      "date_utc": "2026-11-03T16:08:17Z",
+      "jd": 2461348.17243,
+      "magnitude": 8.96,
+      "fainter_than": false,
+      "band_code": "4",
+      "band_name": "Cousins R",
+      "uncertainty": "0.002",
+      "observer_code": "OAR",
+      "obstype": "2"
+    },
+    {
+      "date_utc": "2026-11-03T16:09:08Z",
+      "jd": 2461348.17302,
+      "magnitude": 7.273,
+      "fainter_than": false,
+      "band_code": "5",
+      "band_name": "Cousins I",
+      "uncertainty": "0.005",
+      "observer_code": "OAR",
+      "obstype": "2"
+    },
+    {
+      "date_utc": "2026-11-03T16:10:12Z",
+      "jd": 2461348.17376,
+      "magnitude": 11.28,
+      "fainter_than": false,
+      "band_code": "3",
+      "band_name": "Johnson B",
+      "uncertainty": "0.006",
+      "observer_code": "OAR",
+      "obstype": "2"
+    },
+    {
+      "date_utc": "2026-11-03T17:41:28Z",
+      "jd": 2461348.23714,
+      "magnitude": 10.01,
+      "fainter_than": false,
+      "band_code": "0",
+      "band_name": "Visual",
+      "uncertainty": null,
+      "observer_code": "PREB",
+      "obstype": "1"
     }
   ]
 }
