@@ -1,33 +1,11 @@
 {
   "star": "T CrB",
-  "exported_at": "2026-11-05T10:13:01Z",
+  "exported_at": "2026-11-05T16:13:01Z",
   "window_hours": 24,
-  "window_start_utc": "2026-11-04T10:13:01Z",
-  "window_end_utc": "2026-11-05T10:13:01Z",
-  "count": 42,
+  "window_start_utc": "2026-11-04T16:13:01Z",
+  "window_end_utc": "2026-11-05T16:13:01Z",
+  "count": 40,
   "observations": [
-    {
-      "date_utc": "2026-11-04T15:49:19Z",
-      "jd": 2461349.15925,
-      "magnitude": 7.1,
-      "fainter_than": true,
-      "band_code": "51",
-      "band_name": "Tri-Color Green",
-      "uncertainty": "0.12",
-      "observer_code": "OAR",
-      "obstype": "2"
-    },
-    {
-      "date_utc": "2026-11-04T16:11:01Z",
-      "jd": 2461349.17432,
-      "magnitude": 7.1,
-      "fainter_than": true,
-      "band_code": "51",
-      "band_name": "Tri-Color Green",
-      "uncertainty": "0.1",
-      "observer_code": "OAR",
-      "obstype": "2"
-    },
     {
       "date_utc": "2026-11-04T16:18:52Z",
       "jd": 2461349.17977,
