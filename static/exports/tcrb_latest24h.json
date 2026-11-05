@@ -1,66 +1,11 @@
 {
   "star": "T CrB",
-  "exported_at": "2026-11-04T22:13:01Z",
+  "exported_at": "2026-11-05T04:13:01Z",
   "window_hours": 24,
-  "window_start_utc": "2026-11-03T22:13:01Z",
-  "window_end_utc": "2026-11-04T22:13:01Z",
-  "count": 10,
+  "window_start_utc": "2026-11-04T04:13:01Z",
+  "window_end_utc": "2026-11-05T04:13:01Z",
+  "count": 6,
   "observations": [
-    {
-      "date_utc": "2026-11-03T23:05:59Z",
-      "jd": 2461348.4625,
-      "magnitude": 5.0,
-      "fainter_than": true,
-      "band_code": "0",
-      "band_name": "Visual",
-      "uncertainty": null,
-      "observer_code": "TRIB",
-      "obstype": "1"
-    },
-    {
-      "date_utc": "2026-11-03T23:46:00Z",
-      "jd": 2461348.490278,
-      "magnitude": 8.4,
-      "fainter_than": true,
-      "band_code": "0",
-      "band_name": "Visual",
-      "uncertainty": null,
-      "observer_code": "SSHA",
-      "obstype": "1"
-    },
-    {
-      "date_utc": "2026-11-04T01:46:18Z",
-      "jd": 2461348.57383,
-      "magnitude": 9.519,
-      "fainter_than": false,
-      "band_code": "8",
-      "band_name": "Unfiltered (V zeropoint)",
-      "uncertainty": "0.002",
-      "observer_code": "SKA",
-      "obstype": "2"
-    },
-    {
-      "date_utc": "2026-11-04T01:46:57Z",
-      "jd": 2461348.57428,
-      "magnitude": 9.511,
-      "fainter_than": false,
-      "band_code": "8",
-      "band_name": "Unfiltered (V zeropoint)",
-      "uncertainty": "0.002",
-      "observer_code": "SKA",
-      "obstype": "2"
-    },
-    {
-      "date_utc": "2026-11-04T02:50:09Z",
-      "jd": 2461348.61816,
-      "magnitude": 5.0,
-      "fainter_than": true,
-      "band_code": "51",
-      "band_name": "Tri-Color Green",
-      "uncertainty": "0.12",
-      "observer_code": "OAR",
-      "obstype": "2"
-    },
     {
       "date_utc": "2026-11-04T15:49:19Z",
       "jd": 2461349.15925,
@@ -115,6 +60,17 @@
       "uncertainty": "0.009",
       "observer_code": "HGEA",
       "obstype": "2"
+    },
+    {
+      "date_utc": "2026-11-05T00:15:59Z",
+      "jd": 2461349.51111111,
+      "magnitude": 9.8,
+      "fainter_than": false,
+      "band_code": "0",
+      "band_name": "Visual",
+      "uncertainty": null,
+      "observer_code": "WALG",
+      "obstype": "1"
     }
   ]
 }
