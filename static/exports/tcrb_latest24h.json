@@ -1,154 +1,11 @@
 {
   "star": "T CrB",
-  "exported_at": "2026-11-06T22:13:01Z",
+  "exported_at": "2026-11-07T04:13:01Z",
   "window_hours": 24,
-  "window_start_utc": "2026-11-05T22:13:01Z",
-  "window_end_utc": "2026-11-06T22:13:01Z",
-  "count": 16,
+  "window_start_utc": "2026-11-06T04:13:01Z",
+  "window_end_utc": "2026-11-07T04:13:01Z",
+  "count": 4,
   "observations": [
-    {
-      "date_utc": "2026-11-06T00:27:56Z",
-      "jd": 2461350.5194,
-      "magnitude": 9.7,
-      "fainter_than": false,
-      "band_code": "0",
-      "band_name": "Visual",
-      "uncertainty": null,
-      "observer_code": "WALG",
-      "obstype": "1"
-    },
-    {
-      "date_utc": "2026-11-06T01:34:59Z",
-      "jd": 2461350.565972,
-      "magnitude": 9.7,
-      "fainter_than": false,
-      "band_code": "0",
-      "band_name": "Visual",
-      "uncertainty": null,
-      "observer_code": "BALQ",
-      "obstype": "1"
-    },
-    {
-      "date_utc": "2026-11-06T02:19:11Z",
-      "jd": 2461350.59666,
-      "magnitude": 7.1,
-      "fainter_than": true,
-      "band_code": "51",
-      "band_name": "Tri-Color Green",
-      "uncertainty": "0.12",
-      "observer_code": "OAR",
-      "obstype": "2"
-    },
-    {
-      "date_utc": "2026-11-06T02:29:43Z",
-      "jd": 2461350.60398,
-      "magnitude": 7.1,
-      "fainter_than": true,
-      "band_code": "51",
-      "band_name": "Tri-Color Green",
-      "uncertainty": "0.14",
-      "observer_code": "OAR",
-      "obstype": "2"
-    },
-    {
-      "date_utc": "2026-11-06T02:38:11Z",
-      "jd": 2461350.60985,
-      "magnitude": 7.1,
-      "fainter_than": true,
-      "band_code": "51",
-      "band_name": "Tri-Color Green",
-      "uncertainty": "0.12",
-      "observer_code": "OAR",
-      "obstype": "2"
-    },
-    {
-      "date_utc": "2026-11-06T02:48:44Z",
-      "jd": 2461350.61718,
-      "magnitude": 5.0,
-      "fainter_than": true,
-      "band_code": "51",
-      "band_name": "Tri-Color Green",
-      "uncertainty": "0.08",
-      "observer_code": "OAR",
-      "obstype": "2"
-    },
-    {
-      "date_utc": "2026-11-06T02:59:16Z",
-      "jd": 2461350.6245,
-      "magnitude": 7.1,
-      "fainter_than": true,
-      "band_code": "51",
-      "band_name": "Tri-Color Green",
-      "uncertainty": "0.22",
-      "observer_code": "OAR",
-      "obstype": "2"
-    },
-    {
-      "date_utc": "2026-11-06T03:09:50Z",
-      "jd": 2461350.63184,
-      "magnitude": 7.1,
-      "fainter_than": true,
-      "band_code": "51",
-      "band_name": "Tri-Color Green",
-      "uncertainty": "0.11",
-      "observer_code": "OAR",
-      "obstype": "2"
-    },
-    {
-      "date_utc": "2026-11-06T03:18:17Z",
-      "jd": 2461350.6377,
-      "magnitude": 7.1,
-      "fainter_than": true,
-      "band_code": "51",
-      "band_name": "Tri-Color Green",
-      "uncertainty": "0.13",
-      "observer_code": "OAR",
-      "obstype": "2"
-    },
-    {
-      "date_utc": "2026-11-06T03:28:50Z",
-      "jd": 2461350.64503,
-      "magnitude": 7.1,
-      "fainter_than": true,
-      "band_code": "51",
-      "band_name": "Tri-Color Green",
-      "uncertainty": "0.13",
-      "observer_code": "OAR",
-      "obstype": "2"
-    },
-    {
-      "date_utc": "2026-11-06T03:39:23Z",
-      "jd": 2461350.65236,
-      "magnitude": 7.1,
-      "fainter_than": true,
-      "band_code": "51",
-      "band_name": "Tri-Color Green",
-      "uncertainty": "0.14",
-      "observer_code": "OAR",
-      "obstype": "2"
-    },
-    {
-      "date_utc": "2026-11-06T03:49:57Z",
-      "jd": 2461350.65969,
-      "magnitude": 7.1,
-      "fainter_than": true,
-      "band_code": "51",
-      "band_name": "Tri-Color Green",
-      "uncertainty": "0.1",
-      "observer_code": "OAR",
-      "obstype": "2"
-    },
-    {
-      "date_utc": "2026-11-06T03:58:24Z",
-      "jd": 2461350.66556,
-      "magnitude": 7.1,
-      "fainter_than": true,
-      "band_code": "51",
-      "band_name": "Tri-Color Green",
-      "uncertainty": "0.13",
-      "observer_code": "OAR",
-      "obstype": "2"
-    },
     {
       "date_utc": "2026-11-06T16:34:59Z",
       "jd": 2461351.190972,
@@ -181,6 +38,17 @@
       "uncertainty": "0.008",
       "observer_code": "HGEA",
       "obstype": "2"
+    },
+    {
+      "date_utc": "2026-11-07T01:30:59Z",
+      "jd": 2461351.563194,
+      "magnitude": 9.7,
+      "fainter_than": false,
+      "band_code": "0",
+      "band_name": "Visual",
+      "uncertainty": null,
+      "observer_code": "BALQ",
+      "obstype": "1"
     }
   ]
 }
