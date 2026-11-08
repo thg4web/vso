@@ -1,10 +1,10 @@
 {
   "star": "T CrB",
-  "exported_at": "2026-11-08T04:13:01Z",
+  "exported_at": "2026-11-08T10:13:02Z",
   "window_hours": 24,
-  "window_start_utc": "2026-11-07T04:13:01Z",
-  "window_end_utc": "2026-11-08T04:13:01Z",
-  "count": 2,
+  "window_start_utc": "2026-11-07T10:13:02Z",
+  "window_end_utc": "2026-11-08T10:13:02Z",
+  "count": 11,
   "observations": [
     {
       "date_utc": "2026-11-07T17:23:10Z",
@@ -27,6 +27,105 @@
       "uncertainty": null,
       "observer_code": "BALQ",
       "obstype": "1"
+    },
+    {
+      "date_utc": "2026-11-08T02:48:47Z",
+      "jd": 2461352.61722,
+      "magnitude": 7.1,
+      "fainter_than": true,
+      "band_code": "51",
+      "band_name": "Tri-Color Green",
+      "uncertainty": "0.14",
+      "observer_code": "OAR",
+      "obstype": "2"
+    },
+    {
+      "date_utc": "2026-11-08T02:59:21Z",
+      "jd": 2461352.62455,
+      "magnitude": 5.0,
+      "fainter_than": true,
+      "band_code": "51",
+      "band_name": "Tri-Color Green",
+      "uncertainty": "0.09",
+      "observer_code": "OAR",
+      "obstype": "2"
+    },
+    {
+      "date_utc": "2026-11-08T03:09:55Z",
+      "jd": 2461352.63189,
+      "magnitude": 7.1,
+      "fainter_than": true,
+      "band_code": "51",
+      "band_name": "Tri-Color Green",
+      "uncertainty": "0.14",
+      "observer_code": "OAR",
+      "obstype": "2"
+    },
+    {
+      "date_utc": "2026-11-08T03:18:20Z",
+      "jd": 2461352.63774,
+      "magnitude": 7.1,
+      "fainter_than": true,
+      "band_code": "51",
+      "band_name": "Tri-Color Green",
+      "uncertainty": "0.13",
+      "observer_code": "OAR",
+      "obstype": "2"
+    },
+    {
+      "date_utc": "2026-11-08T03:28:54Z",
+      "jd": 2461352.64508,
+      "magnitude": 7.1,
+      "fainter_than": true,
+      "band_code": "51",
+      "band_name": "Tri-Color Green",
+      "uncertainty": "0.1",
+      "observer_code": "OAR",
+      "obstype": "2"
+    },
+    {
+      "date_utc": "2026-11-08T03:39:28Z",
+      "jd": 2461352.65241,
+      "magnitude": 7.1,
+      "fainter_than": true,
+      "band_code": "51",
+      "band_name": "Tri-Color Green",
+      "uncertainty": "0.13",
+      "observer_code": "OAR",
+      "obstype": "2"
+    },
+    {
+      "date_utc": "2026-11-08T03:47:55Z",
+      "jd": 2461352.65828,
+      "magnitude": 7.1,
+      "fainter_than": true,
+      "band_code": "51",
+      "band_name": "Tri-Color Green",
+      "uncertainty": "0.14",
+      "observer_code": "OAR",
+      "obstype": "2"
+    },
+    {
+      "date_utc": "2026-11-08T03:58:27Z",
+      "jd": 2461352.6656,
+      "magnitude": 7.1,
+      "fainter_than": true,
+      "band_code": "51",
+      "band_name": "Tri-Color Green",
+      "uncertainty": "0.16",
+      "observer_code": "OAR",
+      "obstype": "2"
+    },
+    {
+      "date_utc": "2026-11-08T04:09:01Z",
+      "jd": 2461352.67293,
+      "magnitude": 7.1,
+      "fainter_than": true,
+      "band_code": "51",
+      "band_name": "Tri-Color Green",
+      "uncertainty": "0.11",
+      "observer_code": "OAR",
+      "obstype": "2"
     }
   ]
 }
