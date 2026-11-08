@@ -1,20 +1,163 @@
 {
   "star": "T CrB",
-  "exported_at": "2026-11-08T16:13:01Z",
+  "exported_at": "2026-11-08T22:13:01Z",
   "window_hours": 24,
-  "window_start_utc": "2026-11-07T16:13:01Z",
-  "window_end_utc": "2026-11-08T16:13:01Z",
-  "count": 11,
+  "window_start_utc": "2026-11-07T22:13:01Z",
+  "window_end_utc": "2026-11-08T22:13:01Z",
+  "count": 25,
   "observations": [
     {
-      "date_utc": "2026-11-07T17:23:10Z",
-      "jd": 2461352.224428,
-      "magnitude": 9.832,
+      "date_utc": "2026-11-08T01:01:51Z",
+      "jd": 2461352.54296,
+      "magnitude": 11.303,
+      "fainter_than": false,
+      "band_code": "3",
+      "band_name": "Johnson B",
+      "uncertainty": "0.004",
+      "observer_code": "SRIC",
+      "obstype": "2"
+    },
+    {
+      "date_utc": "2026-11-08T01:03:07Z",
+      "jd": 2461352.54384,
+      "magnitude": 9.866,
       "fainter_than": false,
       "band_code": "2",
       "band_name": "Johnson V",
+      "uncertainty": "0.005",
+      "observer_code": "SRIC",
+      "obstype": "2"
+    },
+    {
+      "date_utc": "2026-11-08T01:04:00Z",
+      "jd": 2461352.54445,
+      "magnitude": 9.066,
+      "fainter_than": false,
+      "band_code": "4",
+      "band_name": "Cousins R",
+      "uncertainty": "0.007",
+      "observer_code": "SRIC",
+      "obstype": "2"
+    },
+    {
+      "date_utc": "2026-11-08T01:05:02Z",
+      "jd": 2461352.54517,
+      "magnitude": 7.622,
+      "fainter_than": false,
+      "band_code": "5",
+      "band_name": "Cousins I",
+      "uncertainty": "0.007",
+      "observer_code": "SRIC",
+      "obstype": "2"
+    },
+    {
+      "date_utc": "2026-11-08T01:06:27Z",
+      "jd": 2461352.54615,
+      "magnitude": 12.477,
+      "fainter_than": false,
+      "band_code": "40",
+      "band_name": "code 40",
+      "uncertainty": "0.025",
+      "observer_code": "SRIC",
+      "obstype": "2"
+    },
+    {
+      "date_utc": "2026-11-08T01:09:02Z",
+      "jd": 2461352.54795,
+      "magnitude": 11.333,
+      "fainter_than": false,
+      "band_code": "3",
+      "band_name": "Johnson B",
       "uncertainty": "0.004",
-      "observer_code": "LPEB",
+      "observer_code": "SRIC",
+      "obstype": "2"
+    },
+    {
+      "date_utc": "2026-11-08T01:10:33Z",
+      "jd": 2461352.549,
+      "magnitude": 9.878,
+      "fainter_than": false,
+      "band_code": "2",
+      "band_name": "Johnson V",
+      "uncertainty": "0.005",
+      "observer_code": "SRIC",
+      "obstype": "2"
+    },
+    {
+      "date_utc": "2026-11-08T01:12:02Z",
+      "jd": 2461352.55003,
+      "magnitude": 9.066,
+      "fainter_than": false,
+      "band_code": "4",
+      "band_name": "Cousins R",
+      "uncertainty": "0.008",
+      "observer_code": "SRIC",
+      "obstype": "2"
+    },
+    {
+      "date_utc": "2026-11-08T01:13:31Z",
+      "jd": 2461352.55106,
+      "magnitude": 7.6,
+      "fainter_than": false,
+      "band_code": "5",
+      "band_name": "Cousins I",
+      "uncertainty": "0.007",
+      "observer_code": "SRIC",
+      "obstype": "2"
+    },
+    {
+      "date_utc": "2026-11-08T01:15:16Z",
+      "jd": 2461352.55228,
+      "magnitude": 12.31,
+      "fainter_than": false,
+      "band_code": "40",
+      "band_name": "code 40",
+      "uncertainty": "0.024",
+      "observer_code": "SRIC",
+      "obstype": "2"
+    },
+    {
+      "date_utc": "2026-11-08T01:17:56Z",
+      "jd": 2461352.554123,
+      "magnitude": 11.292,
+      "fainter_than": false,
+      "band_code": "3",
+      "band_name": "Johnson B",
+      "uncertainty": "0.004",
+      "observer_code": "SRIC",
+      "obstype": "2"
+    },
+    {
+      "date_utc": "2026-11-08T01:19:42Z",
+      "jd": 2461352.555348,
+      "magnitude": 9.889,
+      "fainter_than": false,
+      "band_code": "2",
+      "band_name": "Johnson V",
+      "uncertainty": "0.006",
+      "observer_code": "SRIC",
+      "obstype": "2"
+    },
+    {
+      "date_utc": "2026-11-08T01:21:14Z",
+      "jd": 2461352.556414,
+      "magnitude": 8.967,
+      "fainter_than": false,
+      "band_code": "4",
+      "band_name": "Cousins R",
+      "uncertainty": "0.009",
+      "observer_code": "SRIC",
+      "obstype": "2"
+    },
+    {
+      "date_utc": "2026-11-08T01:22:32Z",
+      "jd": 2461352.557317,
+      "magnitude": 7.476,
+      "fainter_than": false,
+      "band_code": "5",
+      "band_name": "Cousins I",
+      "uncertainty": "0.008",
+      "observer_code": "SRIC",
       "obstype": "2"
     },
     {
@@ -126,6 +269,17 @@
       "uncertainty": "0.11",
       "observer_code": "OAR",
       "obstype": "2"
+    },
+    {
+      "date_utc": "2026-11-08T18:22:59Z",
+      "jd": 2461353.265972,
+      "magnitude": 10.0,
+      "fainter_than": false,
+      "band_code": "0",
+      "band_name": "Visual",
+      "uncertainty": null,
+      "observer_code": "GKI",
+      "obstype": "1"
     }
   ]
 }
