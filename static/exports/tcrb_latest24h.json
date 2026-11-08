@@ -1,14 +1,25 @@
 {
   "star": "T CrB",
-  "exported_at": "2026-11-07T22:13:01Z",
+  "exported_at": "2026-11-08T04:13:01Z",
   "window_hours": 24,
-  "window_start_utc": "2026-11-06T22:13:01Z",
-  "window_end_utc": "2026-11-07T22:13:01Z",
-  "count": 1,
+  "window_start_utc": "2026-11-07T04:13:01Z",
+  "window_end_utc": "2026-11-08T04:13:01Z",
+  "count": 2,
   "observations": [
     {
-      "date_utc": "2026-11-07T01:30:59Z",
-      "jd": 2461351.563194,
+      "date_utc": "2026-11-07T17:23:10Z",
+      "jd": 2461352.224428,
+      "magnitude": 9.832,
+      "fainter_than": false,
+      "band_code": "2",
+      "band_name": "Johnson V",
+      "uncertainty": "0.004",
+      "observer_code": "LPEB",
+      "obstype": "2"
+    },
+    {
+      "date_utc": "2026-11-08T01:39:00Z",
+      "jd": 2461352.56875,
       "magnitude": 9.7,
       "fainter_than": false,
       "band_code": "0",
