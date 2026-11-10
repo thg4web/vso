@@ -1,10 +1,10 @@
 {
   "star": "T CrB",
-  "exported_at": "2026-11-10T04:13:01Z",
+  "exported_at": "2026-11-10T10:13:01Z",
   "window_hours": 24,
-  "window_start_utc": "2026-11-09T04:13:01Z",
-  "window_end_utc": "2026-11-10T04:13:01Z",
-  "count": 6,
+  "window_start_utc": "2026-11-09T10:13:01Z",
+  "window_end_utc": "2026-11-10T10:13:01Z",
+  "count": 7,
   "observations": [
     {
       "date_utc": "2026-11-09T16:18:06Z",
@@ -49,6 +49,17 @@
       "uncertainty": "0.004",
       "observer_code": "LPEB",
       "obstype": "2"
+    },
+    {
+      "date_utc": "2026-11-09T17:53:00Z",
+      "jd": 2461354.245139,
+      "magnitude": 9.7,
+      "fainter_than": false,
+      "band_code": "0",
+      "band_name": "Visual",
+      "uncertainty": null,
+      "observer_code": "DMIB",
+      "obstype": "1"
     },
     {
       "date_utc": "2026-11-09T23:19:00Z",
