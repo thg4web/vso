@@ -1,14 +1,14 @@
 {
   "star": "T CrB",
-  "exported_at": "2026-11-10T22:13:01Z",
+  "exported_at": "2026-11-11T04:13:01Z",
   "window_hours": 24,
-  "window_start_utc": "2026-11-09T22:13:01Z",
-  "window_end_utc": "2026-11-10T22:13:01Z",
+  "window_start_utc": "2026-11-10T04:13:01Z",
+  "window_end_utc": "2026-11-11T04:13:01Z",
   "count": 2,
   "observations": [
     {
-      "date_utc": "2026-11-09T23:19:00Z",
-      "jd": 2461354.471528,
+      "date_utc": "2026-11-10T23:01:59Z",
+      "jd": 2461355.459722,
       "magnitude": 5.0,
       "fainter_than": true,
       "band_code": "0",
@@ -18,9 +18,9 @@
       "obstype": "1"
     },
     {
-      "date_utc": "2026-11-10T01:30:00Z",
-      "jd": 2461354.5625,
-      "magnitude": 9.8,
+      "date_utc": "2026-11-11T01:27:00Z",
+      "jd": 2461355.560417,
+      "magnitude": 9.6,
       "fainter_than": false,
       "band_code": "0",
       "band_name": "Visual",
