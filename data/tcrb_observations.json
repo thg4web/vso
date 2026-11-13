@@ -3610,9 +3610,9 @@
     "citation": "American Association of Variable Star Observers (AAVSO). (2026). AAVSO International Database."
   },
   "schema_version": 2,
-  "fetched_at": "2026-11-13T10:13:01Z",
+  "fetched_at": "2026-11-13T16:13:01Z",
   "current": {
-    "computed_at": "2026-11-13T10:13:01Z",
+    "computed_at": "2026-11-13T16:13:01Z",
     "value": 9.897,
     "band": "V",
     "mode": "trailing_24h",
