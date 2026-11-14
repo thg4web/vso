@@ -1,0 +1,3 @@
+date_utc,jd,magnitude,fainter_than,band_code,band_name,uncertainty,observer_code,obstype
+2026-11-13T16:46:59Z,2461358.1993,9.8,False,0,Visual,,KWO,1
+2026-11-13T23:15:59Z,2461358.469444,5.0,True,0,Visual,,TRIB,1
