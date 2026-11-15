@@ -1,53 +1,20 @@
 {
   "star": "T CrB",
-  "exported_at": "2026-11-15T16:13:01Z",
+  "exported_at": "2026-11-15T22:13:01Z",
   "window_hours": 24,
-  "window_start_utc": "2026-11-14T16:13:01Z",
-  "window_end_utc": "2026-11-15T16:13:01Z",
-  "count": 4,
+  "window_start_utc": "2026-11-14T22:13:01Z",
+  "window_end_utc": "2026-11-15T22:13:01Z",
+  "count": 1,
   "observations": [
     {
-      "date_utc": "2026-11-14T16:14:59Z",
-      "jd": 2461359.177083,
-      "magnitude": 9.92,
+      "date_utc": "2026-11-15T19:14:59Z",
+      "jd": 2461360.302083,
+      "magnitude": 9.9,
       "fainter_than": false,
       "band_code": "0",
       "band_name": "Visual",
       "uncertainty": null,
-      "observer_code": "SIVB",
-      "obstype": "1"
-    },
-    {
-      "date_utc": "2026-11-14T16:53:02Z",
-      "jd": 2461359.2035,
-      "magnitude": 9.8,
-      "fainter_than": false,
-      "band_code": "0",
-      "band_name": "Visual",
-      "uncertainty": null,
-      "observer_code": "KWO",
-      "obstype": "1"
-    },
-    {
-      "date_utc": "2026-11-14T17:15:21Z",
-      "jd": 2461359.219,
-      "magnitude": 10.1,
-      "fainter_than": false,
-      "band_code": "0",
-      "band_name": "Visual",
-      "uncertainty": null,
-      "observer_code": "OGAA",
-      "obstype": "1"
-    },
-    {
-      "date_utc": "2026-11-14T18:00:00Z",
-      "jd": 2461359.25,
-      "magnitude": 9.8,
-      "fainter_than": false,
-      "band_code": "0",
-      "band_name": "Visual",
-      "uncertainty": null,
-      "observer_code": "DMIB",
+      "observer_code": "GKI",
       "obstype": "1"
     }
   ]
