@@ -1,3 +1,5 @@
 date_utc,jd,magnitude,fainter_than,band_code,band_name,uncertainty,observer_code,obstype
 2026-11-14T16:14:59Z,2461359.177083,9.92,False,0,Visual,,SIVB,1
 2026-11-14T16:53:02Z,2461359.2035,9.8,False,0,Visual,,KWO,1
+2026-11-14T17:15:21Z,2461359.219,10.1,False,0,Visual,,OGAA,1
+2026-11-14T18:00:00Z,2461359.25,9.8,False,0,Visual,,DMIB,1
