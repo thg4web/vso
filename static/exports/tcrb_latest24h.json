@@ -1,10 +1,10 @@
 {
   "star": "T CrB",
-  "exported_at": "2026-11-16T04:13:01Z",
+  "exported_at": "2026-11-16T10:13:02Z",
   "window_hours": 24,
-  "window_start_utc": "2026-11-15T04:13:01Z",
-  "window_end_utc": "2026-11-16T04:13:01Z",
-  "count": 4,
+  "window_start_utc": "2026-11-15T10:13:02Z",
+  "window_end_utc": "2026-11-16T10:13:02Z",
+  "count": 5,
   "observations": [
     {
       "date_utc": "2026-11-15T14:49:55Z",
@@ -27,6 +27,17 @@
       "uncertainty": null,
       "observer_code": "MQA",
       "obstype": "1"
+    },
+    {
+      "date_utc": "2026-11-15T17:19:12Z",
+      "jd": 2461360.22167,
+      "magnitude": 7.1,
+      "fainter_than": true,
+      "band_code": "51",
+      "band_name": "Tri-Color Green",
+      "uncertainty": "0.13",
+      "observer_code": "OAR",
+      "obstype": "2"
     },
     {
       "date_utc": "2026-11-15T19:14:59Z",
