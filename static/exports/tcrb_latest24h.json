@@ -1,44 +1,11 @@
 {
   "star": "T CrB",
-  "exported_at": "2026-11-17T16:13:01Z",
+  "exported_at": "2026-11-17T22:13:01Z",
   "window_hours": 24,
-  "window_start_utc": "2026-11-16T16:13:01Z",
-  "window_end_utc": "2026-11-17T16:13:01Z",
-  "count": 4,
+  "window_start_utc": "2026-11-16T22:13:01Z",
+  "window_end_utc": "2026-11-17T22:13:01Z",
+  "count": 1,
   "observations": [
-    {
-      "date_utc": "2026-11-16T16:54:46Z",
-      "jd": 2461361.204701,
-      "magnitude": 9.914,
-      "fainter_than": false,
-      "band_code": "2",
-      "band_name": "Johnson V",
-      "uncertainty": "0.005",
-      "observer_code": "DUBF",
-      "obstype": "2"
-    },
-    {
-      "date_utc": "2026-11-16T16:55:46Z",
-      "jd": 2461361.205404,
-      "magnitude": 8.893,
-      "fainter_than": false,
-      "band_code": "4",
-      "band_name": "Cousins R",
-      "uncertainty": "0.003",
-      "observer_code": "DUBF",
-      "obstype": "2"
-    },
-    {
-      "date_utc": "2026-11-16T16:56:07Z",
-      "jd": 2461361.20564,
-      "magnitude": 7.256,
-      "fainter_than": false,
-      "band_code": "5",
-      "band_name": "Cousins I",
-      "uncertainty": "0.005",
-      "observer_code": "DUBF",
-      "obstype": "2"
-    },
     {
       "date_utc": "2026-11-16T22:56:00Z",
       "jd": 2461361.455556,

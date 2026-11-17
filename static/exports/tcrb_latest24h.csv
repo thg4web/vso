@@ -1,5 +1,2 @@
 date_utc,jd,magnitude,fainter_than,band_code,band_name,uncertainty,observer_code,obstype
-2026-11-16T16:54:46Z,2461361.204701,9.914,False,2,Johnson V,0.005,DUBF,2
-2026-11-16T16:55:46Z,2461361.205404,8.893,False,4,Cousins R,0.003,DUBF,2
-2026-11-16T16:56:07Z,2461361.20564,7.256,False,5,Cousins I,0.005,DUBF,2
 2026-11-16T22:56:00Z,2461361.455556,5.0,True,0,Visual,,TRIB,1
