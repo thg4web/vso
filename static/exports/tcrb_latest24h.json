@@ -1,10 +1,10 @@
 {
   "star": "T CrB",
-  "exported_at": "2026-11-18T10:13:01Z",
+  "exported_at": "2026-11-18T16:13:01Z",
   "window_hours": 24,
-  "window_start_utc": "2026-11-17T10:13:01Z",
-  "window_end_utc": "2026-11-18T10:13:01Z",
-  "count": 2,
+  "window_start_utc": "2026-11-17T16:13:01Z",
+  "window_end_utc": "2026-11-18T16:13:01Z",
+  "count": 4,
   "observations": [
     {
       "date_utc": "2026-11-17T22:39:00Z",
@@ -27,6 +27,28 @@
       "uncertainty": null,
       "observer_code": "WALG",
       "obstype": "1"
+    },
+    {
+      "date_utc": "2026-11-18T00:48:27Z",
+      "jd": 2461362.53364676,
+      "magnitude": 9.9145,
+      "fainter_than": false,
+      "band_code": "2",
+      "band_name": "Johnson V",
+      "uncertainty": "0.0024",
+      "observer_code": "WGR",
+      "obstype": "2"
+    },
+    {
+      "date_utc": "2026-11-18T00:50:35Z",
+      "jd": 2461362.53513738,
+      "magnitude": 11.2436,
+      "fainter_than": false,
+      "band_code": "3",
+      "band_name": "Johnson B",
+      "uncertainty": "0.0051",
+      "observer_code": "WGR",
+      "obstype": "2"
     }
   ]
 }

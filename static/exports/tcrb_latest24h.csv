@@ -1,3 +1,5 @@
 date_utc,jd,magnitude,fainter_than,band_code,band_name,uncertainty,observer_code,obstype
 2026-11-17T22:39:00Z,2461362.44375,5.0,True,0,Visual,,TRIB,1
 2026-11-18T00:05:54Z,2461362.5041,9.8,False,0,Visual,,WALG,1
+2026-11-18T00:48:27Z,2461362.53364676,9.9145,False,2,Johnson V,0.0024,WGR,2
+2026-11-18T00:50:35Z,2461362.53513738,11.2436,False,3,Johnson B,0.0051,WGR,2
