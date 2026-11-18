@@ -3658,8 +3658,8 @@
       "date": "2026-11-18",
       "mag": 9.8,
       "band": "visual",
-      "n": 1,
-      "observers": 1
+      "n": 2,
+      "observers": 2
     }
   ],
   "backfill": {
@@ -3680,9 +3680,9 @@
     "citation": "American Association of Variable Star Observers (AAVSO). (2026). AAVSO International Database."
   },
   "schema_version": 2,
-  "fetched_at": "2026-11-18T16:13:01Z",
+  "fetched_at": "2026-11-18T22:13:01Z",
   "current": {
-    "computed_at": "2026-11-18T16:13:01Z",
+    "computed_at": "2026-11-18T22:13:01Z",
     "value": 9.915,
     "band": "V",
     "mode": "trailing_24h",

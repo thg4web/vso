@@ -1,10 +1,10 @@
 {
   "star": "T CrB",
-  "exported_at": "2026-11-18T16:13:01Z",
+  "exported_at": "2026-11-18T22:13:01Z",
   "window_hours": 24,
-  "window_start_utc": "2026-11-17T16:13:01Z",
-  "window_end_utc": "2026-11-18T16:13:01Z",
-  "count": 4,
+  "window_start_utc": "2026-11-17T22:13:01Z",
+  "window_end_utc": "2026-11-18T22:13:01Z",
+  "count": 5,
   "observations": [
     {
       "date_utc": "2026-11-17T22:39:00Z",
@@ -49,6 +49,17 @@
       "uncertainty": "0.0051",
       "observer_code": "WGR",
       "obstype": "2"
+    },
+    {
+      "date_utc": "2026-11-18T18:11:59Z",
+      "jd": 2461363.258333,
+      "magnitude": 9.8,
+      "fainter_than": false,
+      "band_code": "0",
+      "band_name": "Visual",
+      "uncertainty": null,
+      "observer_code": "LEDE",
+      "obstype": "1"
     }
   ]
 }
