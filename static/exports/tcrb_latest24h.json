@@ -1,88 +1,11 @@
 {
   "star": "T CrB",
-  "exported_at": "2026-11-19T16:13:01Z",
+  "exported_at": "2026-11-19T22:13:01Z",
   "window_hours": 24,
-  "window_start_utc": "2026-11-18T16:13:01Z",
-  "window_end_utc": "2026-11-19T16:13:01Z",
-  "count": 9,
+  "window_start_utc": "2026-11-18T22:13:01Z",
+  "window_end_utc": "2026-11-19T22:13:01Z",
+  "count": 2,
   "observations": [
-    {
-      "date_utc": "2026-11-18T16:39:56Z",
-      "jd": 2461363.1944,
-      "magnitude": 9.84,
-      "fainter_than": false,
-      "band_code": "2",
-      "band_name": "Johnson V",
-      "uncertainty": "0.012",
-      "observer_code": "VOL",
-      "obstype": "6"
-    },
-    {
-      "date_utc": "2026-11-18T16:41:57Z",
-      "jd": 2461363.1958,
-      "magnitude": 9.942,
-      "fainter_than": false,
-      "band_code": "2",
-      "band_name": "Johnson V",
-      "uncertainty": "0.013",
-      "observer_code": "VOL",
-      "obstype": "6"
-    },
-    {
-      "date_utc": "2026-11-18T17:00:55Z",
-      "jd": 2461363.208978,
-      "magnitude": 9.922,
-      "fainter_than": false,
-      "band_code": "2",
-      "band_name": "Johnson V",
-      "uncertainty": "0.005",
-      "observer_code": "DUBF",
-      "obstype": "2"
-    },
-    {
-      "date_utc": "2026-11-18T17:01:26Z",
-      "jd": 2461363.209329,
-      "magnitude": 11.364,
-      "fainter_than": false,
-      "band_code": "3",
-      "band_name": "Johnson B",
-      "uncertainty": "0.015",
-      "observer_code": "DUBF",
-      "obstype": "2"
-    },
-    {
-      "date_utc": "2026-11-18T17:01:56Z",
-      "jd": 2461363.20968,
-      "magnitude": 8.9,
-      "fainter_than": false,
-      "band_code": "4",
-      "band_name": "Cousins R",
-      "uncertainty": "0.004",
-      "observer_code": "DUBF",
-      "obstype": "2"
-    },
-    {
-      "date_utc": "2026-11-18T17:02:16Z",
-      "jd": 2461363.209915,
-      "magnitude": 7.279,
-      "fainter_than": false,
-      "band_code": "5",
-      "band_name": "Cousins I",
-      "uncertainty": "0.006",
-      "observer_code": "DUBF",
-      "obstype": "2"
-    },
-    {
-      "date_utc": "2026-11-18T18:11:59Z",
-      "jd": 2461363.258333,
-      "magnitude": 9.8,
-      "fainter_than": false,
-      "band_code": "0",
-      "band_name": "Visual",
-      "uncertainty": null,
-      "observer_code": "LEDE",
-      "obstype": "1"
-    },
     {
       "date_utc": "2026-11-18T22:43:00Z",
       "jd": 2461363.446528,
