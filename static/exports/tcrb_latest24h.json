@@ -1,9 +1,43 @@
 {
   "star": "T CrB",
-  "exported_at": "2026-11-22T04:13:01Z",
+  "exported_at": "2026-11-22T10:13:01Z",
   "window_hours": 24,
-  "window_start_utc": "2026-11-21T04:13:01Z",
-  "window_end_utc": "2026-11-22T04:13:01Z",
-  "count": 0,
-  "observations": []
+  "window_start_utc": "2026-11-21T10:13:01Z",
+  "window_end_utc": "2026-11-22T10:13:01Z",
+  "count": 3,
+  "observations": [
+    {
+      "date_utc": "2026-11-21T16:39:56Z",
+      "jd": 2461366.1944,
+      "magnitude": 9.8,
+      "fainter_than": false,
+      "band_code": "0",
+      "band_name": "Visual",
+      "uncertainty": null,
+      "observer_code": "KWO",
+      "obstype": "1"
+    },
+    {
+      "date_utc": "2026-11-21T17:51:59Z",
+      "jd": 2461366.244444,
+      "magnitude": 9.6,
+      "fainter_than": false,
+      "band_code": "0",
+      "band_name": "Visual",
+      "uncertainty": null,
+      "observer_code": "DMIB",
+      "obstype": "1"
+    },
+    {
+      "date_utc": "2026-11-22T03:54:59Z",
+      "jd": 2461366.663194,
+      "magnitude": 9.9,
+      "fainter_than": false,
+      "band_code": "0",
+      "band_name": "Visual",
+      "uncertainty": null,
+      "observer_code": "MVH",
+      "obstype": "1"
+    }
+  ]
 }
