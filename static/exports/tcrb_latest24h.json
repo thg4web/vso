@@ -1,14 +1,14 @@
 {
   "star": "T CrB",
-  "exported_at": "2026-11-24T16:13:02Z",
+  "exported_at": "2026-11-24T22:13:01Z",
   "window_hours": 24,
-  "window_start_utc": "2026-11-23T16:13:02Z",
-  "window_end_utc": "2026-11-24T16:13:02Z",
-  "count": 1,
+  "window_start_utc": "2026-11-23T22:13:01Z",
+  "window_end_utc": "2026-11-24T22:13:01Z",
+  "count": 3,
   "observations": [
     {
-      "date_utc": "2026-11-23T16:44:23Z",
-      "jd": 2461368.1975,
+      "date_utc": "2026-11-24T16:25:58Z",
+      "jd": 2461369.1847,
       "magnitude": 9.8,
       "fainter_than": false,
       "band_code": "0",
@@ -16,6 +16,28 @@
       "uncertainty": null,
       "observer_code": "KWO",
       "obstype": "1"
+    },
+    {
+      "date_utc": "2026-11-24T16:56:59Z",
+      "jd": 2461369.20625,
+      "magnitude": 9.867,
+      "fainter_than": false,
+      "band_code": "2",
+      "band_name": "Johnson V",
+      "uncertainty": "0.011",
+      "observer_code": "HGEA",
+      "obstype": "2"
+    },
+    {
+      "date_utc": "2026-11-24T17:08:59Z",
+      "jd": 2461369.214583,
+      "magnitude": 11.178,
+      "fainter_than": false,
+      "band_code": "3",
+      "band_name": "Johnson B",
+      "uncertainty": "0.013",
+      "observer_code": "HGEA",
+      "obstype": "2"
     }
   ]
 }
