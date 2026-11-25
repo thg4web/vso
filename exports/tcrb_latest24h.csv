@@ -1,0 +1,5 @@
+date_utc,jd,magnitude,fainter_than,band_code,band_name,uncertainty,observer_code,obstype
+2026-11-25T06:02:50Z,2461369.751973,9.138,False,4,Cousins R,0.026,HMB,2
+2026-11-25T06:03:00Z,2461369.752089,9.08,False,4,Cousins R,0.026,HMB,2
+2026-11-25T06:26:59Z,2461369.76875,10.1,False,0,Visual,,LEDE,1
+2026-11-25T11:10:59Z,2461369.965972,10.2,False,0,Visual,,SLH,1
