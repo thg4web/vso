@@ -1,10 +1,10 @@
 {
   "star": "T CrB",
-  "exported_at": "2026-11-25T04:13:01Z",
+  "exported_at": "2026-11-25T10:13:01Z",
   "window_hours": 24,
-  "window_start_utc": "2026-11-24T04:13:01Z",
-  "window_end_utc": "2026-11-25T04:13:01Z",
-  "count": 3,
+  "window_start_utc": "2026-11-24T10:13:01Z",
+  "window_end_utc": "2026-11-25T10:13:01Z",
+  "count": 7,
   "observations": [
     {
       "date_utc": "2026-11-24T16:25:58Z",
@@ -29,6 +29,17 @@
       "obstype": "2"
     },
     {
+      "date_utc": "2026-11-24T17:08:00Z",
+      "jd": 2461369.213889,
+      "magnitude": 9.9,
+      "fainter_than": false,
+      "band_code": "0",
+      "band_name": "Visual",
+      "uncertainty": null,
+      "observer_code": "DMIB",
+      "obstype": "1"
+    },
+    {
       "date_utc": "2026-11-24T17:08:59Z",
       "jd": 2461369.214583,
       "magnitude": 11.178,
@@ -38,6 +49,39 @@
       "uncertainty": "0.013",
       "observer_code": "HGEA",
       "obstype": "2"
+    },
+    {
+      "date_utc": "2026-11-25T06:02:50Z",
+      "jd": 2461369.751973,
+      "magnitude": 9.138,
+      "fainter_than": false,
+      "band_code": "4",
+      "band_name": "Cousins R",
+      "uncertainty": "0.026",
+      "observer_code": "HMB",
+      "obstype": "2"
+    },
+    {
+      "date_utc": "2026-11-25T06:03:00Z",
+      "jd": 2461369.752089,
+      "magnitude": 9.08,
+      "fainter_than": false,
+      "band_code": "4",
+      "band_name": "Cousins R",
+      "uncertainty": "0.026",
+      "observer_code": "HMB",
+      "obstype": "2"
+    },
+    {
+      "date_utc": "2026-11-25T06:26:59Z",
+      "jd": 2461369.76875,
+      "magnitude": 10.1,
+      "fainter_than": false,
+      "band_code": "0",
+      "band_name": "Visual",
+      "uncertainty": null,
+      "observer_code": "LEDE",
+      "obstype": "1"
     }
   ]
 }
