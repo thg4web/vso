@@ -1,10 +1,10 @@
 {
   "star": "T CrB",
-  "exported_at": "2026-11-25T10:13:01Z",
+  "exported_at": "2026-11-25T16:13:01Z",
   "window_hours": 24,
-  "window_start_utc": "2026-11-24T10:13:01Z",
-  "window_end_utc": "2026-11-25T10:13:01Z",
-  "count": 7,
+  "window_start_utc": "2026-11-24T16:13:01Z",
+  "window_end_utc": "2026-11-25T16:13:01Z",
+  "count": 8,
   "observations": [
     {
       "date_utc": "2026-11-24T16:25:58Z",
@@ -15,6 +15,17 @@
       "band_name": "Visual",
       "uncertainty": null,
       "observer_code": "KWO",
+      "obstype": "1"
+    },
+    {
+      "date_utc": "2026-11-24T16:39:00Z",
+      "jd": 2461369.19375,
+      "magnitude": 10.2,
+      "fainter_than": false,
+      "band_code": "0",
+      "band_name": "Visual",
+      "uncertainty": null,
+      "observer_code": "VATA",
       "obstype": "1"
     },
     {
